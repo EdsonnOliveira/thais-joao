@@ -237,7 +237,7 @@ opacity:0!important;
 }
 rs-slide:has(.jp-hero-video)::after,
 .eltdf-ig-image-inner:has(.jp-gallery-video)::after{
-content:'';position:absolute;inset:0;z-index:2;pointer-events:auto;background:transparent;
+content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:transparent;
 }
 .eltdf-ig-image-inner .jp-gallery-video{
 display:block;width:100%;height:100%;aspect-ratio:1100/860;object-fit:cover;vertical-align:middle;pointer-events:none!important;
@@ -318,6 +318,83 @@ max-height:110px;width:auto;height:auto;
 max-height:70px;width:auto;height:auto;
 }
 </style>
+<script id="jp-media-script">
+(function(){
+function vids(){return document.querySelectorAll('video.jp-hero-video,video.jp-gallery-video');}
+function prep(v){
+v.controls=false;v.removeAttribute('controls');
+v.defaultMuted=true;v.muted=true;v.volume=0;
+v.setAttribute('muted','muted');
+v.autoplay=true;v.setAttribute('autoplay','autoplay');
+v.loop=true;v.setAttribute('loop','loop');
+v.playsInline=true;
+v.setAttribute('playsinline','playsinline');
+v.setAttribute('webkit-playsinline','true');
+try{v.setAttribute('x-webkit-airplay','deny');}catch(e){}
+}
+function playOne(v){
+if(!v)return;
+prep(v);
+var p=v.play();
+if(p&&p.catch)p.catch(function(){});
+}
+function slideHidden(slide){
+if(!slide)return true;
+var s=window.getComputedStyle(slide);
+return s.visibility==='hidden'||s.display==='none'||Number(s.opacity)===0;
+}
+function playHero(){
+document.querySelectorAll('video.jp-hero-video').forEach(function(v){
+var slide=v.closest('rs-slide');
+if(slideHidden(slide)){try{v.pause();}catch(e){}return;}
+playOne(v);
+});
+}
+function playGallery(){
+document.querySelectorAll('video.jp-gallery-video').forEach(function(v){
+var r=v.getBoundingClientRect();
+var vis=r.width>0&&r.height>0&&r.bottom>40&&r.top<((window.innerHeight||0)-40);
+if(vis)playOne(v);
+});
+}
+function playAll(){playHero();playGallery();}
+function bindUnlock(){
+var run=function(){playAll();};
+['touchstart','touchend','pointerdown','click','scroll','gesturestart','pageshow','visibilitychange'].forEach(function(t){
+document.addEventListener(t,run,true);
+});
+window.addEventListener('pageshow',run);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)run();});
+}
+function watchSlider(){
+var wrap=document.getElementById('rev_slider_3_1_wrapper')||document.getElementById('rev_slider_3_1');
+if(!wrap||!window.MutationObserver)return;
+new MutationObserver(function(){playHero();}).observe(wrap,{attributes:true,attributeFilter:['style','class'],subtree:true});
+}
+function observe(){
+if(!window.IntersectionObserver)return;
+var io=new IntersectionObserver(function(ents){
+ents.forEach(function(e){if(e.isIntersecting)playOne(e.target);});
+},{threshold:0.2});
+vids().forEach(function(v){io.observe(v);});
+}
+function boot(){
+vids().forEach(function(v){
+prep(v);
+['loadedmetadata','loadeddata','canplay','canplaythrough'].forEach(function(ev){
+v.addEventListener(ev,function(){playOne(v);});
+});
+});
+playAll();
+observe();
+watchSlider();
+bindUnlock();
+setInterval(playAll,1200);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+window.addEventListener('load',function(){playAll();setTimeout(playAll,300);setTimeout(playAll,1000);setTimeout(playAll,2000);});
+})();
+</script>
 </head>
 <body class="page-template page-template-full-width page-template-full-width-php page page-id-827 theme-theaisle theaisle-core-2.2.1 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.5.7 theaisle-ver-2.5 eltdf-smooth-page-transitions eltdf-grid-1300 eltdf-content-is-behind-header eltdf-wide-dropdown-menu-content-in-grid eltdf-light-header eltdf-no-behavior eltdf-dropdown-animate-height eltdf-header-divided eltdf-menu-area-shadow-disable eltdf-menu-area-in-grid-shadow-disable eltdf-menu-area-border-disable eltdf-menu-area-in-grid-border-disable eltdf-logo-area-border-disable eltdf-logo-area-in-grid-border-disable eltdf-side-menu-slide-from-right eltdf-woocommerce-columns-3 eltdf-woo-normal-space eltdf-woo-pl-info-below-image eltdf-woo-single-thumb-on-left-side eltdf-woo-single-has-pretty-photo eltdf-default-mobile-header eltdf-sticky-up-mobile-header eltdf-fullscreen-search eltdf-search-fade elementor-default elementor-kit-5320 elementor-page elementor-page-827" itemscope itemtype="http://schema.org/WebPage">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><section class="eltdf-side-menu">
@@ -753,15 +830,15 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					<rs-slides style="overflow: hidden; position: absolute;">
 						<rs-slide style="position: absolute;" data-key="rs-4" data-title="Slide" data-thumb="media/jp/posters/hero-01-thumb.jpg" data-anim="ms:600;r:0;" data-in="o:0;" data-out="a:false;" data-p1="1">
 							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-01.jpg" data-bg="p:center center;" data-parallax="off" data-no-retina>
-							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-01.jpg"><source src="media/jp/01.mp4" type="video/mp4"></video>
+							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-01.jpg" src="media/jp/01.mp4"></video>
 <!---->						</rs-slide>
 						<rs-slide style="position: absolute;" data-key="rs-5" data-title="Slide" data-thumb="media/jp/posters/hero-02-thumb.jpg" data-anim="adpr:false;" data-p1="2">
 							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-02.jpg" data-bg="p:center center;" data-parallax="off" data-no-retina>
-							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-02.jpg"><source src="media/jp/02.mp4" type="video/mp4"></video>
+							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-02.jpg" src="media/jp/02.mp4"></video>
 <!---->						</rs-slide>
 						<rs-slide style="position: absolute;" data-key="rs-25" data-title="Slide" data-thumb="media/jp/posters/hero-08-thumb.jpg" data-anim="adpr:false;" data-p1="3">
 							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-08.jpg" data-bg="p:center center;" data-parallax="off" data-no-retina>
-							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-08.jpg"><source src="media/jp/08.mp4" type="video/mp4"></video>
+							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-08.jpg" src="media/jp/08.mp4"></video>
 <!---->						</rs-slide>
 					</rs-slides>
 					<rs-static-layers class="rs-stl-visible"><!--
@@ -1040,42 +1117,42 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 	<div class="eltdf-ig-inner eltdf-outer-space">
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-01.jpg"><source src="media/jp/03.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-01.jpg" src="media/jp/03.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-02.jpg"><source src="media/jp/04.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-02.jpg" src="media/jp/04.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-03.jpg"><source src="media/jp/05.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-03.jpg" src="media/jp/05.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-04.jpg"><source src="media/jp/07.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-04.jpg" src="media/jp/07.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-05.jpg"><source src="media/jp/09.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-05.jpg" src="media/jp/09.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-06.jpg"><source src="media/jp/10.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-06.jpg" src="media/jp/10.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-07.jpg"><source src="media/jp/11.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-07.jpg" src="media/jp/11.mp4"></video>
 									</div>
 			</div>
 					<div class="eltdf-ig-image eltdf-item-space">
 				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-08.jpg"><source src="media/jp/12.mp4" type="video/mp4"></video>
+											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-08.jpg" src="media/jp/12.mp4"></video>
 									</div>
 			</div>
 			</div>
@@ -2139,116 +2216,6 @@ wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 		if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
 	</script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2306b9119979a7f',t:'MTc4NTM3MzE2MQ=='};var a=document.createElement('script');a.src="#";document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-<script id="jp-media-script">
-(function(){
-var unlockBound=false;
-function prep(v){
-v.removeAttribute('controls');
-v.controls=false;
-v.defaultMuted=true;
-v.muted=true;
-v.volume=0;
-v.setAttribute('muted','muted');
-v.setAttribute('autoplay','autoplay');
-v.loop=true;
-v.setAttribute('loop','loop');
-v.playsInline=true;
-v.setAttribute('playsinline','');
-v.setAttribute('webkit-playsinline','');
-v.setAttribute('controlslist','nodownload nofullscreen noremoteplayback noplaybackrate');
-v.setAttribute('disablepictureinpicture','');
-v.disablePictureInPicture=true;
-v.setAttribute('x-webkit-airplay','deny');
-if('disableRemotePlayback' in v){v.disableRemotePlayback=true;}
-v.setAttribute('disableremoteplayback','');
-v.oncontextmenu=function(e){e.preventDefault();return false;};
-}
-function playSafe(v){
-if(!v)return;
-prep(v);
-try{
-if(v.readyState<2){v.load();}
-}catch(e){}
-var p=v.play();
-if(p&&p.catch){
-p.catch(function(){
-prep(v);
-v.play().catch(function(){});
-});
-}
-}
-function allVideos(){
-return document.querySelectorAll('video.jp-hero-video, video.jp-gallery-video');
-}
-function isSlideHidden(slide){
-if(!slide)return true;
-var style=window.getComputedStyle(slide);
-return style.visibility==='hidden'||style.display==='none'||Number(style.opacity)===0;
-}
-function syncHeroVideos(){
-document.querySelectorAll('#rev_slider_3_1 video.jp-hero-video').forEach(function(video){
-var slide=video.closest('rs-slide');
-if(isSlideHidden(slide)){try{video.pause();}catch(e){}return;}
-playSafe(video);
-});
-}
-function playVisibleGallery(){
-document.querySelectorAll('video.jp-gallery-video').forEach(function(video){
-var rect=video.getBoundingClientRect();
-var visible=rect.bottom>0&&rect.top<window.innerHeight&&rect.right>0&&rect.left<window.innerWidth;
-if(visible){playSafe(video);}
-});
-}
-function playAll(){
-allVideos().forEach(prep);
-syncHeroVideos();
-playVisibleGallery();
-}
-function stripPlayers(){
-allVideos().forEach(prep);
-document.querySelectorAll('.mejs-container, .mejs-controls, .mejs-overlay-play').forEach(function(el){el.remove();});
-}
-function unlock(){
-if(unlockBound)return;
-unlockBound=true;
-['touchstart','touchend','pointerdown','click','scroll','pageshow'].forEach(function(evt){
-document.addEventListener(evt,function(){playAll();},{passive:true});
-});
-window.addEventListener('pageshow',function(){playAll();});
-}
-function observe(){
-if(!('IntersectionObserver' in window))return;
-var io=new IntersectionObserver(function(entries){
-entries.forEach(function(entry){
-var v=entry.target;
-if(entry.isIntersecting&&entry.intersectionRatio>0.15){playSafe(v);}
-else if(v.classList.contains('jp-gallery-video')){try{v.pause();}catch(e){}}
-});
-},{threshold:[0,0.15,0.35,0.6]});
-allVideos().forEach(function(v){io.observe(v);});
-}
-function boot(){
-allVideos().forEach(function(v){
-prep(v);
-v.addEventListener('loadeddata',function(){playSafe(v);});
-v.addEventListener('canplay',function(){playSafe(v);});
-v.addEventListener('suspend',function(){playSafe(v);});
-});
-playAll();
-stripPlayers();
-observe();
-unlock();
-setInterval(function(){syncHeroVideos();playVisibleGallery();stripPlayers();},900);
-document.addEventListener('visibilitychange',function(){if(!document.hidden)playAll();});
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-window.addEventListener('load',function(){
-playAll();
-setTimeout(playAll,400);
-setTimeout(playAll,1200);
-setTimeout(playAll,2500);
-});
-})();
-</script>
+
 </body>
 </html>
