@@ -1,0 +1,6 @@
+# Nexus IDE local storage
+.nexus/
+_mirror/
+
+.vercel/
+.DS_Store
