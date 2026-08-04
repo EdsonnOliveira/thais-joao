@@ -1,0 +1,522 @@
+[
+  {
+    "id": "01",
+    "numero": 1,
+    "produto": "Philips Walita Airfryer Forno Série 5000 - Fritadeira sem Óleo 12L, Janela Transparente, Tela Touch com 10 Programas, Aquecimento Rápido 1900W, Timer 24h, Acessórios Multifuncionais, 220v (AI551-08)",
+    "preco": "R$ 676,80",
+    "preco_valor": 676.8,
+    "imagem": "media/jp/shop/item-01.jpg",
+    "pagina_pdf": 1,
+    "shop_file": "item-01.jpg"
+  },
+  {
+    "id": "02",
+    "numero": 2,
+    "produto": "MONDIAL Chaleira Elétrica Pratic, Preto-Inox, 1200W, 220V - CE-06",
+    "preco": "R$ 82,00",
+    "preco_valor": 82.0,
+    "imagem": "media/jp/shop/item-02.jpg",
+    "pagina_pdf": 1,
+    "shop_file": "item-02.jpg"
+  },
+  {
+    "id": "03",
+    "numero": 3,
+    "produto": "Electrolux Sanduicheira grill chapa ondulada elétrico antiaderente inox ESG20 220v",
+    "preco": "R$ 158,00",
+    "preco_valor": 158.0,
+    "imagem": "media/jp/shop/item-03.jpg",
+    "pagina_pdf": 1,
+    "shop_file": "item-03.jpg"
+  },
+  {
+    "id": "04",
+    "numero": 4,
+    "produto": "Purificador de Água Everest Slim",
+    "preco": "R$ 1.379,90",
+    "preco_valor": 1379.9,
+    "imagem": "media/jp/shop/item-04.jpg",
+    "pagina_pdf": 1,
+    "shop_file": "item-04.jpg"
+  },
+  {
+    "id": "05",
+    "numero": 5,
+    "produto": "Fogão 4 bocas Electrolux Preto Efficient Mesa Vidro, Tripla Chama e PerfectCook (FE4GB) - Bivolt",
+    "preco": "R$ 1.440,00",
+    "preco_valor": 1440.0,
+    "imagem": "media/jp/shop/item-05.jpg",
+    "pagina_pdf": 1,
+    "shop_file": "item-05.jpg"
+  },
+  {
+    "id": "06",
+    "numero": 6,
+    "produto": "Micro-ondas Electrolux 27L Inox Espelhado com 55 receitas pré-programadas 220v MS37R",
+    "preco": "R$ 685,00",
+    "preco_valor": 685.0,
+    "imagem": "media/jp/shop/item-06.jpg",
+    "pagina_pdf": 1,
+    "shop_file": "item-06.jpg"
+  },
+  {
+    "id": "07",
+    "numero": 7,
+    "produto": "Liquidificador Philco 1500W 12 velocidades 3,1L Facas com 6 Lâminas PLQ15A 220V",
+    "preco": "R$ 190,00",
+    "preco_valor": 190.0,
+    "imagem": "media/jp/shop/item-07.jpg",
+    "pagina_pdf": 2,
+    "shop_file": "item-07.jpg"
+  },
+  {
+    "id": "08",
+    "numero": 8,
+    "produto": "Electrolux Mixer Misturador Multiuso 3 em 1 400W 2 velocidades 3 acessórios mini processador 600ml livre BPA EIB10 preto 220v",
+    "preco": "R$ 199,90",
+    "preco_valor": 199.9,
+    "imagem": "media/jp/shop/item-08.jpg",
+    "pagina_pdf": 2,
+    "shop_file": "item-08.jpg"
+  },
+  {
+    "id": "09",
+    "numero": 9,
+    "produto": "Ventilador 2 em 1, Mesa ou Parede, Arno, Turbo Force, 40cm, VF42, 220V",
+    "preco": "R$ 209,00",
+    "preco_valor": 209.0,
+    "imagem": "media/jp/shop/item-09.jpg",
+    "pagina_pdf": 2,
+    "shop_file": "item-09.jpg"
+  },
+  {
+    "id": "10",
+    "numero": 10,
+    "produto": "Aspirador Pó Philco Vertical Power Clean 2000W PAS4000V 220V",
+    "preco": "R$ 195,00",
+    "preco_valor": 195.0,
+    "imagem": "media/jp/shop/item-10.jpg",
+    "pagina_pdf": 2,
+    "shop_file": "item-10.jpg"
+  },
+  {
+    "id": "11",
+    "numero": 11,
+    "produto": "Panela de Pressão Tramontina Vancouver Effect em Alumínio com Revestimento Interno e Externo em Antiaderente Starflon Max Preto 20 cm 4,5 L",
+    "preco": "R$ 172,00",
+    "preco_valor": 172.0,
+    "imagem": "media/jp/shop/item-11.jpg",
+    "pagina_pdf": 2,
+    "shop_file": "item-11.jpg"
+  },
+  {
+    "id": "12",
+    "numero": 12,
+    "produto": "Brinox - Jogo de Panelas Antiaderente Ceramic Life 6 Peças Smart Plus - Vanilla",
+    "preco": "R$ 450,00",
+    "preco_valor": 450.0,
+    "imagem": "media/jp/shop/item-12.jpg",
+    "pagina_pdf": 2,
+    "shop_file": "item-12.jpg"
+  },
+  {
+    "id": "13",
+    "numero": 13,
+    "produto": "Jogo da Marinex Conjunto de Travessas 7 peças Variadas em Vidro Temperado próprias P-Forno",
+    "preco": "R$ 120,00",
+    "preco_valor": 120.0,
+    "imagem": "media/jp/shop/item-13.jpg",
+    "pagina_pdf": 3,
+    "shop_file": "item-13.jpg"
+  },
+  {
+    "id": "14",
+    "numero": 14,
+    "produto": "Garrafa Térmica Lúmina 500ml Inox Conservação de 12h Quente 24h Frio Sistema que não pinga - Termolar 9752 52999",
+    "preco": "R$ 90,00",
+    "preco_valor": 90.0,
+    "imagem": "media/jp/shop/item-14.jpg",
+    "pagina_pdf": 3,
+    "shop_file": "item-14.jpg"
+  },
+  {
+    "id": "15",
+    "numero": 15,
+    "produto": "Jogo 6 Copos Vidro Canelado 420ml Luxo Moderno Transparente Minimalista Resistente Vidro Grosso Água Suco Refrigerante",
+    "preco": "R$ 50,00",
+    "preco_valor": 50.0,
+    "imagem": "media/jp/shop/item-15.jpg",
+    "pagina_pdf": 3,
+    "shop_file": "item-15.jpg"
+  },
+  {
+    "id": "16",
+    "numero": 16,
+    "produto": "Conjunto 6 Copos Longos 360ml Ópera Nadir Figueiredo",
+    "preco": "R$ 50,00",
+    "preco_valor": 50.0,
+    "imagem": "media/jp/shop/item-16.jpg",
+    "pagina_pdf": 3,
+    "shop_file": "item-16.jpg"
+  },
+  {
+    "id": "17",
+    "numero": 17,
+    "produto": "Jogo de 6 Taças de Vidro Diamond Transparente 315ml",
+    "preco": "R$ 50,00",
+    "preco_valor": 50.0,
+    "imagem": "media/jp/shop/item-17.jpg",
+    "pagina_pdf": 3,
+    "shop_file": "item-17.jpg"
+  },
+  {
+    "id": "18",
+    "numero": 18,
+    "produto": "Haüskraf - Xícara para café com pires de cerâmica Oasis 90ml 4 peças",
+    "preco": "R$ 70,00",
+    "preco_valor": 70.0,
+    "imagem": "media/jp/shop/item-18.jpg",
+    "pagina_pdf": 3,
+    "shop_file": "item-18.jpg"
+  },
+  {
+    "id": "19",
+    "numero": 19,
+    "produto": "LYOR - Conjunto Jarra com 6 Copos de Vidro Diamante 1L-300ml",
+    "preco": "R$ 80,00",
+    "preco_valor": 80.0,
+    "imagem": "media/jp/shop/item-19.jpg",
+    "pagina_pdf": 4,
+    "shop_file": "item-19.jpg"
+  },
+  {
+    "id": "20",
+    "numero": 20,
+    "produto": "Escorredor de Louça Aço Inox 2 Andares Moderno com Drenagem Automática, Resistente e Compacto",
+    "preco": "R$ 100,00",
+    "preco_valor": 100.0,
+    "imagem": "media/jp/shop/item-20.jpg",
+    "pagina_pdf": 4,
+    "shop_file": "item-20.jpg"
+  },
+  {
+    "id": "21",
+    "numero": 21,
+    "produto": "Electrolux Kit 12 Potes Herméticos de Plástico Retangulares, Multiuso, Vedação Silicone, BPA Free, Porta Mantimentos",
+    "preco": "R$ 90,00",
+    "preco_valor": 90.0,
+    "imagem": "media/jp/shop/item-21.jpg",
+    "pagina_pdf": 4,
+    "shop_file": "item-21.jpg"
+  },
+  {
+    "id": "22",
+    "numero": 22,
+    "produto": "Jogo Para Sobremesa Tramontina Mixcolor Em Polipropileno Misto 12 Peças",
+    "preco": "R$ 85,00",
+    "preco_valor": 85.0,
+    "imagem": "media/jp/shop/item-22.jpg",
+    "pagina_pdf": 4,
+    "shop_file": "item-22.jpg"
+  },
+  {
+    "id": "23",
+    "numero": 23,
+    "produto": "Bowl de Vidro para Sobremesa 360 ml Jogo 6 Peças Toffee HABITARA HOME",
+    "preco": "R$ 50,00",
+    "preco_valor": 50.0,
+    "imagem": "media/jp/shop/item-23.jpg",
+    "pagina_pdf": 4,
+    "shop_file": "item-23.jpg"
+  },
+  {
+    "id": "23b",
+    "numero": 23,
+    "produto": "Kit 6 Taças de Vinho em Cristal 350ml Premium Transparência Superior Design Elegante Borda Fina Haste Longa",
+    "preco": "R$ 70,00",
+    "preco_valor": 70.0,
+    "imagem": "media/jp/shop/item-24.jpg",
+    "pagina_pdf": 4,
+    "shop_file": "item-24.jpg"
+  },
+  {
+    "id": "24",
+    "numero": 24,
+    "produto": "Plasútil Kit 5 Potes Herméticos Retangulares de Plástico Trava Mais Cristal com Silicone e plástico",
+    "preco": "R$ 70,00",
+    "preco_valor": 70.0,
+    "imagem": "media/jp/shop/item-25.jpg",
+    "pagina_pdf": 5,
+    "shop_file": "item-25.jpg"
+  },
+  {
+    "id": "25",
+    "numero": 25,
+    "produto": "Plasútil Kit 10 Potes Herméticos Quadrados de Plástico Trava Mais",
+    "preco": "R$ 210,00",
+    "preco_valor": 210.0,
+    "imagem": "media/jp/shop/item-26.jpg",
+    "pagina_pdf": 5,
+    "shop_file": "item-26.jpg"
+  },
+  {
+    "id": "26",
+    "numero": 26,
+    "produto": "Kit 4 Potes Dispenser 1,5L para Lavanderia Organizador de Sabão Líquido, Amaciante e Alvejante com Tampa Hermética",
+    "preco": "R$ 110,00",
+    "preco_valor": 110.0,
+    "imagem": "media/jp/shop/item-27.jpg",
+    "pagina_pdf": 5,
+    "shop_file": "item-27.jpg"
+  },
+  {
+    "id": "27",
+    "numero": 27,
+    "produto": "Simplo - Kit 2 Baldes Dobráveis 5L e 10L com Bacia 8L Multiuso",
+    "preco": "R$ 100,00",
+    "preco_valor": 100.0,
+    "imagem": "media/jp/shop/item-28.jpg",
+    "pagina_pdf": 5,
+    "shop_file": "item-28.jpg"
+  },
+  {
+    "id": "28",
+    "numero": 28,
+    "produto": "Kit 5 Organizadores de Cozinha com Potes Herméticos e Escorredor Multiuso",
+    "preco": "R$ 135,00",
+    "preco_valor": 135.0,
+    "imagem": "media/jp/shop/item-29.jpg",
+    "pagina_pdf": 5,
+    "shop_file": "item-29.jpg"
+  },
+  {
+    "id": "29",
+    "numero": 29,
+    "produto": "Jogo de Facas Tramontina Plenus com Lâminas em Aço Inox e Cabos de Polipropileno Preto 10 Peças",
+    "preco": "R$ 85,00",
+    "preco_valor": 85.0,
+    "imagem": "media/jp/shop/item-30.jpg",
+    "pagina_pdf": 5,
+    "shop_file": "item-30.jpg"
+  },
+  {
+    "id": "30",
+    "numero": 30,
+    "produto": "4 Potes de Mantimentos Rosa Quadrados 1,5L com Tampa Premium UZ Plásticos",
+    "preco": "R$ 80,00",
+    "preco_valor": 80.0,
+    "imagem": "media/jp/shop/item-31.jpg",
+    "pagina_pdf": 6,
+    "shop_file": "item-31.jpg"
+  },
+  {
+    "id": "31",
+    "numero": 31,
+    "produto": "Tábua de Corte Inox Dupla Face com Afiador Integrado Antibacteriana Antiderrapante",
+    "preco": "R$ 50,00",
+    "preco_valor": 50.0,
+    "imagem": "media/jp/shop/item-32.jpg",
+    "pagina_pdf": 6,
+    "shop_file": "item-32.jpg"
+  },
+  {
+    "id": "32",
+    "numero": 32,
+    "produto": "Ferro de Passar Seco e vapor Electrolux antiaderente base ceramica vapor vertical extra 2000W azul marinho ESI60 220v",
+    "preco": "R$ 199,90",
+    "preco_valor": 199.9,
+    "imagem": "media/jp/shop/item-33.jpg",
+    "pagina_pdf": 6,
+    "shop_file": "item-33.jpg"
+  },
+  {
+    "id": "33",
+    "numero": 33,
+    "produto": "Conjunto de 6 Canecas, Oxford, 260ml Ryo Maresias",
+    "preco": "R$ 140,00",
+    "preco_valor": 140.0,
+    "imagem": "media/jp/shop/item-34.jpg",
+    "pagina_pdf": 6,
+    "shop_file": "item-34.jpg"
+  },
+  {
+    "id": "34",
+    "numero": 34,
+    "produto": "Jogo de Canecas Xícaras de Vidro Diamond 180ml - Kit Moderno e Sofisticado para Mesa Posta",
+    "preco": "R$ 70,00",
+    "preco_valor": 70.0,
+    "imagem": "media/jp/shop/item-35.jpg",
+    "pagina_pdf": 6,
+    "shop_file": "item-35.jpg"
+  },
+  {
+    "id": "35",
+    "numero": 35,
+    "produto": "Kit 12 Utensílios de Cozinha em Silicone Cabo Madeira Conjunto Jogo Completo Premium Preto",
+    "preco": "R$ 60,00",
+    "preco_valor": 60.0,
+    "imagem": "media/jp/shop/item-36.jpg",
+    "pagina_pdf": 6,
+    "shop_file": "item-36.jpg"
+  },
+  {
+    "id": "36",
+    "numero": 36,
+    "produto": "KIT 6 peças INOX Colher Concha Pegador Escumadeira 30cm Amassador Alho Ralador Resistente MARAMASHOP",
+    "preco": "R$ 100,00",
+    "preco_valor": 100.0,
+    "imagem": "media/jp/shop/item-37.jpg",
+    "pagina_pdf": 7,
+    "shop_file": "item-37.jpg"
+  },
+  {
+    "id": "37",
+    "numero": 37,
+    "produto": "ARNO Cafeteira Nescafé Dolce Gusto, Genio S Basic, Grafite, DGS5, 220V",
+    "preco": "R$ 450,00",
+    "preco_valor": 450.0,
+    "imagem": "media/jp/shop/item-38.jpg",
+    "pagina_pdf": 7,
+    "shop_file": "item-38.jpg"
+  },
+  {
+    "id": "38",
+    "numero": 38,
+    "produto": "Porta Tempero Condimento Inox Vidro Giratorio Cozinha 16 Pts",
+    "preco": "R$ 70,00",
+    "preco_valor": 70.0,
+    "imagem": "media/jp/shop/item-39.jpg",
+    "pagina_pdf": 7,
+    "shop_file": "item-39.jpg"
+  },
+  {
+    "id": "39",
+    "numero": 39,
+    "produto": "Kit Jogo 3 Assadeiras Opaline Forno Air Fryer Microondas",
+    "preco": "R$ 90,00",
+    "preco_valor": 90.0,
+    "imagem": "media/jp/shop/item-40.jpg",
+    "pagina_pdf": 7,
+    "shop_file": "item-40.jpg"
+  },
+  {
+    "id": "40",
+    "numero": 40,
+    "produto": "Kit 5 Formas Antiaderentes",
+    "preco": "R$ 99,90",
+    "preco_valor": 99.9,
+    "imagem": "media/jp/shop/item-41.jpg",
+    "pagina_pdf": 7,
+    "shop_file": "item-41.jpg"
+  },
+  {
+    "id": "41",
+    "numero": 41,
+    "produto": "Grill Redondo Cook & Grill 40, Mondial, Preto, 1270W, 220V - G-03",
+    "preco": "R$ 239,90",
+    "preco_valor": 239.9,
+    "imagem": "media/jp/shop/item-42.jpg",
+    "pagina_pdf": 7,
+    "shop_file": "item-42.jpg"
+  },
+  {
+    "id": "42",
+    "numero": 42,
+    "produto": "Pipoqueira Pic Poc Especiarias, 20x14,5cm, 4,2L, Prata, Brinox",
+    "preco": "R$ 134,90",
+    "preco_valor": 134.9,
+    "imagem": "media/jp/shop/item-43.jpg",
+    "pagina_pdf": 8,
+    "shop_file": "item-43.jpg"
+  },
+  {
+    "id": "43",
+    "numero": 43,
+    "produto": "Faqueiro Tramontina Obelline com Lâminas em Aço Inox e Cabos de Polipropileno Preto 42 Peças",
+    "preco": "R$ 199,00",
+    "preco_valor": 199.0,
+    "imagem": "media/jp/shop/item-44.jpg",
+    "pagina_pdf": 8,
+    "shop_file": "item-44.jpg"
+  },
+  {
+    "id": "44",
+    "numero": 44,
+    "produto": "WOLFF Faqueiro de Aço Inox Viena 30 Peças - Mesa Posta",
+    "preco": "R$ 159,90",
+    "preco_valor": 159.9,
+    "imagem": "media/jp/shop/item-45.jpg",
+    "pagina_pdf": 8,
+    "shop_file": "item-45.jpg"
+  },
+  {
+    "id": "45",
+    "numero": 45,
+    "produto": "Aparelho de Jantar Tramontina Arbo em Porcelana Decorada 20 Peças",
+    "preco": "R$ 225,90",
+    "preco_valor": 225.9,
+    "imagem": "media/jp/shop/item-46.jpg",
+    "pagina_pdf": 8,
+    "shop_file": "item-46.jpg"
+  },
+  {
+    "id": "46",
+    "numero": 46,
+    "produto": "Conjunto Banheiro - Lixeira 6L com Pedal + Escova Sanitária",
+    "preco": "R$ 89,90",
+    "preco_valor": 89.9,
+    "imagem": "media/jp/shop/item-47.jpg",
+    "pagina_pdf": 8,
+    "shop_file": "item-47.jpg"
+  },
+  {
+    "id": "47",
+    "numero": 47,
+    "produto": "Kit Conjunto Forma de Bolo com Trava Assadeira para Forno Redondo Antiaderente Fundo Removível 3 Redondas",
+    "preco": "R$ 69,90",
+    "preco_valor": 69.9,
+    "imagem": "media/jp/shop/item-48.jpg",
+    "pagina_pdf": 8,
+    "shop_file": "item-48.jpg"
+  },
+  {
+    "id": "48",
+    "numero": 48,
+    "produto": "Oxford Aparelho De Jantar 30 Peças Ryo Maresia Formato Organico",
+    "preco": "R$ 479,90",
+    "preco_valor": 479.9,
+    "imagem": "media/jp/shop/item-49.jpg",
+    "pagina_pdf": 9,
+    "shop_file": "item-49.jpg"
+  },
+  {
+    "id": "49",
+    "numero": 49,
+    "produto": "Colcha de casal 100% algodão",
+    "preco": "R$ 180,00",
+    "preco_valor": 180.0,
+    "imagem": "media/jp/shop/item-50.jpg",
+    "pagina_pdf": 9,
+    "shop_file": "item-50.jpg"
+  },
+  {
+    "id": "50",
+    "numero": 50,
+    "produto": "Jogo de Cama Alexandre Herchcovitch Casal - Percal 180 Fios 100% Algodão",
+    "preco": "R$ 259,90",
+    "preco_valor": 259.9,
+    "imagem": "media/jp/shop/item-51.jpg",
+    "pagina_pdf": 9,
+    "shop_file": "item-51.jpg"
+  },
+  {
+    "id": "51",
+    "numero": 51,
+    "produto": "Coberdrom Dupla Face Liso Casal",
+    "preco": "R$ 199,90",
+    "preco_valor": 199.9,
+    "imagem": "media/jp/shop/item-52.jpg",
+    "pagina_pdf": 9,
+    "shop_file": "item-52.jpg"
+  }
+]

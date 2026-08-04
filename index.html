@@ -228,80 +228,297 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		</style>
 		
 <style id="jp-media-styles">
-.rs-slide .jp-hero-video,
-rs-slide .jp-hero-video{
-position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none!important;
+rs-slide .rev-slidebg{
+object-fit:cover;
 }
-rs-slide:has(.jp-hero-video) .rev-slidebg{
-opacity:0!important;
+rs-slide[data-key="rs-4"] .rev-slidebg{
+object-position:center 6%!important;
 }
-rs-slide:has(.jp-hero-video)::after,
-.eltdf-ig-image-inner:has(.jp-gallery-video)::after{
-content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:transparent;
+rs-slide[data-key="rs-5"] .rev-slidebg{
+object-position:center 18%!important;
 }
-.eltdf-ig-image-inner .jp-gallery-video{
-display:block;width:100%;height:100%;aspect-ratio:1100/860;object-fit:cover;vertical-align:middle;pointer-events:none!important;
+rs-slide[data-key="rs-25"] .rev-slidebg{
+object-position:center 38%!important;
 }
-.eltdf-ig-image-inner{overflow:hidden;position:relative;}
-video.jp-hero-video,
-video.jp-gallery-video{
--webkit-appearance:none;appearance:none;background:#000;outline:0;pointer-events:none!important;
+#curiosidades{
+position:relative;
 }
-video.jp-hero-video::-webkit-media-controls,
-video.jp-gallery-video::-webkit-media-controls,
-video.jp-hero-video::-webkit-media-controls-enclosure,
-video.jp-gallery-video::-webkit-media-controls-enclosure,
-video.jp-hero-video::-webkit-media-controls-panel,
-video.jp-gallery-video::-webkit-media-controls-panel,
-video.jp-hero-video::-webkit-media-controls-play-button,
-video.jp-gallery-video::-webkit-media-controls-play-button,
-video.jp-hero-video::-webkit-media-controls-start-playback-button,
-video.jp-gallery-video::-webkit-media-controls-start-playback-button,
-video.jp-hero-video::-webkit-media-controls-overlay-play-button,
-video.jp-gallery-video::-webkit-media-controls-overlay-play-button,
-video.jp-hero-video::-webkit-media-controls-timeline,
-video.jp-gallery-video::-webkit-media-controls-timeline,
-video.jp-hero-video::-webkit-media-controls-current-time-display,
-video.jp-gallery-video::-webkit-media-controls-current-time-display,
-video.jp-hero-video::-webkit-media-controls-time-remaining-display,
-video.jp-gallery-video::-webkit-media-controls-time-remaining-display,
-video.jp-hero-video::-webkit-media-controls-mute-button,
-video.jp-gallery-video::-webkit-media-controls-mute-button,
-video.jp-hero-video::-webkit-media-controls-volume-slider,
-video.jp-gallery-video::-webkit-media-controls-volume-slider,
-video.jp-hero-video::-webkit-media-controls-fullscreen-button,
-video.jp-gallery-video::-webkit-media-controls-fullscreen-button{
-display:none!important;opacity:0!important;-webkit-appearance:none;appearance:none;width:0!important;height:0!important;max-height:0!important;pointer-events:none!important;visibility:hidden!important;
+#curiosidades .elementor-element-819abf2 .elementor-column-wrap,
+#curiosidades .elementor-widget-wrap{
+position:relative;
 }
-.mejs-container,
-.mejs-controls,
-.mejs-overlay-play,
-.mejs-overlay-button,
-.mejs-layers,
-.mejs-overlay{
+#curiosidades .jp-curiosities-band{
+position:absolute;left:0;right:0;top:0;bottom:0;z-index:20;pointer-events:none;
+}
+#curiosidades .jp-curiosities-band__inner{
+position:relative;max-width:1180px;height:100%;margin:0 auto;padding:0 24px;
+}
+#curiosidades .jp-curiosities-band__content{
+position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:min(560px,50vw);max-height:none;overflow:visible;pointer-events:auto;padding:72px 0 32px;
+}
+#curiosidades #rev_slider_12_2_wrapper,
+#curiosidades #rev_slider_12_2{
+min-height:1060px!important;
+}
+#curiosidades rs-layer[id="slider-12-slide-28-layer-1"]{
+height:920px!important;min-height:920px!important;
+}
+.jp-curiosities-mobile-title{
+display:block;font-family:'LearningCurve',cursive;font-size:48px;line-height:1.15;color:#121f38;text-align:center;margin:0 0 32px;
+}
+.jp-curiosities__list{
+list-style:none;margin:0;padding:0;
+}
+.jp-curiosities__item{
+position:relative;margin:0 0 20px;padding:0 0 0 32px;font-family:Cormorant,serif;font-size:19px;font-style:italic;line-height:1.58;color:#5c6474;
+}
+.jp-curiosities__item:last-child{
+margin-bottom:0;
+}
+.jp-curiosities__item::before{
+content:attr(data-num);position:absolute;left:0;top:2px;font-family:Muli,sans-serif;font-size:14px;font-weight:700;font-style:normal;color:#bf7b5d;
+}
+.jp-curiosities-band__side{
+position:absolute;top:50%;transform:translateY(-50%);width:190px;pointer-events:none;
+}
+.jp-curiosities-band__side--left{
+left:2%;
+}
+.jp-curiosities-band__side--right{
+right:2%;
+}
+.jp-polaroid{
+background:#fff;padding:10px 10px 42px;box-shadow:0 8px 24px rgba(60,72,96,.14);
+}
+.jp-polaroid img{
+display:block;width:100%;height:auto;object-fit:cover;
+}
+.jp-polaroid figcaption{
+margin-top:8px;text-align:center;font-family:'LearningCurve',cursive;font-size:22px;color:#121f38;line-height:1;
+}
+.jp-polaroid--left{
+width:170px;transform:rotate(-7deg);
+}
+.jp-polaroid--left img{
+aspect-ratio:3/4;
+}
+.jp-polaroid--left-alt{
+width:150px;margin:24px 0 0;transform:rotate(5deg);overflow:hidden;
+}
+.jp-polaroid--left-alt img{
+aspect-ratio:4/5;object-fit:cover;object-position:center 88%;
+}
+.jp-polaroid--right{
+width:180px;margin-left:auto;transform:rotate(8deg);
+}
+.jp-polaroid--right img{
+aspect-ratio:3/4;
+}
+.jp-polaroid--right-alt{
+width:150px;margin:24px 0 0 auto;transform:rotate(-4deg);
+}
+.jp-polaroid--right-alt img{
+aspect-ratio:1/1;
+}
+#curiosidades rs-layer[id="slider-12-slide-28-layer-8"]{
 display:none!important;
 }
+#curiosidades rs-layer[id="slider-12-slide-28-layer-9"]{
+display:none!important;
+}
+#curiosidades rs-layer[id="slider-12-slide-28-layer-2"],
+#curiosidades rs-layer[id="slider-12-slide-28-layer-3"],
+#curiosidades rs-layer[id="slider-12-slide-28-layer-11"]{
+display:none!important;
+}
+@media (max-width:1200px){
+#curiosidades .jp-curiosities-band__content{width:min(560px,78vw);}
+}
+@media (max-width:1024px){
+.jp-curiosities-band__side{display:none;}
+}
+@media (max-width:768px){
+#curiosidades #rev_slider_12_2_wrapper,
+#curiosidades #rev_slider_12_2{
+min-height:auto!important;height:auto!important;
+}
+#curiosidades rs-layer[id="slider-12-slide-28-layer-1"]{
+height:120px!important;min-height:120px!important;
+}
+#curiosidades rs-layer[id="slider-12-slide-28-layer-4"],
+#curiosidades rs-layer[id="slider-12-slide-28-layer-8"]{
+display:none!important;
+}
+#curiosidades rs-layer[id="slider-12-slide-28-layer-6"]{
+transform:scale(.55)!important;top:0!important;
+}
+.jp-curiosities-mobile-title{
+display:block;font-family:'LearningCurve',cursive;font-size:34px;line-height:1.15;color:#121f38;text-align:center;margin:0 0 22px;
+}
+#curiosidades .elementor-widget-slider_revolution,
+#curiosidades .wp-block-themepunch-revslider{
+max-height:110px;overflow:hidden;
+}
+#curiosidades .jp-curiosities-band{
+position:relative;background:#eaf1f4;
+}
+#curiosidades .jp-curiosities-band__inner{
+display:flex;flex-direction:column;padding:0;
+}
+#curiosidades .jp-curiosities-band__content{
+position:relative;left:auto;top:auto;transform:none;width:100%;max-width:640px;margin:0 auto;padding:28px 20px 36px;max-height:none;order:1;
+}
+.jp-curiosities-band__side--left{
+order:2;
+}
+.jp-curiosities-band__side--right{
+order:3;
+}
+.jp-curiosities-band__side{
+display:flex!important;position:relative;top:auto;right:auto;left:auto;transform:none;width:100%;justify-content:center;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:8px 16px 32px;pointer-events:auto;
+}
+.jp-polaroid--left,
+.jp-polaroid--right{
+width:42%;max-width:160px;margin:0!important;
+}
+.jp-polaroid--left-alt,
+.jp-polaroid--right-alt{
+width:38%;max-width:140px;margin:0!important;
+}
+.jp-polaroid--left{transform:rotate(-4deg);}
+.jp-polaroid--left-alt{transform:rotate(3deg);}
+.jp-polaroid--right{transform:rotate(4deg);}
+.jp-polaroid--right-alt{transform:rotate(-3deg);}
+.jp-curiosities__item{font-size:17px;padding-left:28px;margin-bottom:16px;}
+}
+@media (max-width:480px){
+.jp-curiosities-mobile-title{font-size:30px;}
+.jp-curiosities__item{font-size:16px;padding-left:24px;}
+.jp-polaroid--left,
+.jp-polaroid--right{width:46%;max-width:none;}
+.jp-polaroid--left-alt,
+.jp-polaroid--right-alt{width:40%;max-width:none;}
+.jp-when-where__subtitle{font-size:15px;letter-spacing:.12em;}
+}
 .jp-guest-manual{
-max-width:560px;margin:0 auto;padding:10px 20px 48px;text-align:center;
+max-width:760px;margin:0 auto;padding:10px 20px 48px;text-align:center;
 }
 .jp-guest-manual__list{
-list-style:none;margin:0 auto;padding:0;text-align:left;max-width:420px;
+list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:720px;
 }
 .jp-guest-manual__list li{
-position:relative;padding:10px 0 10px 28px;font-family:Muli,sans-serif;font-size:17px;font-weight:400;line-height:1.45;letter-spacing:.01em;color:#5c6474;border:0;
+position:relative;padding:0;margin:0;border:0;
 }
-.jp-guest-manual__list li:before{
-content:'';position:absolute;left:0;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:#bf7b5d;
+.jp-guest-manual__bubble{
+display:inline-flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-radius:999px;background:#fff;border:1px solid rgba(191,123,93,.22);box-shadow:0 4px 14px rgba(60,72,96,.06);font-family:Muli,sans-serif;font-size:15px;font-weight:400;line-height:1.35;letter-spacing:.01em;color:#5c6474;
 }
-.jp-guest-manual__list li strong{
+.jp-guest-manual__bubble strong{
 font-weight:700!important;color:#3c4860;-webkit-text-stroke:.2px currentColor;
 }
+.jp-guest-manual__bubble--highlight{
+background:#f7f0eb;border-color:rgba(191,123,93,.38);color:#3c4860;
+}
+.jp-guest-manual__icon{
+display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(191,123,93,.12);
+}
+.jp-guest-manual__icon svg{
+display:block;width:18px;height:18px;
+}
 @media (max-width:680px){
-.jp-guest-manual__list li{font-size:16px;padding:9px 0 9px 26px;}
+.jp-guest-manual__bubble{font-size:14px;padding:9px 14px 9px 10px;gap:8px;}
+.jp-guest-manual__icon{width:28px;height:28px;}
+.jp-guest-manual__icon svg{width:16px;height:16px;}
 }
 
+.jp-when-where{
+max-width:960px;margin:0 auto;padding:0 20px;text-align:center;
+}
+.jp-when-where__subtitle{
+margin:0 0 36px;font-family:Muli,sans-serif;font-size:17px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#3c4860;
+}
+.jp-when-where__cards{
+display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
+}
 .jp-when-where-card{
-max-width:420px;margin:0 auto;
+max-width:none;margin:0;padding:11% 8% 10%;
+}
+.jp-when-where-card .eltdf-ib-text{
+margin-top:20px;margin-bottom:0;font-family:Cormorant,serif;font-size:30px;font-style:italic;line-height:1.55;color:#5c6474;
+}
+.jp-when-where-card .eltdf-ib-icon svg{
+display:block;width:68px;height:66px;margin:0 auto;
+}
+.jp-when-where-card .eltdf-btn{
+margin-top:18px;font-size:21px;
+}
+#historia .eltdf-bl-wrapper .eltdf-blog-list{
+display:flex;flex-wrap:wrap;align-items:stretch;
+}
+#historia .eltdf-bl-item{
+display:flex;float:none!important;
+}
+#historia .eltdf-bli-inner{
+display:flex;flex-direction:column;height:100%;width:100%;
+}
+#historia .eltdf-post-image{
+position:relative;overflow:hidden;aspect-ratio:3/4;flex-shrink:0;
+}
+#historia .eltdf-post-image a{
+display:block;height:100%;
+}
+#historia .eltdf-post-image img{
+width:100%;height:100%;object-fit:cover;object-position:center;display:block;
+}
+#historia .eltdf-bli-content{
+display:flex;flex-direction:column;flex:1;padding-top:18px;
+}
+#historia .eltdf-bli-info{
+min-height:22px;margin-bottom:10px;
+}
+#historia .eltdf-post-title{
+min-height:2.8em;margin:0 0 12px;font-size:22px!important;
+}
+#historia .eltdf-bli-excerpt{
+display:flex;flex-direction:column;flex:1;
+}
+#historia .eltdf-post-excerpt-holder{
+flex:1;
+}
+#historia .eltdf-post-excerpt{
+display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0;min-height:4.8em;line-height:1.6;
+}
+#historia .eltdf-post-read-more-button{
+margin-top:auto;padding-top:14px;
+}
+.elementor-827 .elementor-element.elementor-element-3639815{
+padding-top:72px!important;padding-bottom:40px!important;
+}
+#curiosidades{
+margin-top:-72px;margin-bottom:-56px;position:relative;z-index:2;
+}
+#curiosidades #rev_slider_12_2_wrapper,
+#curiosidades #rev_slider_12_2{
+min-height:1060px!important;
+}
+.elementor-827 .elementor-element.elementor-element-3ad4020{
+padding:72px 0 72px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-86dff1b{
+padding:40px 0 64px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-2281cbd{
+padding:48px 0 48px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-db8758a{
+padding:48px 0 56px 0!important;
+}
+@media (max-width:900px){
+.jp-when-where__cards{
+grid-template-columns:1fr;max-width:420px;margin:0 auto;
+}
+.jp-when-where-card .eltdf-ib-text{
+font-size:26px;
+}
 }
 .jp-footer-minimal-wrap .eltdf-footer-top-holder,
 .jp-footer-minimal-wrap .eltdf-footer-bottom-holder{display:none!important;}
@@ -323,90 +540,141 @@ max-height:110px;width:auto;height:auto;
 .eltdf-mobile-header img{
 max-height:70px;width:auto;height:auto;
 }
+
+.jp-love-timeline{
+padding:56px 9% 48px;opacity:1!important;transform:translateY(0)!important;
+}
+.jp-love-timeline__list{
+list-style:none;margin:0;padding:0;position:relative;
+}
+.jp-love-timeline__item{
+position:relative;margin:0;padding:0 0 40px;text-align:center;
+}
+.jp-love-timeline__item:not(:last-child)::after{
+content:'';position:absolute;left:50%;bottom:0;width:1px;height:40px;background:#deebf5;transform:translateX(-50%);z-index:0;
+}
+.jp-love-timeline__item:last-child{
+padding-bottom:0;
+}
+.jp-love-timeline__marker{
+display:flex;align-items:center;justify-content:center;width:12px;height:12px;margin:0 auto 12px;border-radius:50%;background:#fff;border:2px solid #c78665;position:relative;z-index:2;box-sizing:border-box;
+}
+.jp-love-timeline__marker .eltdf-icon-font-elegant{
+font-size:11px;color:#c78665;line-height:1;
+}
+.jp-love-timeline__item--highlight .jp-love-timeline__marker{
+width:16px;height:16px;background:#c78665;border-color:#c78665;box-shadow:0 0 0 5px rgba(199,134,101,.16);
+}
+.jp-love-timeline__item--highlight .jp-love-timeline__marker .eltdf-icon-font-elegant{
+color:#fff;font-size:12px;
+}
+.jp-love-timeline__date{
+display:block;font-family:Cormorant,serif;font-style:italic;font-weight:400;font-size:19px;color:#c78665;line-height:1.35;letter-spacing:.02em;position:relative;z-index:1;background:#fff;padding:2px 12px;
+}
+.jp-love-timeline__title{
+display:block;font-family:LearningCurve,cursive;font-size:34px;font-weight:400;color:#121f38;line-height:1.2;margin-top:5px;position:relative;z-index:1;background:#fff;padding:2px 12px 4px;
+}
+.jp-love-timeline__subtitle{
+display:block;font-family:Cormorant,serif;font-style:italic;font-size:17px;color:#818491;line-height:1.4;margin-top:3px;
+}
+.jp-love-timeline__item--highlight .jp-love-timeline__title{
+font-size:40px;
+}
+.jp-love-timeline__item--highlight .jp-love-timeline__date{
+font-size:21px;
+}
+@media (max-width:768px){
+.jp-love-timeline{padding:44px 7% 36px;}
+.jp-love-timeline__item{padding-bottom:32px;}
+.jp-love-timeline__item:not(:last-child)::after{
+height:32px;
+}
+.jp-love-timeline__title{font-size:30px;}
+.jp-love-timeline__item--highlight .jp-love-timeline__title{font-size:34px;}
+.jp-love-timeline__date{font-size:17px;}
+}
+.eltdf-main-menu .eltdf-menu-arrow,.eltdf-mobile-nav .mobile_arrow{display:none!important;}
+html{scroll-behavior:smooth;}
+body{overflow-x:hidden;}
+@media (max-width:1024px){
+.elementor-element-6f3aae6 .elementor-col-33{
+width:100%!important;
+}
+.elementor-element-6f3aae6 .eltdf-simple-timeline-holder{
+margin-top:0!important;margin-bottom:32px!important;
+}
+#historia .eltdf-four-columns .eltdf-bl-item{
+width:50%!important;
+}
+.eltdf-section-title-holder .eltdf-st-title{
+font-size:32px!important;
+}
+}
+@media (max-width:768px){
+#curiosidades{
+margin-top:-32px;margin-bottom:0;
+}
+#curiosidades #rev_slider_12_2_wrapper,
+#curiosidades #rev_slider_12_2{
+min-height:auto!important;
+}
+#inicio .elementor-section,
+#noivos .elementor-section,
+#historia .elementor-section{
+padding-left:0!important;padding-right:0!important;
+}
+.eltdf-custom-font-holder{
+font-size:38px!important;line-height:1.1!important;
+}
+.eltdf-team-text{
+font-size:16px!important;line-height:1.6!important;
+}
+.eltdf-simple-timeline-holder .eltdf-st-text{
+font-size:16px!important;line-height:1.65!important;
+}
+.jp-guest-manual{
+padding:8px 16px 36px;
+}
+.jp-when-where{
+padding:0 16px;
+}
+.eltdf-google-map{
+height:360px!important;
+}
+}
+@media (max-width:680px){
+#historia .eltdf-four-columns .eltdf-bl-item{
+width:100%!important;float:none!important;
+}
+#historia .eltdf-bli-inner{
+margin-bottom:8px;
+}
+#historia .eltdf-post-title{
+min-height:auto;font-size:20px!important;
+}
+#historia .eltdf-post-excerpt{
+min-height:auto;-webkit-line-clamp:unset;display:block;
+}
+.eltdf-section-title-holder .eltdf-st-title{
+font-size:28px!important;
+}
+.eltdf-post-title{
+font-size:22px!important;
+}
+.eltdf-mobile-header .eltdf-mobile-menu-opener{
+margin-right:8px;
+}
+.eltdf-logo-wrapper img{
+max-height:80px!important;
+}
+}
 </style>
-<script id="jp-media-script">
-(function(){
-function vids(){return document.querySelectorAll('video.jp-hero-video,video.jp-gallery-video');}
-function prep(v){
-v.controls=false;v.removeAttribute('controls');
-v.defaultMuted=true;v.muted=true;v.volume=0;
-v.setAttribute('muted','muted');
-v.autoplay=true;v.setAttribute('autoplay','autoplay');
-v.loop=true;v.setAttribute('loop','loop');
-v.playsInline=true;
-v.setAttribute('playsinline','playsinline');
-v.setAttribute('webkit-playsinline','true');
-try{v.setAttribute('x-webkit-airplay','deny');}catch(e){}
-}
-function playOne(v){
-if(!v)return;
-prep(v);
-var p=v.play();
-if(p&&p.catch)p.catch(function(){});
-}
-function slideHidden(slide){
-if(!slide)return true;
-var s=window.getComputedStyle(slide);
-return s.visibility==='hidden'||s.display==='none'||Number(s.opacity)===0;
-}
-function playHero(){
-document.querySelectorAll('video.jp-hero-video').forEach(function(v){
-var slide=v.closest('rs-slide');
-if(slideHidden(slide)){try{v.pause();}catch(e){}return;}
-playOne(v);
-});
-}
-function playGallery(){
-document.querySelectorAll('video.jp-gallery-video').forEach(function(v){
-var r=v.getBoundingClientRect();
-var vis=r.width>0&&r.height>0&&r.bottom>40&&r.top<((window.innerHeight||0)-40);
-if(vis)playOne(v);
-});
-}
-function playAll(){playHero();playGallery();}
-function bindUnlock(){
-var run=function(){playAll();};
-['touchstart','touchend','pointerdown','click','scroll','gesturestart','pageshow','visibilitychange'].forEach(function(t){
-document.addEventListener(t,run,true);
-});
-window.addEventListener('pageshow',run);
-document.addEventListener('visibilitychange',function(){if(!document.hidden)run();});
-}
-function watchSlider(){
-var wrap=document.getElementById('rev_slider_3_1_wrapper')||document.getElementById('rev_slider_3_1');
-if(!wrap||!window.MutationObserver)return;
-new MutationObserver(function(){playHero();}).observe(wrap,{attributes:true,attributeFilter:['style','class'],subtree:true});
-}
-function observe(){
-if(!window.IntersectionObserver)return;
-var io=new IntersectionObserver(function(ents){
-ents.forEach(function(e){if(e.isIntersecting)playOne(e.target);});
-},{threshold:0.2});
-vids().forEach(function(v){io.observe(v);});
-}
-function boot(){
-vids().forEach(function(v){
-prep(v);
-['loadedmetadata','loadeddata','canplay','canplaythrough'].forEach(function(ev){
-v.addEventListener(ev,function(){playOne(v);});
-});
-});
-playAll();
-observe();
-watchSlider();
-bindUnlock();
-setInterval(playAll,1200);
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-window.addEventListener('load',function(){playAll();setTimeout(playAll,300);setTimeout(playAll,1000);setTimeout(playAll,2000);});
-})();
-</script>
 </head>
 <body class="page-template page-template-full-width page-template-full-width-php page page-id-827 theme-theaisle theaisle-core-2.2.1 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.5.7 theaisle-ver-2.5 eltdf-smooth-page-transitions eltdf-grid-1300 eltdf-content-is-behind-header eltdf-wide-dropdown-menu-content-in-grid eltdf-light-header eltdf-no-behavior eltdf-dropdown-animate-height eltdf-header-divided eltdf-menu-area-shadow-disable eltdf-menu-area-in-grid-shadow-disable eltdf-menu-area-border-disable eltdf-menu-area-in-grid-border-disable eltdf-logo-area-border-disable eltdf-logo-area-in-grid-border-disable eltdf-side-menu-slide-from-right eltdf-woocommerce-columns-3 eltdf-woo-normal-space eltdf-woo-pl-info-below-image eltdf-woo-single-thumb-on-left-side eltdf-woo-single-has-pretty-photo eltdf-default-mobile-header eltdf-sticky-up-mobile-header eltdf-fullscreen-search eltdf-search-fade elementor-default elementor-kit-5320 elementor-page elementor-page-827" itemscope itemtype="http://schema.org/WebPage">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><section class="eltdf-side-menu">
 	<a class="eltdf-close-side-menu eltdf-close-side-menu-predefined" href="index.html">
 		<span class="eltdf-hm-lines"><span class="eltdf-hm-line eltdf-line-1"></span><span class="eltdf-hm-line eltdf-line-2"></span></span>	</a>
-	<div id="media_image-3" class="widget eltdf-sidearea widget_media_image"><a href=""><img width="252" height="42" src="media/jp/logo-black-140.png" class="image wp-image-4049  attachment-252x42 size-252x42" alt="Thaís & João" decoding="async" loading="lazy" style="max-width: 140px; height: auto;" /></a></div><div id="text-6" class="widget eltdf-sidearea widget_text">			<div class="textwidget"><p style="margin-top: -12px;"><em style="font-family: Cormorant; font-size: 22px; line-height: 28px; color: #3c4860;">Lorem ipsum dolor sit, consectetur iscing sed diam nonummy nibh euismo Lorem ipsum dolor sit, consectetur</em></p>
+	<div id="media_image-3" class="widget eltdf-sidearea widget_media_image"><a href=""><img width="252" height="42" src="media/jp/logo-black-140.png" class="image wp-image-4049  attachment-252x42 size-252x42" alt="Thaís & João" decoding="async" loading="lazy" style="max-width: 140px; height: auto;" /></a></div><div id="text-6" class="widget eltdf-sidearea widget_text">			<div class="textwidget"><p style="margin-top: -12px;"><em style="font-family: Cormorant; font-size: 22px; line-height: 28px; color: #3c4860;">Até aqui nos ajudou o Senhor!</em></p>
 </div>
 		</div><div id="text-8" class="widget eltdf-sidearea widget_text">			<div class="textwidget"><p style="font-family: Cormorant; font-size: 22px; line-height: 35px; color: #c78665; font-style: italic; margin-bottom:-16px;">@my_wedding_day</p>
 </div>
@@ -496,82 +764,8 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 	            <div class="eltdf-position-left-inner">
                     
 	<nav class="eltdf-main-menu eltdf-drop-down eltdf-divided-left-part eltdf-default-nav">
-	    <ul id="menu-divided-menu-left" class="clearfix"><li id="nav-menu-item-1009" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children eltdf-active-item has_sub narrow"><a href="index.html" class=" current "><span class="item_outer"><span class="item_text">Início</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
-<div class="second"><div class="inner"><ul>
-	<li id="nav-menu-item-1098" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home "><a href="" class=""><span class="item_outer"><span class="item_text">Página principal</span></span></a></li>
-	<li id="nav-menu-item-3279" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Planejamento de casamento</span></span></a></li>
-	<li id="nav-menu-item-2232" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-827 current_page_item "><a href="index.html" class=""><span class="item_outer"><span class="item_text">Início</span></span></a></li>
-	<li id="nav-menu-item-3284" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Convite simples</span></span></a></li>
-	<li id="nav-menu-item-2319" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li>
-	<li id="nav-menu-item-2233" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Início de casamento</span></span></a></li>
-	<li id="nav-menu-item-2231" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Início da loja</span></span></a></li>
-	<li id="nav-menu-item-3281" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Convite dividido</span></span></a></li>
-	<li id="nav-menu-item-3282" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Galeria estilo Pinterest</span></span></a></li>
-	<li id="nav-menu-item-2229" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Início de fotografia</span></span></a></li>
-	<li id="nav-menu-item-2320" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Início de floricultura</span></span></a></li>
-	<li id="nav-menu-item-3283" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Slider de fotografia</span></span></a></li>
-	<li id="nav-menu-item-3845" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Página de entrada</span></span></a></li>
-</ul></div></div>
-</li>
-<li id="nav-menu-item-1010" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a href="index.html" class=""><span class="item_outer"><span class="item_text">Páginas</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
-<div class="second"><div class="inner"><ul>
-	<li id="nav-menu-item-2224" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Sobre nós</span></span></a></li>
-	<li id="nav-menu-item-2228" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Nossa história</span></span></a></li>
-	<li id="nav-menu-item-3286" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Madrinhas &#038; Padrinhos</span></span></a></li>
-	<li id="nav-menu-item-2225" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Hospedagem</span></span></a></li>
-	<li id="nav-menu-item-2226" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li>
-	<li id="nav-menu-item-2227" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Nossos serviços</span></span></a></li>
-	<li id="nav-menu-item-2230" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Planos e preços</span></span></a></li>
-	<li id="nav-menu-item-3287" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Página de confirmação</span></span></a></li>
-	<li id="nav-menu-item-3288" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Fale conosco</span></span></a></li>
-	<li id="nav-menu-item-3289" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Em breve</span></span></a></li>
-</ul></div></div>
-</li>
-<li id="nav-menu-item-1011" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a href="index.html" class=""><span class="item_outer"><span class="item_text">Portfólio</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
-<div class="second"><div class="inner"><ul>
-	<li id="nav-menu-item-3290" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=" no_link" onclick="JavaScript: return false;"><span class="item_outer"><span class="item_text">Tipos</span></span></a>
-	<ul>
-		<li id="nav-menu-item-2236" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Padrão</span></span></a></li>
-		<li id="nav-menu-item-2235" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Galeria</span></span></a></li>
-		<li id="nav-menu-item-3291" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Mosaico</span></span></a></li>
-		<li id="nav-menu-item-4960" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Pinterest</span></span></a></li>
-	</ul>
-</li>
-	<li id="nav-menu-item-3292" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=" no_link" onclick="JavaScript: return false;"><span class="item_outer"><span class="item_text">Disposições</span></span></a>
-	<ul>
-		<li id="nav-menu-item-3296" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Duas colunas</span></span></a></li>
-		<li id="nav-menu-item-4969" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Duas colunas largas</span></span></a></li>
-		<li id="nav-menu-item-3297" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Três colunas</span></span></a></li>
-		<li id="nav-menu-item-4978" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Três colunas largas</span></span></a></li>
-		<li id="nav-menu-item-3294" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Quatro colunas</span></span></a></li>
-		<li id="nav-menu-item-3295" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Quatro colunas largas</span></span></a></li>
-		<li id="nav-menu-item-4984" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Cinco colunas</span></span></a></li>
-		<li id="nav-menu-item-3293" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Cinco colunas largas</span></span></a></li>
-		<li id="nav-menu-item-4983" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Seis colunas largas</span></span></a></li>
-	</ul>
-</li>
-	<li id="nav-menu-item-5010" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=" no_link" onclick="JavaScript: return false;"><span class="item_outer"><span class="item_text">Tipos de efeito</span></span></a>
-	<ul>
-		<li id="nav-menu-item-5014" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Shader padrão</span></span></a></li>
-		<li id="nav-menu-item-5013" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Sobreposição de galeria</span></span></a></li>
-		<li id="nav-menu-item-5011" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Slide pela base da imagem</span></span></a></li>
-		<li id="nav-menu-item-5012" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Recorte com borda</span></span></a></li>
-	</ul>
-</li>
-	<li id="nav-menu-item-2237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=" no_link" onclick="JavaScript: return false;"><span class="item_outer"><span class="item_text">Individual</span></span></a>
-	<ul>
-		<li id="nav-menu-item-3298" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span class="item_outer"><span class="item_text">Imagens pequenas</span></span></a></li>
-		<li id="nav-menu-item-3299" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span class="item_outer"><span class="item_text">Slider pequeno</span></span></a></li>
-		<li id="nav-menu-item-3300" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span class="item_outer"><span class="item_text">Imagens grandes</span></span></a></li>
-		<li id="nav-menu-item-3301" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span class="item_outer"><span class="item_text">Slider grande</span></span></a></li>
-		<li id="nav-menu-item-3302" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span class="item_outer"><span class="item_text">Galeria</span></span></a></li>
-	</ul>
-</li>
-</ul></div></div>
-</li>
-</ul>	</nav>
-
-                </div>
+    <ul id="menu-divided-menu-left" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="#inicio" class=" current "><span class="item_outer"><span class="item_text">Início</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#noivos" class=""><span class="item_outer"><span class="item_text">Páginas</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#historia" class=""><span class="item_outer"><span class="item_text">Portfólio</span></span></a></li></ul>	</nav>
+</div>
             </div>
             <div class="eltdf-position-center"><!--
              --><div class="eltdf-position-center-inner">
@@ -589,46 +783,8 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
              --><div class="eltdf-position-right-inner">
                     
 <nav class="eltdf-main-menu eltdf-drop-down eltdf-divided-right-part eltdf-default-nav">
-    <ul id="menu-divided-menu-right" class="clearfix"><li id="nav-menu-item-1012" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a href="index.html" class=""><span class="item_outer"><span class="item_text">Blog</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
-<div class="second"><div class="inner"><ul>
-	<li id="nav-menu-item-2537" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Barra lateral direita</span></span></a></li>
-	<li id="nav-menu-item-2535" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Barra lateral esquerda</span></span></a></li>
-	<li id="nav-menu-item-2536" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Sem barra lateral</span></span></a></li>
-	<li id="nav-menu-item-2538" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=""><span class="item_outer"><span class="item_text">Tipos de post</span></span></a>
-	<ul>
-		<li id="nav-menu-item-2539" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Padrão</span></span></a></li>
-		<li id="nav-menu-item-2540" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Galeria</span></span></a></li>
-		<li id="nav-menu-item-2541" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Link</span></span></a></li>
-		<li id="nav-menu-item-2542" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Citação</span></span></a></li>
-		<li id="nav-menu-item-2543" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Vídeo</span></span></a></li>
-		<li id="nav-menu-item-2544" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Áudio</span></span></a></li>
-		<li id="nav-menu-item-2545" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span class="item_outer"><span class="item_text">Sem barra lateral</span></span></a></li>
-	</ul>
-</li>
-</ul></div></div>
-</li>
-<li id="nav-menu-item-1013" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Loja</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
-<div class="second"><div class="inner"><ul>
-	<li id="nav-menu-item-2546" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de produtos</span></span></a></li>
-	<li id="nav-menu-item-2547" class="menu-item menu-item-type-post_type menu-item-object-product "><a href="#" class=""><span class="item_outer"><span class="item_text">Produto individual</span></span></a></li>
-	<li id="nav-menu-item-2548" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=""><span class="item_outer"><span class="item_text">Disposições da loja</span></span></a>
-	<ul>
-		<li id="nav-menu-item-2551" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Três colunas</span></span></a></li>
-		<li id="nav-menu-item-2549" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Quatro colunas</span></span></a></li>
-		<li id="nav-menu-item-2550" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Largura total</span></span></a></li>
-	</ul>
-</li>
-	<li id="nav-menu-item-2552" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a href="index.html" class=""><span class="item_outer"><span class="item_text">Páginas da loja</span></span></a>
-	<ul>
-		<li id="nav-menu-item-2555" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Minha conta</span></span></a></li>
-		<li id="nav-menu-item-2553" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Carrinho</span></span></a></li>
-		<li id="nav-menu-item-2554" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span class="item_outer"><span class="item_text">Finalizar compra</span></span></a></li>
-	</ul>
-</li>
-</ul></div></div>
-</li>
-<li id="nav-menu-item-7853" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a target="_blank" href="#" class=""><span class="item_outer"><span class="item_text">Página de entrada</span></span></a></li>
-</ul></nav>
+    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#curiosidades" class=""><span class="item_outer"><span class="item_text">Página de entrada</span></span></a></li></ul></nav>
+
 
                 </div>
 	            <div class="eltdf-divided-right-widget-area">
@@ -683,118 +839,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
     <nav class="eltdf-mobile-nav" role="navigation" aria-label="Mobile Menu">
         <div class="eltdf-grid">
 
-            <ul id="menu-main-menu" class=""><li id="mobile-menu-item-38" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children eltdf-active-item has_sub"><a href="index.html" class=" current  eltdf-mobile-no-link"><span>Início</span></a><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-<ul class="sub_menu">
-	<li id="mobile-menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home "><a href="" class=""><span>Página principal</span></a></li>
-	<li id="mobile-menu-item-2966" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Planejamento de casamento</span></a></li>
-	<li id="mobile-menu-item-1097" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-827 current_page_item "><a href="index.html" class=""><span>Início</span></a></li>
-	<li id="mobile-menu-item-3237" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Convite simples</span></a></li>
-	<li id="mobile-menu-item-2321" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="loja.html" class=""><span>Lista de presentes</span></a></li>
-	<li id="mobile-menu-item-1096" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Início de casamento</span></a></li>
-	<li id="mobile-menu-item-2151" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Início da loja</span></a></li>
-	<li id="mobile-menu-item-2506" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Convite dividido</span></a></li>
-	<li id="mobile-menu-item-4050" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Galeria estilo Pinterest</span></a></li>
-	<li id="mobile-menu-item-222" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Início de fotografia</span></a></li>
-	<li id="mobile-menu-item-2322" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Início de floricultura</span></a></li>
-	<li id="mobile-menu-item-2706" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Slider de fotografia</span></a></li>
-	<li id="mobile-menu-item-3354" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Página de entrada</span></a></li>
-</ul>
-</li>
-<li id="mobile-menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><a href="index.html" class=" eltdf-mobile-no-link"><span>Páginas</span></a><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-<ul class="sub_menu">
-	<li id="mobile-menu-item-1347" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Sobre nós</span></a></li>
-	<li id="mobile-menu-item-1489" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Nossa história</span></a></li>
-	<li id="mobile-menu-item-1865" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Madrinhas &#038; Padrinhos</span></a></li>
-	<li id="mobile-menu-item-1819" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Hospedagem</span></a></li>
-	<li id="mobile-menu-item-1911" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="loja.html" class=""><span>Lista de presentes</span></a></li>
-	<li id="mobile-menu-item-2144" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Nossos serviços</span></a></li>
-	<li id="mobile-menu-item-2208" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Planos e preços</span></a></li>
-	<li id="mobile-menu-item-2444" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Página de confirmação</span></a></li>
-	<li id="mobile-menu-item-2418" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Fale conosco</span></a></li>
-	<li id="mobile-menu-item-1116" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Em breve</span></a></li>
-</ul>
-</li>
-<li id="mobile-menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><a href="index.html" class=" eltdf-mobile-no-link"><span>Portfólio</span></a><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-<ul class="sub_menu">
-	<li id="mobile-menu-item-148" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Tipos</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-149" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Padrão</span></a></li>
-		<li id="mobile-menu-item-2685" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Galeria</span></a></li>
-		<li id="mobile-menu-item-2688" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Mosaico</span></a></li>
-		<li id="mobile-menu-item-4959" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Pinterest</span></a></li>
-	</ul>
-</li>
-	<li id="mobile-menu-item-3161" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Disposições</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-3170" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Duas colunas</span></a></li>
-		<li id="mobile-menu-item-4970" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Duas colunas largas</span></a></li>
-		<li id="mobile-menu-item-3169" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Três colunas</span></a></li>
-		<li id="mobile-menu-item-4975" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Três colunas largas</span></a></li>
-		<li id="mobile-menu-item-3167" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Quatro colunas</span></a></li>
-		<li id="mobile-menu-item-3168" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Quatro colunas largas</span></a></li>
-		<li id="mobile-menu-item-4986" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Cinco colunas</span></a></li>
-		<li id="mobile-menu-item-3162" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Cinco colunas largas</span></a></li>
-		<li id="mobile-menu-item-4985" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Seis colunas largas</span></a></li>
-	</ul>
-</li>
-	<li id="mobile-menu-item-5005" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Tipos de efeito</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-5004" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Shader padrão</span></a></li>
-		<li id="mobile-menu-item-5003" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Sobreposição de galeria</span></a></li>
-		<li id="mobile-menu-item-5001" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Slide pela base da imagem</span></a></li>
-		<li id="mobile-menu-item-5002" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Recorte com borda</span></a></li>
-	</ul>
-</li>
-	<li id="mobile-menu-item-120" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Individual</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-119" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span>Imagens pequenas</span></a></li>
-		<li id="mobile-menu-item-126" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span>Slider pequeno</span></a></li>
-		<li id="mobile-menu-item-127" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span>Imagens grandes</span></a></li>
-		<li id="mobile-menu-item-128" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span>Slider grande</span></a></li>
-		<li id="mobile-menu-item-141" class="menu-item menu-item-type-post_type menu-item-object-portfolio-item "><a href="#" class=""><span>Galeria</span></a></li>
-	</ul>
-</li>
-</ul>
-</li>
-<li id="mobile-menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><a href="index.html" class=" eltdf-mobile-no-link"><span>Blog</span></a><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-<ul class="sub_menu">
-	<li id="mobile-menu-item-921" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Barra lateral direita</span></a></li>
-	<li id="mobile-menu-item-920" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Barra lateral esquerda</span></a></li>
-	<li id="mobile-menu-item-923" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Sem barra lateral</span></a></li>
-	<li id="mobile-menu-item-99" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Tipos de post</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-100" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Padrão</span></a></li>
-		<li id="mobile-menu-item-102" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Galeria</span></a></li>
-		<li id="mobile-menu-item-1947" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Link</span></a></li>
-		<li id="mobile-menu-item-1949" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Citação</span></a></li>
-		<li id="mobile-menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Vídeo</span></a></li>
-		<li id="mobile-menu-item-880" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Áudio</span></a></li>
-		<li id="mobile-menu-item-928" class="menu-item menu-item-type-post_type menu-item-object-post "><a href="#" class=""><span>Sem barra lateral</span></a></li>
-	</ul>
-</li>
-</ul>
-</li>
-<li id="mobile-menu-item-42" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><a href="loja.html" class=" eltdf-mobile-no-link"><span>Loja</span></a><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-<ul class="sub_menu">
-	<li id="mobile-menu-item-1102" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="loja.html" class=""><span>Lista de produtos</span></a></li>
-	<li id="mobile-menu-item-310" class="menu-item menu-item-type-post_type menu-item-object-product "><a href="#" class=""><span>Produto individual</span></a></li>
-	<li id="mobile-menu-item-1219" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Disposições da loja</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-1218" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Três colunas</span></a></li>
-		<li id="mobile-menu-item-1216" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Quatro colunas</span></a></li>
-		<li id="mobile-menu-item-1217" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Largura total</span></a></li>
-	</ul>
-</li>
-	<li id="mobile-menu-item-1167" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub"><h6><span>Páginas da loja</span></h6><span class="mobile_arrow"><i class="eltdf-sub-arrow ion-ios-arrow-right"></i><i class="ion-ios-arrow-down"></i></span>
-	<ul class="sub_menu">
-		<li id="mobile-menu-item-1169" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Minha conta</span></a></li>
-		<li id="mobile-menu-item-1170" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Carrinho</span></a></li>
-		<li id="mobile-menu-item-1168" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="#" class=""><span>Finalizar compra</span></a></li>
-	</ul>
-</li>
-</ul>
-</li>
-</ul>        </div>
+            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="#inicio" class=" current "><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#historia" class=""><span>Portfólio</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="loja.html" class=""><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#curiosidades" class=""><span>Página de entrada</span></a></li></ul>        </div>
     </nav>
 
 	</div>
@@ -820,7 +865,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							<div data-elementor-type="wp-page" data-elementor-id="827" class="elementor elementor-827">
 						<div class="elementor-inner">
 				<div class="elementor-section-wrap">
-									<section class="elementor-section elementor-top-section elementor-element elementor-element-eabaaa9 elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-id="eabaaa9" data-element_type="section">
+									<section class="elementor-section elementor-top-section elementor-element elementor-element-eabaaa9 elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-id="eabaaa9" data-element_type="section" id="inicio">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
 					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-342ca18" data-id="342ca18" data-element_type="column">
@@ -835,16 +880,13 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				<rs-module id="rev_slider_3_1" style="" data-version="6.6.7">
 					<rs-slides style="overflow: hidden; position: absolute;">
 						<rs-slide style="position: absolute;" data-key="rs-4" data-title="Slide" data-thumb="media/jp/posters/hero-01-thumb.jpg" data-anim="ms:600;r:0;" data-in="o:0;" data-out="a:false;" data-p1="1">
-							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-01.jpg" data-bg="p:center center;" data-parallax="off" data-no-retina>
-							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-01.jpg" src="media/jp/01.mp4"></video>
+							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-01.jpg" data-bg="p:center 6%;" data-parallax="off" data-no-retina>
 <!---->						</rs-slide>
 						<rs-slide style="position: absolute;" data-key="rs-5" data-title="Slide" data-thumb="media/jp/posters/hero-02-thumb.jpg" data-anim="adpr:false;" data-p1="2">
-							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-02.jpg" data-bg="p:center center;" data-parallax="off" data-no-retina>
-							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-02.jpg" src="media/jp/02.mp4"></video>
+							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-02.jpg" data-bg="p:center 18%;" data-parallax="off" data-no-retina>
 <!---->						</rs-slide>
 						<rs-slide style="position: absolute;" data-key="rs-25" data-title="Slide" data-thumb="media/jp/posters/hero-08-thumb.jpg" data-anim="adpr:false;" data-p1="3">
-							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-08.jpg" data-bg="p:center center;" data-parallax="off" data-no-retina>
-							<video class="jp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/posters/hero-08.jpg" src="media/jp/08.mp4"></video>
+							<img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="" title="Início" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="media/jp/posters/hero-08.jpg" data-bg="p:center 38%;" data-parallax="off" data-no-retina>
 <!---->						</rs-slide>
 					</rs-slides>
 					<rs-static-layers class="rs-stl-visible"><!--
@@ -876,7 +918,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-frame_1="e:power2.inOut;st:600;sp:800;sR:600;"
 								data-frame_999="st:w;sR:2600;auto:true;"
 								style="z-index:6;font-family:'Muli';text-transform:uppercase;"
-							>Vamos nos casar em 19 de fevereiro de 2027 
+							>Nosso grande dia será em
 							</rs-layer><!--
 
 							--><rs-layer
@@ -895,6 +937,21 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							><div class="eltdf-countdown   eltdf-light-skin" id="countdown4229" data-year="2027" data-month="2" data-day="19" data-hour="0" data-minute="0" data-month-label="Meses" data-day-label="Dias" data-hour-label="Horas" data-minute-label="Minutos" data-second-label="Segundos"  ></div>
  
 							</rs-layer><!--
+
+							--><rs-layer
+								id="slider-3-slide-4-layer-12" 
+								class="rs-layer-static"
+								data-type="text"
+								data-rsp_ch="on"
+								data-xy="x:c;y:m;yo:195px,220px,225px,205px;"
+								data-text="s:17,17,17,14;l:27;ls:1px;fw:300;a:inherit;"
+								data-onslides="s:1;"
+								data-frame_0="y:50px;"
+								data-frame_1="e:power2.inOut;st:1200;sp:800;sR:1200;"
+								data-frame_999="st:w;sR:2000;auto:true;"
+								style="z-index:8;font-family:'Muli';text-transform:uppercase;"
+							>19 de fevereiro de 2027
+							</rs-layer><!--
 					--></rs-static-layers>
 				</rs-module>
 				<script>
@@ -912,7 +969,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-3ad4020 elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-id="3ad4020" data-element_type="section">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-3ad4020 elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-id="3ad4020" data-element_type="section" id="noivos">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
 					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ab49839" data-id="ab49839" data-element_type="column">
@@ -972,7 +1029,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-team-holder eltdf-team-info-below-image">
 	<div class="eltdf-team-inner">
 				<div class="eltdf-team-info">
-													<p class="eltdf-team-text" >Duis autem vel eum iriure dolor in vulputate velit esse molestie consequat, vel illum olore eu feugiat nulla facilisis at vero iusto</p>
+													<p class="eltdf-team-text" >A cada conversa nos conhecíamos melhor, e a amizade logo deu lugar a um sentimento que crescia de forma natural.</p>
 										<div class="eltdf-team-social-holder">
 											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
                     <a class="" href="https://www.instagram.com/qodeinteractive/" target="_blank">
@@ -1002,23 +1059,34 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							<div class="elementor-widget-wrap">
 						<div class="elementor-element elementor-element-aa7d780 elementor-widget elementor-widget-eltdf_simple_timeline" data-id="aa7d780" data-element_type="widget" data-widget_type="eltdf_simple_timeline.default">
 				<div class="elementor-widget-container">
-			<div class="eltdf-simple-timeline-holder " style="margin-top:-100px; margin-bottom: -100px">
-        <div class="eltdf-st-text-holder">
-		    			                        <span class="eltdf-st-title">Nossa história de amor</span>
-			    			                        <span class="eltdf-st-date" >20 de julho de 2020</span>
-			    			                        <p class="eltdf-st-text" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsoci et</p>
-			        </div>
-        <div class="eltdf-st-text-holder">
-		    			                        <span class="eltdf-st-title">A primeira vez que nos vimos</span>
-			    			                        <span class="eltdf-st-date" >20 de julho de 2016</span>
-			    			                        <p class="eltdf-st-text" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsoci et</p>
-			        </div>
-        <div class="eltdf-st-text-holder">
-		    			                        <span class="eltdf-st-title">Ele pediu &amp; ela disse sim</span>
-			    			                        <span class="eltdf-st-date" >15 de abril de 2017</span>
-			    			                        <p class="eltdf-st-text" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsoci et</p>
-			        </div>
-        <span class="eltdf-st-bottom-title">O dia do casamento!</span>
+			<div class="eltdf-simple-timeline-holder jp-love-timeline eltdf-simple-timeline-appeared" style="margin-top:-60px;margin-bottom:-60px">
+        <ol class="jp-love-timeline__list">
+            <li class="jp-love-timeline__item">
+                <span class="jp-love-timeline__marker" aria-hidden="true"></span>
+                <span class="jp-love-timeline__date">13 de abril de 2024</span>
+                <span class="jp-love-timeline__title">Primeira vez que nos vimos</span>
+            </li>
+            <li class="jp-love-timeline__item">
+                <span class="jp-love-timeline__marker" aria-hidden="true"><span class="eltdf-icon-font-elegant icon_heart"></span></span>
+                <span class="jp-love-timeline__date">12 de julho de 2024</span>
+                <span class="jp-love-timeline__title">Pedido de namoro</span>
+            </li>
+            <li class="jp-love-timeline__item">
+                <span class="jp-love-timeline__marker" aria-hidden="true"><span class="eltdf-icon-font-elegant icon_gift"></span></span>
+                <span class="jp-love-timeline__date">12 de julho de 2025</span>
+                <span class="jp-love-timeline__title">1 ano de namoro e pedido de casamento</span>
+            </li>
+            <li class="jp-love-timeline__item">
+                <span class="jp-love-timeline__marker" aria-hidden="true"><span class="eltdf-icon-font-elegant icon_heart"></span></span>
+                <span class="jp-love-timeline__date">12 de julho de 2026</span>
+                <span class="jp-love-timeline__title">2 anos de namoro e 1 ano de noivado</span>
+            </li>
+            <li class="jp-love-timeline__item jp-love-timeline__item--highlight">
+                <span class="jp-love-timeline__marker" aria-hidden="true"><span class="eltdf-icon-font-elegant icon_star"></span></span>
+                <span class="jp-love-timeline__date">19 de fevereiro de 2027</span>
+                <span class="jp-love-timeline__title">O grande dia!</span>
+            </li>
+        </ol>
 </div>		</div>
 				</div>
 						</div>
@@ -1031,7 +1099,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				<div class="elementor-widget-container">
 			<div class="eltdf-single-image-holder   ">
     <div class="eltdf-si-inner" >
-                                    <img width="310" height="310" src="media/jp/groom.png" class="attachment-full size-full" alt="João" decoding="async" loading="lazy" />                        </div>
+                                    <img width="310" height="310" src="media/jp/groom.png" class="attachment-full size-full" alt="João Pedro" decoding="async" loading="lazy" />                        </div>
 </div>		</div>
 				</div>
 				<div class="elementor-element elementor-element-fb6a3e6 elementor-widget elementor-widget-spacer" data-id="fb6a3e6" data-element_type="widget" data-widget_type="spacer.default">
@@ -1044,7 +1112,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				<div class="elementor-element elementor-element-60b0f53 elementor-widget__width-auto elementor-widget elementor-widget-eltdf_custom_font" data-id="60b0f53" data-element_type="widget" data-widget_type="eltdf_custom_font.default">
 				<div class="elementor-widget-container">
 			<h2 class="eltdf-custom-font-holder  eltdf-cf-9660  " style="font-family: LearningCurve;font-size: 48px;line-height: 48px;letter-spacing: 0px;text-transform: capitalize;margin: 0 0 -37px 0" data-item-class="eltdf-cf-9660">
-	João</h2>		</div>
+	João Pedro</h2>		</div>
 				</div>
 				<div class="elementor-element elementor-element-d651849 elementor-widget elementor-widget-spacer" data-id="d651849" data-element_type="widget" data-widget_type="spacer.default">
 				<div class="elementor-widget-container">
@@ -1058,7 +1126,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-team-holder eltdf-team-info-below-image">
 	<div class="eltdf-team-inner">
 				<div class="eltdf-team-info">
-													<p class="eltdf-team-text" >Duis autem vel eum iriure dolor in vulputate velit esse molestie consequat, vel illum olore eu feugiat nulla facilisis at vero iusto</p>
+													<p class="eltdf-team-text" >Hoje, nossa maior oração é que Cristo seja o centro do nosso casamento.</p>
 										<div class="eltdf-team-social-holder">
 											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
                     <a class="" href="https://www.instagram.com/qodeinteractive/" target="_blank">
@@ -1086,83 +1154,173 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-30ee257 eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="30ee257" data-element_type="section">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-3639815 eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="3639815" data-element_type="section" id="historia">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-dcbce8d" data-id="dcbce8d" data-element_type="column">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b397f9a" data-id="b397f9a" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-8a88d2c elementor-widget elementor-widget-eltdf_section_title" data-id="8a88d2c" data-element_type="widget" data-widget_type="eltdf_section_title.default">
+						<div class="elementor-element elementor-element-1040af2 elementor-widget elementor-widget-eltdf_section_title" data-id="1040af2" data-element_type="widget" data-widget_type="eltdf_section_title.default">
 				<div class="elementor-widget-container">
-			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " >
+			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " style="text-align: center">
 	<div class="eltdf-st-inner">
         <div class="eltdf-st-image" style="margin-bottom: -24px">
             <img width="55" height="63" src="wp-content/uploads/2018/10/section-title-img-1.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
 					<h2 class="eltdf-st-title" >
-				<span class="eltdf-st-title-word">Nossa</span> <span class="eltdf-st-title-word">Galeria</span> <span class="eltdf-st-title-word">do Casamento</span>			</h2>
+				<span class="eltdf-st-title-word">Nossa</span> <span class="eltdf-st-title-word">História</span> <span class="eltdf-st-title-word">de Amor</span>			</h2>
 							<span class="eltdf-st-text" >
-				Memórias			</span>
+				Capítulos da nossa jornada			</span>
 			</div>
 </div>		</div>
 				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-f77f00c eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="f77f00c" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ff53171" data-id="ff53171" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-4e0d248 elementor-widget elementor-widget-eltdf_image_gallery" data-id="4e0d248" data-element_type="widget" data-widget_type="eltdf_image_gallery.default">
+				<div class="elementor-element elementor-element-5a8d101 elementor-widget elementor-widget-eltdf_blog_list" data-id="5a8d101" data-element_type="widget" data-widget_type="eltdf_blog_list.default">
 				<div class="elementor-widget-container">
-			<div class="eltdf-image-gallery eltdf-grid-list eltdf-disable-bottom-space  eltdf-ig-grid-type eltdf-four-columns eltdf-normal-space  eltdf-image-behavior-none">
-	<div class="eltdf-ig-inner eltdf-outer-space">
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-01.jpg" src="media/jp/03.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-02.jpg" src="media/jp/04.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-03.jpg" src="media/jp/05.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-04.jpg" src="media/jp/07.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-05.jpg" src="media/jp/09.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-06.jpg" src="media/jp/10.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-07.jpg" src="media/jp/11.mp4"></video>
-									</div>
-			</div>
-					<div class="eltdf-ig-image eltdf-item-space">
-				<div class="eltdf-ig-image-inner">
-											<video class="jp-gallery-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/jp/thumbs/gallery-08.jpg" src="media/jp/12.mp4"></video>
-									</div>
-			</div>
-			</div>
-</div>		</div>
+			<div class="eltdf-blog-list-holder eltdf-grid-list eltdf-disable-bottom-space eltdf-bl-standard eltdf-four-columns eltdf-normal-space eltdf-bl-pag-no-pagination"  data-type=standard data-number-of-columns=four data-space-between-items=normal data-category=albums data-orderby=date data-order=ASC data-image-size=full data-custom-image-width= data-custom-image-height= data-title-tag=h3 data-excerpt-length=9 data-post-info-section=yes data-post-info-image=yes data-post-info-author=yes data-post-info-date=yes data-post-info-category=yes data-post-info-comments=no data-post-info-like=no data-post-info-share=no data-pagination-type=no-pagination data-max-num-pages=1 data-next-page=2>
+	<div class="eltdf-bl-wrapper eltdf-outer-space">
+		<ul class="eltdf-blog-list">
+			<li class="eltdf-bl-item eltdf-item-space">
+	<div class="eltdf-bli-inner">
+        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
+            <a itemprop="url" href="#">
+    
+        Abril de 2024        </a>
+    <meta itemprop="interactionCount" content="UserComments: 0"/>
+</div>		
+	<div class="eltdf-post-image">
+					<a itemprop="url" href="#" title="Nossa história de amor">
+		            <img loading="lazy" width="1300" height="1765" src="media/jp/blog-01.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
+					</div>
+        <div class="eltdf-bli-content">
+                            <div class="eltdf-bli-info">
+	                <div class="eltdf-post-info-author">
+    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
+        Thaís &amp; João    </a>
+</div><div class="eltdf-post-info-category">
+    <a href="#" rel="category tag">Nossa história</a></div>                </div>
+            	
+	        
+<h3 itemprop="name" class="entry-title eltdf-post-title" >
+            <a itemprop="url" href="#" title="Nossa história de amor">
+            Nossa história de amor            </a>
+    </h3>	
+	        <div class="eltdf-bli-excerpt">
+		        		<div class="eltdf-post-excerpt-holder">
+			<p itemprop="description" class="eltdf-post-excerpt">
+				Tudo começou em um sábado à noite, no culto de jovens da Igreja Batista da Fé. Um simples olhar despertou um interesse especial entre nós.			</p>
+		</div>
+			        	<div class="eltdf-post-read-more-button">
+		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
+	        </div>
+        </div>
+	</div>
+</li><li class="eltdf-bl-item eltdf-item-space">
+	<div class="eltdf-bli-inner">
+        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
+            <a itemprop="url" href="#">
+    
+        Abril e maio de 2024        </a>
+    <meta itemprop="interactionCount" content="UserComments: 0"/>
+</div>		
+	<div class="eltdf-post-image">
+					<a itemprop="url" href="#" title="As primeiras caronas">
+		            <img width="1300" height="1765" src="media/jp/blog-02.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
+					</div>
+        <div class="eltdf-bli-content">
+                            <div class="eltdf-bli-info">
+	                <div class="eltdf-post-info-author">
+    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
+        Thaís &amp; João    </a>
+</div><div class="eltdf-post-info-category">
+    <a href="#" rel="category tag">Nossa história</a></div>                </div>
+            	
+	        
+<h3 itemprop="name" class="entry-title eltdf-post-title" >
+            <a itemprop="url" href="#" title="As primeiras caronas">
+            As primeiras caronas            </a>
+    </h3>	
+	        <div class="eltdf-bli-excerpt">
+		        		<div class="eltdf-post-excerpt-holder">
+			<p itemprop="description" class="eltdf-post-excerpt">
+				No dia seguinte veio a primeira carona… depois outra, e mais outra. A cada conversa nos conhecíamos melhor.			</p>
+		</div>
+			        	<div class="eltdf-post-read-more-button">
+		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
+	        </div>
+        </div>
+	</div>
+</li><li class="eltdf-bl-item eltdf-item-space">
+	<div class="eltdf-bli-inner">
+        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
+            <a itemprop="url" href="#">
+    
+        Maio e junho de 2024        </a>
+    <meta itemprop="interactionCount" content="UserComments: 0"/>
+</div>		
+	<div class="eltdf-post-image">
+					<a itemprop="url" href="#" title="Quando o amor floresceu">
+		            <img width="1300" height="1765" src="media/jp/blog-03.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
+					</div>
+        <div class="eltdf-bli-content">
+                            <div class="eltdf-bli-info">
+	                <div class="eltdf-post-info-author">
+    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
+        Thaís &amp; João    </a>
+</div><div class="eltdf-post-info-category">
+    <a href="#" rel="category tag">Nossa história</a></div>                </div>
+            	
+	        
+<h3 itemprop="name" class="entry-title eltdf-post-title" >
+            <a itemprop="url" href="#" title="Quando o amor floresceu">
+            Quando o amor floresceu            </a>
+    </h3>	
+	        <div class="eltdf-bli-excerpt">
+		        		<div class="eltdf-post-excerpt-holder">
+			<p itemprop="description" class="eltdf-post-excerpt">
+				Enquanto ele já tinha certeza do que sentia, eu fui me apaixonando aos poucos, admirando o homem que ele era.			</p>
+		</div>
+			        	<div class="eltdf-post-read-more-button">
+		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
+	        </div>
+        </div>
+	</div>
+</li><li class="eltdf-bl-item eltdf-item-space">
+	<div class="eltdf-bli-inner">
+        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
+            <a itemprop="url" href="#">
+    
+        12 de julho de 2025        </a>
+    <meta itemprop="interactionCount" content="UserComments: 0"/>
+</div>		
+	<div class="eltdf-post-image">
+					<a itemprop="url" href="#" title="Um sonho que virou realidade">
+		            <img width="1300" height="1765" src="media/jp/blog-04.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
+					</div>
+        <div class="eltdf-bli-content">
+                            <div class="eltdf-bli-info">
+	                <div class="eltdf-post-info-author">
+    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
+        Thaís &amp; João    </a>
+</div><div class="eltdf-post-info-category">
+    <a href="#" rel="category tag">Nossa história</a></div>                </div>
+            	
+	        
+<h3 itemprop="name" class="entry-title eltdf-post-title" >
+            <a itemprop="url" href="#" title="Um sonho que virou realidade">
+            Um sonho que virou realidade            </a>
+    </h3>	
+	        <div class="eltdf-bli-excerpt">
+		        		<div class="eltdf-post-excerpt-holder">
+			<p itemprop="description" class="eltdf-post-excerpt">
+				Com poucos meses de namoro, veio o pedido de casamento, confirmando que Deus estava escrevendo a nossa história.			</p>
+		</div>
+			        	<div class="eltdf-post-read-more-button">
+		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
+	        </div>
+        </div>
+	</div>
+</li>		</ul>
+	</div>
+	</div>		</div>
 				</div>
 						</div>
 					</div>
@@ -1170,7 +1328,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-aed0e34 elementor-section-full_width elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-id="aed0e34" data-element_type="section">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-aed0e34 elementor-section-full_width elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-id="aed0e34" data-element_type="section" id="curiosidades">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
 					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-819abf2" data-id="819abf2" data-element_type="column">
@@ -1193,7 +1351,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-type="shape"
 								data-xy="x:c;y:m;yo:20px;"
 								data-text="a:inherit;"
-								data-dim="w:1920px;h:593px;"
+								data-dim="w:1920px;h:780px;"
 								data-vbility="f,f,f,f"
 								data-basealign="slide"
 								data-rsp_o="off"
@@ -1240,6 +1398,23 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							</rs-layer><!--
 
 							--><rs-layer
+								id="slider-12-slide-28-layer-11" 
+								data-type="image"
+								data-xy="x:l,l,c,c;xo:80px,80px,-420px,-420px;y:m;yo:180px,180px,180px,180px;"
+								data-text="l:22;a:inherit;"
+								data-dim="w:200px,140px,140px,140px;h:240px,168px,168px,168px;"
+								data-vbility="t,t,f,f"
+								data-basealign="slide"
+								data-rsp_o="off"
+								data-rsp_bd="off"
+								data-frame_0="x:-30px;y:40px;rZ:-12;"
+								data-frame_1="st:220;sp:700;sR:220;"
+								data-frame_999="o:0;st:w;sR:2080;"
+								style="z-index:7;"
+							><img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="Thaís & João" class="tp-rs-img rs-lazyload" width="200" height="240" data-lazyload="media/jp/blog-04.jpg" data-no-retina> 
+							</rs-layer><!--
+
+							--><rs-layer
 								id="slider-12-slide-28-layer-4" 
 								data-type="image"
 								data-rsp_ch="on"
@@ -1256,7 +1431,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							--><rs-layer
 								id="slider-12-slide-28-layer-6" 
 								data-type="image"
-								data-xy="x:c;y:m;yo:-282px,-193px,-193px,208px;"
+								data-xy="x:c;y:m;yo:-340px,-250px,-250px,208px;"
 								data-text="l:22;a:inherit;"
 								data-dim="w:547px,430px,430px,379px;h:413px,322px,322px,286px;"
 								data-vbility="t,t,t,f"
@@ -1274,9 +1449,9 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								id="slider-12-slide-28-layer-8" 
 								data-type="text"
 								data-color="#121f38"
-								data-xy="x:c;xo:223px,223px,223px,98px;y:m;yo:-46px,-46px,-46px,-117px;"
-								data-text="w:nowrap,nowrap,normal,normal;s:48,48,48,43;l:58,58,49,43;a:inherit;"
-								data-dim="w:auto,auto,286px,486px;"
+								data-xy="x:c;xo:0,0,0,0;y:m;yo:-72px,-72px,-72px,-58px;"
+								data-text="w:normal,normal,normal,normal;s:48,48,40,36;l:58,58,48,44;a:center;"
+								data-dim="w:620px,620px,480px,320px;"
 								data-basealign="slide"
 								data-rsp_o="off"
 								data-rsp_bd="off"
@@ -1286,7 +1461,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-frame_1_words="d:10;"
 								data-frame_999="o:0;st:w;sR:1910;"
 								style="z-index:10;font-family:'LearningCurve';"
-							>Vamos nos casar! 
+							>Curiosidades sobre os noivos
 							</rs-layer><!--
 
 							--><rs-layer
@@ -1303,10 +1478,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-frame_1="sp:700;sR:10;"
 								data-frame_999="o:0;st:w;sR:2290;"
 								style="z-index:11;font-family:'Muli';"
-							>Lorem ips is dolor sit amet Lorem ipsum dolor sit amet, adipiscing elit. Aenean commodo ligula commodo et elit lorem at tha dolori hai
-
-
- 
+							>Pequenos detalhes da nossa história que nos fazem sorrir e nos lembram por que chegamos até aqui.
 							</rs-layer><!--
 
 							--><rs-layer
@@ -1322,19 +1494,13 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-frame_1="sR:10;"
 								data-frame_999="o:0;st:w;sR:2690;"
 								style="z-index:12;font-family:'Roboto';"
-							><a itemprop="url" href="#" target="_self" class="eltdf-btn eltdf-btn-medium eltdf-btn-outline">
-    <span class="eltdf-btn-text">Leia mais</span>
-                <span class="eltdf-btn-line eltdf-btn-line-top"></span>
-        <span class="eltdf-btn-line eltdf-btn-line-right"></span>
-        <span class="eltdf-btn-line eltdf-btn-line-bottom"></span>
-        <span class="eltdf-btn-line eltdf-btn-line-left"></span>
-    	</a> 
+							><!--
 							</rs-layer><!--
 -->						</rs-slide>
 					</rs-slides>
 				</rs-module>
 				<script>
-					setREVStartSize({c: 'rev_slider_12_2',rl:[1920,1700,1025,480],el:[1000,900,960,720],gw:[1920,1700,1025,480],gh:[1000,900,960,720],type:'standard',justify:'',layout:'fullwidth',mh:"0"});if (window.RS_MODULES!==undefined && window.RS_MODULES.modules!==undefined && window.RS_MODULES.modules["revslider122"]!==undefined) {window.RS_MODULES.modules["revslider122"].once = false;window.revapi12 = undefined;if (window.RS_MODULES.checkMinimal!==undefined) window.RS_MODULES.checkMinimal()}
+					setREVStartSize({c: 'rev_slider_12_2',rl:[1920,1700,1025,480],el:[1180,1080,1080,880],gw:[1920,1700,1025,480],gh:[1180,1080,1080,880],type:'standard',justify:'',layout:'fullwidth',mh:"0"});if (window.RS_MODULES!==undefined && window.RS_MODULES.modules!==undefined && window.RS_MODULES.modules["revslider122"]!==undefined) {window.RS_MODULES.modules["revslider122"].once = false;window.revapi12 = undefined;if (window.RS_MODULES.checkMinimal!==undefined) window.RS_MODULES.checkMinimal()}
 				</script>
 			</rs-module-wrap>
 			<!-- END REVOLUTION SLIDER -->
@@ -1342,137 +1508,28 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 
 				</div>
 				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-5a9d46b eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="5a9d46b" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-b30010a qodef-custom-attend" data-id="b30010a" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-8a934dc elementor-widget-tablet__width-inherit elementor-widget__width-initial elementor-widget elementor-widget-wp-widget-eltdf_contact_form_7_widget" data-id="8a934dc" data-element_type="widget" data-widget_type="wp-widget-eltdf_contact_form_7_widget.default">
-				<div class="elementor-widget-container">
-			            <div class="widget eltdf-contact-form-7-widget " >
-                                
-<div class="wpcf7 no-js" id="wpcf7-f1189-p827-o1" lang="pt-BR" dir="ltr">
-<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-<form action="index.html#wpcf7-f1189-p827-o1" method="post" class="wpcf7-form init" aria-label="Formulário de contato" novalidate="novalidate" data-status="init">
-<div style="display: none;">
-<input type="hidden" name="_wpcf7" value="1189" />
-<input type="hidden" name="_wpcf7_version" value="5.7.4" />
-<input type="hidden" name="_wpcf7_locale" value="pt_BR" />
-<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f1189-p827-o1" />
-<input type="hidden" name="_wpcf7_container_post" value="827" />
-<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
+<div class="jp-curiosities-band">
+<div class="jp-curiosities-band__inner">
+<div class="jp-curiosities-band__side jp-curiosities-band__side--left">
+<figure class="jp-polaroid jp-polaroid--left"><img src="media/jp/rsvp-photo.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+<figure class="jp-polaroid jp-polaroid--left-alt"><img src="media/jp/blog-04.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
 </div>
-<div class="custom-rsvp-form">
-<h2>VOCÊ VAI COMPARECER?</h2>
-<span class="wpcf7-form-control-wrap" data-name="your-name"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Nome" value="" type="text" name="your-name" /></span>
-<span class="wpcf7-form-control-wrap" data-name="your-email"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="E-mail" value="" type="email" name="your-email" /></span>
-<span class="wpcf7-form-control-wrap" data-name="radio-275"><span class="wpcf7-form-control wpcf7-radio rsvp-radio-btn"><span class="wpcf7-list-item first"><input type="radio" name="radio-275" value="Sim, estarei presente" checked="checked" /><span class="wpcf7-list-item-label">Sim, estarei presente</span></span><span class="wpcf7-list-item last"><input type="radio" name="radio-275" value="Desculpe, não poderei ir" /><span class="wpcf7-list-item-label">Desculpe, não poderei ir</span></span></span></span>
-<span class="wpcf7-form-control-wrap" data-name="your-subject"><input size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Número de convidados" value="" type="text" name="your-subject" /></span>
-<span class="wpcf7-form-control-wrap" data-name="your-subject"><input size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Quais eventos você vai participar" value="" type="text" name="your-subject" /></span>
-<span class="wpcf7-form-control-wrap" data-name="your-subject"><input size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Preferências alimentares" value="" type="text" name="your-subject" /></span>
-<button class="wpcf7-form-control wpcf7-submit eltdf-btn eltdf-btn-medium eltdf-btn-solid" type="submit"><span class="eltdf-btn-text">Confirmar presença</span><span class="eltdf-btn-line eltdf-btn-line-top"></span><span class="eltdf-btn-line eltdf-btn-line-right"></span><span class="eltdf-btn-line eltdf-btn-line-bottom"></span><span class="eltdf-btn-line eltdf-btn-line-left"></span></button></div><div class="wpcf7-response-output" aria-hidden="true"></div>
-</form>
+<div class="jp-curiosities-band__content">
+<p class="jp-curiosities-mobile-title">Curiosidades sobre os noivos</p>
+<ul class="jp-curiosities__list">
+<li class="jp-curiosities__item" data-num="1">Na segunda vez que nos vimos, eu perdi uma aposta e fui obrigada a postar uma foto nossa de mãos dadas no Instagram. Mal imaginávamos que aquela foto era só o começo da nossa história.</li>
+<li class="jp-curiosities__item" data-num="2">Fazemos aniversário no mesmo dia e temos exatamente 1 ano de diferença.</li>
+<li class="jp-curiosities__item" data-num="3">O primeiro “eu te amo” aconteceu no nosso 3º encontro. Antes de falar, o João Pedro olhou para mim e perguntou: “Tá cedo ou já pode?”. Na hora, eu só conseguia dizer: “Para, para, para, para!”. Mesmo assim, ele disse “eu te amo”… e eu comecei a rir!</li>
+<li class="jp-curiosities__item" data-num="4">Nossa banda favorita é o Projeto Sola, e fazemos de tudo para não perder um show.</li>
+<li class="jp-curiosities__item" data-num="5">Com apenas 2 meses de relacionamento, nós já falávamos sobre o nosso casamento. Na época, achávamos que estávamos sendo emocionados… hoje estamos aqui, contando os dias para o grande dia!</li>
+</ul>
 </div>
-            </div>
-            		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-d8dee86" data-id="d8dee86" data-element_type="column">
-			<div class="elementor-column-wrap">
-							<div class="elementor-widget-wrap">
-								</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-2281cbd eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="2281cbd" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d6c4162" data-id="d6c4162" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-f17b180 elementor-widget elementor-widget-eltdf_section_title" data-id="f17b180" data-element_type="widget" data-widget_type="eltdf_section_title.default">
-				<div class="elementor-widget-container">
-			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " style="text-align: center">
-	<div class="eltdf-st-inner">
-        <div class="eltdf-st-image" style="margin-bottom: -24px">
-            <img width="55" height="63" src="wp-content/uploads/2018/10/section-title-img-1.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
-					<h2 class="eltdf-st-title" >
-				<span class="eltdf-st-title-word">Manual</span> <span class="eltdf-st-title-word">do</span> <span class="eltdf-st-title-word">convidado</span>			</h2>
-							<span class="eltdf-st-text" >
-				Orientações para o nosso grande dia			</span>
-			</div>
-</div>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-db8758a eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="db8758a" data-element_type="section">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e7ea653" data-id="e7ea653" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-d43b89d elementor-widget elementor-widget-text-editor" data-id="d43b89d" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-					<div class="jp-guest-manual">
-						<ul class="jp-guest-manual__list">
-							<li>Branco é a cor da noiva</li>
-							<li>Evite a cor azul-marinho, pois será das madrinhas</li>
-							<li><strong>Convidado não convida</strong></li>
-							<li>Não atrapalhe os fotógrafos</li>
-							<li>Deixe seu celular no silencioso</li>
-							<li>Traje esporte fino</li>
-							<li>Não se atrase, seja pontual</li>
-							<li>Se divirta e aproveite a festa</li>
-							<li>Tire muitas fotos</li>
-						</ul>
-					</div>
-				</div>
-				</div>
-						</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
-				<section class="eltdf-parallax-row-holder elementor-section elementor-top-section elementor-element elementor-element-870e79a elementor-section-full_width eltdf-parallax-row-holder elementor-section-height-default elementor-section-height-default eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-parallax-bg-speed="1" data-parallax-bg-image="media/jp/parallax.jpg" data-parallax-bg-height="0" data-id="870e79a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;elated_parallax_image&quot;:{&quot;url&quot;:&quot;media/jp/parallax.jpg&quot;,&quot;id&quot;:4063,&quot;size&quot;:&quot;&quot;}}">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-925b1c5" data-id="925b1c5" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-1c73eb9 elementor-widget elementor-widget-eltdf_custom_font" data-id="1c73eb9" data-element_type="widget" data-widget_type="eltdf_custom_font.default">
-				<div class="elementor-widget-container">
-			<h2 class="eltdf-custom-font-holder  eltdf-cf-7267  " style="font-family: LearningCurve;font-size: 80px;line-height: 44px;letter-spacing: 0px;text-transform: capitalize;text-align: center;color: #FFFFFF" data-item-class="eltdf-cf-7267" data-font-size-680="57px" data-line-height-680="14px">
-	19 de fevereiro de 2027</h2>		</div>
-				</div>
-				<div class="elementor-element elementor-element-b3ce102 elementor-widget elementor-widget-eltdf_call_to_action" data-id="b3ce102" data-element_type="widget" data-widget_type="eltdf_call_to_action.default">
-				<div class="elementor-widget-container">
-			<div class="eltdf-call-to-action-holder  eltdf-simple-layout ">
-	<div class="eltdf-cta-inner ">
-		<div class="eltdf-cta-text-holder">
-			<div class="eltdf-cta-text"><span style="color: #ffffff; font-size: 17px;">Maison Mizuno</span></div>
-		</div>
-		<div class="eltdf-cta-button-holder" >
-			<div class="eltdf-cta-button"><a itemprop="url" href="#" target="_self" style="color: #C78665;background-color: #FFFFFF" class="eltdf-btn eltdf-btn-medium eltdf-btn-solid" >    <span class="eltdf-btn-text">Detalhes</span>                <span class="eltdf-btn-line eltdf-btn-line-top"></span>        <span class="eltdf-btn-line eltdf-btn-line-right"></span>        <span class="eltdf-btn-line eltdf-btn-line-bottom"></span>        <span class="eltdf-btn-line eltdf-btn-line-left"></span>    	</a></div>
-		</div>
-	</div>
-</div>		</div>
-				</div>
+<div class="jp-curiosities-band__side jp-curiosities-band__side--right">
+<figure class="jp-polaroid jp-polaroid--right"><img src="media/jp/blog-02.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+<figure class="jp-polaroid jp-polaroid--right-alt"><img src="media/jp/blog-03.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+</div>
+</div>
+</div>
 						</div>
 					</div>
 		</div>
@@ -1518,26 +1575,39 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							<div class="elementor-widget-wrap">
 						<div class="elementor-element elementor-element-e231570 elementor-widget__width-inherit elementor-widget elementor-widget-eltdf_info_box" data-id="e231570" data-element_type="widget" data-widget_type="eltdf_info_box.default">
 				<div class="elementor-widget-container">
-			<div class="eltdf-ib clearfix  shadow-enabled jp-when-where-card" >
-	<div class="eltdf-ib-icon">
-                    <img width="58" height="56" src="wp-content/uploads/2018/10/h2-icon-img-1.png" class="attachment-full size-full" alt="" decoding="async" loading="lazy" />        	</div>
-	<div class="eltdf-ib-content" >
-					<h3 class="eltdf-ib-title" >
-				<span class="eltdf-ib-title-text">Recepção &amp; Cerimônia</span>
-			</h3>
-							<p class="eltdf-ib-text" >Sexta-feira, 19 de fevereiro de 2027
-<br>
-Às 16 horas
-<br>
-Maison Mizuno
-<br>
-QNL 06 Chácara 18 - Taguatinga, Brasília - DF</p>
-				            <a class="eltdf-btn eltdf-btn-simple" itemprop="url" href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank">
-                <span class="eltdf-btn-text">Ver mapa</span>
-                <span class="eltdf-btn-line"></span>
-            </a>
-        	</div>
-</div>		</div>
+			<div class="jp-when-where">
+				<h3 class="jp-when-where__subtitle">Recepção &amp; Cerimônia</h3>
+				<div class="jp-when-where__cards">
+					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
+						<div class="eltdf-ib-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 56" width="58" height="56" fill="none" aria-hidden="true"><rect x="6" y="12" width="46" height="40" rx="4" stroke="#bf7b5d" stroke-width="1.8"/><line x1="6" y1="22" x2="52" y2="22" stroke="#bf7b5d" stroke-width="1.8"/><circle cx="16" cy="8" r="2" stroke="#bf7b5d" stroke-width="1.8"/><line x1="16" y1="10" x2="16" y2="16" stroke="#bf7b5d" stroke-width="1.8"/><circle cx="29" cy="8" r="2" stroke="#bf7b5d" stroke-width="1.8"/><line x1="29" y1="10" x2="29" y2="16" stroke="#bf7b5d" stroke-width="1.8"/><circle cx="42" cy="8" r="2" stroke="#bf7b5d" stroke-width="1.8"/><line x1="42" y1="10" x2="42" y2="16" stroke="#bf7b5d" stroke-width="1.8"/><path d="M29 38c-4.5-3.5-8-6.5-8-10a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 3.5-3.5 6.5-8 10z" stroke="#bf7b5d" stroke-width="1.8" stroke-linejoin="round"/></svg>
+						</div>
+						<div class="eltdf-ib-content">
+							<p class="eltdf-ib-text">Sexta-feira, 19 de fevereiro de 2027<br>Às 16 horas</p>
+						</div>
+					</div>
+					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
+						<div class="eltdf-ib-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 56" width="58" height="56" fill="none" aria-hidden="true"><path d="M11 17 L17 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 14 L17 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 17 L23 14" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 19 L16 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 16 L16 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="33" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><path d="M17 33 V44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M14 45 H20" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M47 17 L41 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 14 L41 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 14 L47 17" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M45 19 L42 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 16 L42 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="41" cy="33" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><path d="M41 33 V44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M38 45 H44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M11 47 H47" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M14 25 H20" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M38 25 H44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><circle cx="15.5" cy="29" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><circle cx="42.5" cy="29" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><path d="M29 4 V8" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M27 6 H31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M27.8 4.8 L30.2 7.2" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M30.2 4.8 L27.8 7.2" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/></svg>
+						</div>
+						<div class="eltdf-ib-content">
+							<p class="eltdf-ib-text">Os noivos recepcionarão após a cerimônia no mesmo local</p>
+						</div>
+					</div>
+					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
+						<div class="eltdf-ib-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 56" width="58" height="56" fill="none" aria-hidden="true"><path d="M29 6c-10 0-17 8-17 18 0 12 17 26 17 26s17-14 17-26c0-10-7-18-17-18z" stroke="#bf7b5d" stroke-width="1.8" stroke-linejoin="round"/><path d="M29 20c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" stroke="#bf7b5d" stroke-width="1.8"/></svg>
+						</div>
+						<div class="eltdf-ib-content">
+							<p class="eltdf-ib-text">Maison Mizuno<br>QNL 06 Chácara 18 - Taguatinga, Brasília - DF</p>
+							<a class="eltdf-btn eltdf-btn-simple" itemprop="url" href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener">
+								<span class="eltdf-btn-text">Ver mapa</span>
+								<span class="eltdf-btn-line"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>		</div>
 				</div>
 						</div>
 					</div>
@@ -1550,173 +1620,128 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</p>
 								</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-3639815 eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="3639815" data-element_type="section">
+				<section class="eltdf-parallax-row-holder elementor-section elementor-top-section elementor-element elementor-element-870e79a elementor-section-full_width eltdf-parallax-row-holder elementor-section-height-default elementor-section-height-default eltdf-content-aligment-left eltdf-elementor-row-grid-no eltdf-disabled-bg-image-bellow-no" data-parallax-bg-speed="1" data-parallax-bg-image="media/jp/parallax.jpg" data-parallax-bg-height="0" data-id="870e79a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;elated_parallax_image&quot;:{&quot;url&quot;:&quot;media/jp/parallax.jpg&quot;,&quot;id&quot;:4063,&quot;size&quot;:&quot;&quot;}}">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b397f9a" data-id="b397f9a" data-element_type="column">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-925b1c5" data-id="925b1c5" data-element_type="column">
 			<div class="elementor-column-wrap elementor-element-populated">
 							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-1040af2 elementor-widget elementor-widget-eltdf_section_title" data-id="1040af2" data-element_type="widget" data-widget_type="eltdf_section_title.default">
+						<div class="elementor-element elementor-element-1c73eb9 elementor-widget elementor-widget-eltdf_custom_font" data-id="1c73eb9" data-element_type="widget" data-widget_type="eltdf_custom_font.default">
+				<div class="elementor-widget-container">
+			<h2 class="eltdf-custom-font-holder  eltdf-cf-7267  " style="font-family: LearningCurve;font-size: 80px;line-height: 44px;letter-spacing: 0px;text-transform: capitalize;text-align: center;color: #FFFFFF" data-item-class="eltdf-cf-7267" data-font-size-680="57px" data-line-height-680="14px">
+	19 de fevereiro de 2027</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b3ce102 elementor-widget elementor-widget-eltdf_call_to_action" data-id="b3ce102" data-element_type="widget" data-widget_type="eltdf_call_to_action.default">
+				<div class="elementor-widget-container">
+			<div class="eltdf-call-to-action-holder  eltdf-simple-layout ">
+	<div class="eltdf-cta-inner ">
+		<div class="eltdf-cta-text-holder">
+			<div class="eltdf-cta-text"><span style="color: #ffffff; font-size: 17px;">Maison Mizuno</span></div>
+		</div>
+		<div class="eltdf-cta-button-holder" >
+			<div class="eltdf-cta-button"><a itemprop="url" href="#" target="_self" style="color: #C78665;background-color: #FFFFFF" class="eltdf-btn eltdf-btn-medium eltdf-btn-solid" >    <span class="eltdf-btn-text">Detalhes</span>                <span class="eltdf-btn-line eltdf-btn-line-top"></span>        <span class="eltdf-btn-line eltdf-btn-line-right"></span>        <span class="eltdf-btn-line eltdf-btn-line-bottom"></span>        <span class="eltdf-btn-line eltdf-btn-line-left"></span>    	</a></div>
+		</div>
+	</div>
+</div>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-2281cbd eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="2281cbd" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d6c4162" data-id="d6c4162" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-f17b180 elementor-widget elementor-widget-eltdf_section_title" data-id="f17b180" data-element_type="widget" data-widget_type="eltdf_section_title.default">
 				<div class="elementor-widget-container">
 			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " style="text-align: center">
 	<div class="eltdf-st-inner">
         <div class="eltdf-st-image" style="margin-bottom: -24px">
             <img width="55" height="63" src="wp-content/uploads/2018/10/section-title-img-1.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
 					<h2 class="eltdf-st-title" >
-				<span class="eltdf-st-title-word">Artigos</span> <span class="eltdf-st-title-word">para</span> <span class="eltdf-st-title-word">Inspirar</span> <span class="eltdf-st-title-word">Você</span>			</h2>
+				<span class="eltdf-st-title-word">Manual</span> <span class="eltdf-st-title-word">do</span> <span class="eltdf-st-title-word">convidado</span>			</h2>
 							<span class="eltdf-st-text" >
-				Dicas &amp; Truques			</span>
+				Orientações para o nosso grande dia			</span>
 			</div>
 </div>		</div>
 				</div>
-				<div class="elementor-element elementor-element-5a8d101 elementor-widget elementor-widget-eltdf_blog_list" data-id="5a8d101" data-element_type="widget" data-widget_type="eltdf_blog_list.default">
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-db8758a eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="db8758a" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e7ea653" data-id="e7ea653" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-d43b89d elementor-widget elementor-widget-text-editor" data-id="d43b89d" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-			<div class="eltdf-blog-list-holder eltdf-grid-list eltdf-disable-bottom-space eltdf-bl-standard eltdf-four-columns eltdf-normal-space eltdf-bl-pag-no-pagination"  data-type=standard data-number-of-columns=four data-space-between-items=normal data-category=albums data-orderby=date data-order=ASC data-image-size=full data-custom-image-width= data-custom-image-height= data-title-tag=h3 data-excerpt-length=9 data-post-info-section=yes data-post-info-image=yes data-post-info-author=yes data-post-info-date=yes data-post-info-category=yes data-post-info-comments=no data-post-info-like=no data-post-info-share=no data-pagination-type=no-pagination data-max-num-pages=1 data-next-page=2>
-	<div class="eltdf-bl-wrapper eltdf-outer-space">
-		<ul class="eltdf-blog-list">
-			<li class="eltdf-bl-item eltdf-item-space">
-	<div class="eltdf-bli-inner">
-        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
-            <a itemprop="url" href="#">
-    
-        24 de outubro de 2018        </a>
-    <meta itemprop="interactionCount" content="UserComments: 0"/>
-</div>		
-	<div class="eltdf-post-image">
-					<a itemprop="url" href="#" title="Fotografia de casamento">
-		            <img loading="lazy" width="1300" height="1765" src="media/jp/blog-01.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
+					<div class="jp-guest-manual">
+						<ul class="jp-guest-manual__list">
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.8 3.6L17 7.2l-2.2 2.8.5 4.2L12 12.8 8.7 14.2l.5-4.2L7 7.2l3.2-.6L12 3z" stroke="#bf7b5d" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 14.2L8 21h8l-1-6.8" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+									<span class="jp-guest-manual__text">Branco é a cor da noiva</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="11" r="3.2" stroke="#bf7b5d" stroke-width="1.5"/><circle cx="16" cy="11" r="3.2" stroke="#3c4860" stroke-width="1.5"/><path d="M13.8 9.2l3.4 3.6" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+									<span class="jp-guest-manual__text">Evite a cor azul-marinho, pois será das madrinhas</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble jp-guest-manual__bubble--highlight">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8.5" r="2.5" stroke="#bf7b5d" stroke-width="1.5"/><path d="M5.5 18v-1.2c0-1.9 1.6-3.4 3.5-3.4H9" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/><circle cx="16.5" cy="9" r="2" stroke="#bf7b5d" stroke-width="1.5"/><path d="M13.5 18v-1c0-1.4 1.1-2.5 2.5-2.5h1" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/><path d="M4 5l16 14" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+									<span class="jp-guest-manual__text"><strong>Convidado não convida</strong></span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="7" width="14" height="10" rx="2" stroke="#bf7b5d" stroke-width="1.5"/><circle cx="11" cy="12" r="2.8" stroke="#bf7b5d" stroke-width="1.5"/><path d="M18 9l3-2v10l-3-2" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+									<span class="jp-guest-manual__text">Não atrapalhe os fotógrafos</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="2" stroke="#bf7b5d" stroke-width="1.5"/><path d="M10 7h4" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/><path d="M12 18v.01" stroke="#bf7b5d" stroke-width="2" stroke-linecap="round"/><path d="M9 11h6" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+									<span class="jp-guest-manual__text">Deixe seu celular no silencioso</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5h8l1 4H7l1-4z" stroke="#bf7b5d" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 9v8c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V9" stroke="#bf7b5d" stroke-width="1.5"/><path d="M10 13h4" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+									<span class="jp-guest-manual__text">Traje esporte fino</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="7" stroke="#bf7b5d" stroke-width="1.5"/><path d="M12 8v4l2.5 2.5" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+									<span class="jp-guest-manual__text">Não se atrase, seja pontual</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 14l2.5 2.5L16 9" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18h12" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round"/><path d="M9.5 6l.8 2.2L12.5 8l-2 1.5.8 2.2L9.5 10l-2 1.5.8-2.2L6.3 8l2.7-.8-.5-1.2zM16.5 5l.5 1.5L18.5 7l-1.3 1 .5 1.5-1.5-1.1-1.5 1.1.5-1.5-1.3-1 1.5-.5-.5-1.5z" stroke="#bf7b5d" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+									<span class="jp-guest-manual__text">Se divirta e aproveite a festa</span>
+								</span>
+							</li>
+							<li>
+								<span class="jp-guest-manual__bubble">
+									<span class="jp-guest-manual__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="6" width="14" height="12" rx="2" stroke="#bf7b5d" stroke-width="1.5"/><circle cx="9" cy="10.5" r="1.2" fill="#bf7b5d"/><path d="M5 15l3.5-3 3 2.5L16 11l3 3" stroke="#bf7b5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+									<span class="jp-guest-manual__text">Tire muitas fotos</span>
+								</span>
+							</li>
+						</ul>
 					</div>
-        <div class="eltdf-bli-content">
-                            <div class="eltdf-bli-info">
-	                <div class="eltdf-post-info-author">
-    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
-        Equipe    </a>
-</div><div class="eltdf-post-info-category">
-    <a href="#" rel="category tag">Álbuns</a></div>                </div>
-            	
-	        
-<h3 itemprop="name" class="entry-title eltdf-post-title" >
-            <a itemprop="url" href="#" title="Fotografia de casamento">
-            Fotografia de casamento            </a>
-    </h3>	
-	        <div class="eltdf-bli-excerpt">
-		        		<div class="eltdf-post-excerpt-holder">
-			<p itemprop="description" class="eltdf-post-excerpt">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean			</p>
-		</div>
-			        	<div class="eltdf-post-read-more-button">
-		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
-	        </div>
-        </div>
-	</div>
-</li><li class="eltdf-bl-item eltdf-item-space">
-	<div class="eltdf-bli-inner">
-        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
-            <a itemprop="url" href="#">
-    
-        31 de outubro de 2018        </a>
-    <meta itemprop="interactionCount" content="UserComments: 0"/>
-</div>		
-	<div class="eltdf-post-image">
-					<a itemprop="url" href="#" title="Buquê de casamento">
-		            <img width="1300" height="1765" src="media/jp/blog-02.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
-					</div>
-        <div class="eltdf-bli-content">
-                            <div class="eltdf-bli-info">
-	                <div class="eltdf-post-info-author">
-    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
-        Equipe    </a>
-</div><div class="eltdf-post-info-category">
-    <a href="#" rel="category tag">Álbuns</a></div>                </div>
-            	
-	        
-<h3 itemprop="name" class="entry-title eltdf-post-title" >
-            <a itemprop="url" href="#" title="Buquê de casamento">
-            Buquê de casamento            </a>
-    </h3>	
-	        <div class="eltdf-bli-excerpt">
-		        		<div class="eltdf-post-excerpt-holder">
-			<p itemprop="description" class="eltdf-post-excerpt">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean			</p>
-		</div>
-			        	<div class="eltdf-post-read-more-button">
-		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
-	        </div>
-        </div>
-	</div>
-</li><li class="eltdf-bl-item eltdf-item-space">
-	<div class="eltdf-bli-inner">
-        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
-            <a itemprop="url" href="#">
-    
-        31 de outubro de 2018        </a>
-    <meta itemprop="interactionCount" content="UserComments: 0"/>
-</div>		
-	<div class="eltdf-post-image">
-					<a itemprop="url" href="#" title="Table Decoration">
-		            <img width="1300" height="1765" src="media/jp/blog-03.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
-					</div>
-        <div class="eltdf-bli-content">
-                            <div class="eltdf-bli-info">
-	                <div class="eltdf-post-info-author">
-    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
-        Equipe    </a>
-</div><div class="eltdf-post-info-category">
-    <a href="#" rel="category tag">Álbuns</a></div>                </div>
-            	
-	        
-<h3 itemprop="name" class="entry-title eltdf-post-title" >
-            <a itemprop="url" href="#" title="Table Decoration">
-            Table Decoration            </a>
-    </h3>	
-	        <div class="eltdf-bli-excerpt">
-		        		<div class="eltdf-post-excerpt-holder">
-			<p itemprop="description" class="eltdf-post-excerpt">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean			</p>
-		</div>
-			        	<div class="eltdf-post-read-more-button">
-		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
-	        </div>
-        </div>
-	</div>
-</li><li class="eltdf-bl-item eltdf-item-space">
-	<div class="eltdf-bli-inner">
-        <div itemprop="dateCreated" class="eltdf-post-info-date entry-date published updated">
-            <a itemprop="url" href="#">
-    
-        31 de outubro de 2018        </a>
-    <meta itemprop="interactionCount" content="UserComments: 0"/>
-</div>		
-	<div class="eltdf-post-image">
-					<a itemprop="url" href="#" title="Ela disse sim!">
-		            <img width="1300" height="1765" src="media/jp/blog-04.jpg" class="attachment-full size-full wp-post-image" alt="Thaís & João" decoding="async" loading="lazy" />					</a>
-					</div>
-        <div class="eltdf-bli-content">
-                            <div class="eltdf-bli-info">
-	                <div class="eltdf-post-info-author">
-    <a itemprop="author" class="eltdf-post-info-author-link" href="#">
-        Equipe    </a>
-</div><div class="eltdf-post-info-category">
-    <a href="#" rel="category tag">Álbuns</a></div>                </div>
-            	
-	        
-<h3 itemprop="name" class="entry-title eltdf-post-title" >
-            <a itemprop="url" href="#" title="Ela disse sim!">
-            Ela disse sim!            </a>
-    </h3>	
-	        <div class="eltdf-bli-excerpt">
-		        		<div class="eltdf-post-excerpt-holder">
-			<p itemprop="description" class="eltdf-post-excerpt">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean			</p>
-		</div>
-			        	<div class="eltdf-post-read-more-button">
-		<a itemprop="url" href="#" target="_self"  class="eltdf-btn eltdf-btn-medium eltdf-btn-simple eltdf-blog-list-button" >    <span class="eltdf-btn-text">Leia mais</span>        	        <span class="eltdf-btn-line"></span>	</a>	</div>
-	        </div>
-        </div>
-	</div>
-</li>		</ul>
-	</div>
-	</div>		</div>
+				</div>
 				</div>
 						</div>
 					</div>
@@ -2137,11 +2162,11 @@ wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 					duration:3000,
 					visibilityLevels:"1920,1700,1025,480",
 					gridwidth:"1920,1700,1025,480",
-					gridheight:"1000,900,960,720",
+					gridheight:"1180,1080,1080,880",
 					lazyType:"smart",
 					perspective:600,
 					perspectiveType:"local",
-					editorheight:"1000,900,960,720",
+					editorheight:"1180,1080,1080,880",
 					responsiveLevels:"1920,1700,1025,480",
 					progressBar:{disableProgressBar:true},
 					navigation: {
