@@ -403,6 +403,73 @@ window.addEventListener('load',function(){playAll();setTimeout(playAll,300);setT
 .eltdf-pl-holder{padding:40px 0 80px;}
 .eltdf-title-holder{border-bottom:1px solid #e6e6e6;}
 .jp-shop-page .eltdf-page-header{border-bottom:1px solid #e6e6e6;}
+.jp-palette{
+max-width:1140px;
+margin:0 auto 32px;
+padding:0 24px;
+}
+.jp-palette__inner{
+padding:28px 32px;
+background:#fff;
+border:1px solid #e8e8e8;
+border-radius:4px;
+text-align:center;
+}
+.jp-palette__label{
+margin:0 0 10px;
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:700;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#bf7b5d;
+}
+.jp-palette__lead{
+margin:0 0 24px;
+font-family:Cormorant,serif;
+font-size:21px;
+font-style:italic;
+line-height:1.45;
+color:#3c4860;
+}
+.jp-palette__list{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px 28px;
+margin:0;
+padding:0;
+list-style:none;
+}
+.jp-palette__item{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
+min-width:72px;
+}
+.jp-palette__dot{
+width:42px;
+height:42px;
+border-radius:50%;
+box-shadow:0 2px 8px rgba(60,72,96,.12);
+flex-shrink:0;
+}
+.jp-palette__dot--preto{background:#1c1c1c;}
+.jp-palette__dot--cinza{background:#8a8a8a;}
+.jp-palette__dot--madeira{background:linear-gradient(135deg,#c4a574 0%,#8b5e3c 55%,#6b4423 100%);}
+.jp-palette__dot--azul{background:#2a3f5c;}
+.jp-palette__dot--marrom{background:#7a5230;}
+.jp-palette__dot--offwhite{background:#f7f5f0;border:1px solid #ddd8cf;}
+.jp-palette__dot--areia{background:#d4c5a9;border:1px solid #c9b995;}
+.jp-palette__name{
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:600;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:#3c4860;
+}
 .jp-gift-grid{
 display:grid;
 grid-template-columns:repeat(3,minmax(0,1fr));
@@ -654,6 +721,27 @@ font-size:10px;
 margin-top:48px;
 padding-top:32px;
 }
+.jp-palette{
+margin-bottom:24px;
+padding:0 12px;
+}
+.jp-palette__inner{
+padding:22px 18px;
+}
+.jp-palette__lead{
+font-size:18px;
+margin-bottom:20px;
+}
+.jp-palette__list{
+gap:16px 18px;
+}
+.jp-palette__item{
+min-width:64px;
+}
+.jp-palette__dot{
+width:36px;
+height:36px;
+}
 .eltdf-logo-wrapper img{
 max-height:80px!important;
 }
@@ -885,6 +973,42 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-page-content-holder eltdf-grid-col-12">
 				<div class="eltdf-pl-holder eltdf-grid-list eltdf-disable-bottom-space eltdf-standard-layout eltdf-three-columns eltdf-normal-space eltdf-info-below-image ">
 	<div class="eltdf-pl-outer eltdf-outer-space">
+		<section class="jp-palette" aria-label="Paleta de cores dos presentes">
+			<div class="jp-palette__inner">
+				<p class="jp-palette__label">Paleta de cores</p>
+				<p class="jp-palette__lead">Priorizamos presentes nestas tonalidades para combinar com a nossa casa.</p>
+				<ul class="jp-palette__list">
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--preto" aria-hidden="true"></span>
+						<span class="jp-palette__name">Preto</span>
+					</li>
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--cinza" aria-hidden="true"></span>
+						<span class="jp-palette__name">Cinza</span>
+					</li>
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--madeira" aria-hidden="true"></span>
+						<span class="jp-palette__name">Madeira</span>
+					</li>
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--azul" aria-hidden="true"></span>
+						<span class="jp-palette__name">Azul escuro</span>
+					</li>
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--marrom" aria-hidden="true"></span>
+						<span class="jp-palette__name">Marrom</span>
+					</li>
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--offwhite" aria-hidden="true"></span>
+						<span class="jp-palette__name">Off white</span>
+					</li>
+					<li class="jp-palette__item">
+						<span class="jp-palette__dot jp-palette__dot--areia" aria-hidden="true"></span>
+						<span class="jp-palette__name">Areia</span>
+					</li>
+				</ul>
+			</div>
+		</section>
 		<div class="jp-cart-bar">
 			<a class="jp-cart-bar__link" href="carrinho.html">
 				Ver carrinho
