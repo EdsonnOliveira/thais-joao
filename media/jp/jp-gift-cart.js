@@ -140,6 +140,63 @@
     );
   }
 
+  function toCents(value) {
+    return Math.round(Number(value) * 100);
+  }
+
+  function buildInfinityPayItems(cartItems) {
+    return cartItems.map(function (item) {
+      return {
+        quantity: 1,
+        price: toCents(item.preco_valor),
+        description: String(item.produto).substring(0, 100),
+      };
+    });
+  }
+
+  function createInfinityPayCheckout(config, cartItems, options) {
+    var creditCard = config.credit_card || {};
+    var handle = String(creditCard.handle || '').trim();
+    if (!handle) {
+      return Promise.reject(new Error('handle'));
+    }
+    var items = buildInfinityPayItems(cartItems);
+    if (!items.length) {
+      return Promise.reject(new Error('empty'));
+    }
+    var payload = {
+      handle: handle,
+      items: items,
+    };
+    var orderNsu = String((options || {}).orderNsu || '').trim();
+    if (orderNsu) {
+      payload.order_nsu = orderNsu;
+    }
+    var redirectUrl = String(creditCard.redirect_url || (options || {}).redirectUrl || '').trim();
+    if (redirectUrl) {
+      payload.redirect_url = redirectUrl;
+    }
+    var customer = (options || {}).customer;
+    if (customer && customer.name && customer.email) {
+      payload.customer = {
+        name: String(customer.name).substring(0, 100),
+        email: String(customer.email).substring(0, 100),
+      };
+    }
+    return fetch('https://api.checkout.infinitepay.io/links', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(function (response) {
+      return response.json().then(function (data) {
+        if (!response.ok || !data.url) {
+          throw new Error('checkout');
+        }
+        return data.url;
+      });
+    });
+  }
+
   function updateBadges() {
     var count = getCount();
     document.querySelectorAll('[data-jp-cart-count]').forEach(function (node) {
@@ -160,6 +217,8 @@
     clearCart: clearCart,
     buildPixPayload: buildPixPayload,
     getPixQrUrl: getPixQrUrl,
+    buildInfinityPayItems: buildInfinityPayItems,
+    createInfinityPayCheckout: createInfinityPayCheckout,
     updateBadges: updateBadges,
   };
 

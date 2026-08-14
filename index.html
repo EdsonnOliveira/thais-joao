@@ -247,7 +247,7 @@ rs-slide[data-key="rs-25"] .rev-slidebg{
 object-position:center 38%!important;
 }
 #curiosidades{
-position:relative;overflow:visible;--jp-curiosities-blue-h:1360px;--jp-curiosities-card-overflow:10px;--jp-curiosities-card-w:480px;
+position:relative;overflow:visible;--jp-curiosities-blue-h:680px;--jp-curiosities-card-max-h:340px;--jp-curiosities-card-w:370px;
 }
 #curiosidades .elementor-element-819abf2 .elementor-column-wrap,
 #curiosidades .elementor-widget-wrap{
@@ -256,42 +256,45 @@ position:relative;
 #curiosidades .jp-curiosities-band{
 position:absolute;left:0;right:0;top:0;bottom:0;z-index:20;pointer-events:none;
 }
+#curiosidades .jp-curiosities-band::before{
+content:'';position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:var(--jp-curiosities-blue-h);background-color:#eaf1f4;z-index:0;
+}
 #curiosidades .jp-curiosities-band__inner{
-position:relative;max-width:1180px;height:100%;margin:0 auto;padding:0 24px;
+position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);max-width:1180px;height:var(--jp-curiosities-blue-h);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:center;z-index:1;
 }
 #curiosidades .jp-curiosities-band__content{
-position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:min(560px,50vw);max-height:none;overflow:visible;pointer-events:auto;padding:72px 0 80px;
+position:relative;left:auto;top:auto;transform:none;width:min(var(--jp-curiosities-card-w),34vw);max-width:370px;overflow:visible;pointer-events:auto;padding:0;display:block;
 }
 #curiosidades #rev_slider_12_2_wrapper,
 #curiosidades #rev_slider_12_2{
-min-height:1390px!important;
+min-height:960px!important;
 }
 #curiosidades rs-layer[id="slider-12-slide-28-layer-1"]{
-height:1360px!important;min-height:1360px!important;
+height:680px!important;min-height:680px!important;
 }
 .jp-curiosities-mobile-title{
-display:block;font-family:'LearningCurve',cursive;font-size:56px;line-height:1.15;color:#121f38;text-align:center;margin:0 0 32px;
+display:block;position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);width:max-content;max-width:min(400px,92vw);font-family:'LearningCurve',cursive;font-size:38px;line-height:1.08;color:#121f38;text-align:center;margin:0;white-space:nowrap;
 }
 .jp-curiosities__list{
 list-style:none;margin:0;padding:0;
 }
 .jp-curiosities__item{
-position:relative;margin:0 0 20px;padding:0 0 0 32px;font-family:Cormorant,serif;font-size:23px;font-style:italic;line-height:1.58;color:#5c6474;
+position:relative;margin:0 0 8px;padding:0 0 0 22px;font-family:Cormorant,serif;font-size:16px;font-style:italic;line-height:1.34;color:#5c6474;
 }
 .jp-curiosities__item:last-child{
 margin-bottom:0;
 }
 .jp-curiosities__item::before{
-content:attr(data-num);position:absolute;left:0;top:2px;font-family:Muli,sans-serif;font-size:18px;font-weight:700;font-style:normal;color:#bf7b5d;
+content:attr(data-num);position:absolute;left:0;top:0;font-family:Muli,sans-serif;font-size:15px;font-weight:700;font-style:normal;color:#bf7b5d;
 }
 .jp-curiosities-band__side{
-position:absolute;top:50%;transform:translateY(-50%);width:205px;pointer-events:none;
+position:absolute;top:50%;transform:translateY(-50%);width:205px;pointer-events:none;z-index:2;
 }
 .jp-curiosities-band__side--left{
 left:2%;
 }
 #curiosidades .jp-curiosities-card{
-position:absolute;top:calc((100% - var(--jp-curiosities-blue-h))/2 + 20px - var(--jp-curiosities-card-overflow));bottom:calc((100% - var(--jp-curiosities-blue-h))/2 - 20px - var(--jp-curiosities-card-overflow));right:2%;width:min(var(--jp-curiosities-card-w),38vw);height:auto;min-height:0;max-height:none;margin:0;padding:48px 40px;display:flex;align-items:stretch;justify-content:flex-start;background:#fff;box-shadow:0 1px 10px 0 rgba(211,222,227,.7);box-sizing:border-box;text-align:left;opacity:1!important;transform:none!important;pointer-events:auto;z-index:21;overflow-y:auto;
+position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;height:auto;min-height:0;max-height:min(var(--jp-curiosities-card-max-h),calc(var(--jp-curiosities-blue-h) - 120px));margin:0;padding:16px 18px 18px;display:flex;align-items:stretch;justify-content:flex-start;background:#fff;border-radius:2px;box-shadow:0 32px 64px rgba(60,72,96,.18),0 14px 32px rgba(60,72,96,.11),0 4px 14px rgba(211,222,227,.7);box-sizing:border-box;text-align:left;opacity:1!important;transform:translateY(-8px)!important;pointer-events:auto;z-index:21;overflow:hidden;
 }
 .jp-curiosities-card .jp-curiosities__list{
 width:100%;
@@ -344,12 +347,15 @@ display:none!important;
 display:none!important;
 }
 @media (max-width:1200px){
-#curiosidades .jp-curiosities-band__content{width:min(560px,78vw);}
+#curiosidades .jp-curiosities-band__content{width:min(var(--jp-curiosities-card-w),78vw);max-width:400px;}
 }
 @media (max-width:1024px){
 .jp-curiosities-band__side{display:none;}
+#curiosidades .jp-curiosities-band__content{
+position:relative;left:auto;top:auto;transform:none;width:min(var(--jp-curiosities-card-w),92vw);max-width:420px;margin:0 auto;padding:0 16px 24px;
+}
 #curiosidades .jp-curiosities-card{
-position:relative;top:auto;right:auto;transform:none!important;width:min(var(--jp-curiosities-card-w),92vw);height:auto;margin:0 auto 24px;padding:36px 28px 40px;
+width:100%;max-height:none;margin:0;padding:24px 22px 28px;transform:none!important;box-shadow:0 18px 40px rgba(60,72,96,.14),0 6px 16px rgba(211,222,227,.55);
 }
 #curiosidades .jp-curiosities-band__side--left{display:flex!important;flex-direction:column;justify-content:center;align-items:center;padding:0 16px 24px;}
 #curiosidades .jp-curiosities-band__side--left .jp-polaroid{display:block;width:min(182px,42vw);max-width:182px;margin:0!important;}
@@ -371,23 +377,26 @@ display:none!important;
 transform:none!important;top:auto!important;
 }
 .jp-curiosities-mobile-title{
-display:block;font-family:'LearningCurve',cursive;font-size:42px;line-height:1.15;color:#121f38;text-align:center;margin:0 0 22px;
+display:block;position:relative;left:auto;bottom:auto;transform:none;width:auto;max-width:none;font-family:'LearningCurve',cursive;font-size:42px;line-height:1.15;color:#121f38;text-align:center;margin:0 0 22px;white-space:normal;
 }
 #curiosidades .elementor-widget-slider_revolution,
 #curiosidades .wp-block-themepunch-revslider{
 max-height:110px;overflow:hidden;
 }
+#curiosidades .jp-curiosities-band::before{
+display:none;
+}
 #curiosidades .jp-curiosities-band{
 position:relative;background:#eaf1f4;
 }
 #curiosidades .jp-curiosities-band__inner{
-display:flex;flex-direction:column;padding:0;
+position:relative;left:auto;right:auto;top:auto;transform:none;display:flex;flex-direction:column;height:auto;padding:0;
 }
 #curiosidades .jp-curiosities-band__content{
 position:relative;left:auto;top:auto;transform:none;width:100%;max-width:640px;margin:0 auto;padding:28px 20px 16px;max-height:none;order:1;
 }
 #curiosidades .jp-curiosities-card{
-position:relative;top:auto;right:auto;transform:none!important;width:min(var(--jp-curiosities-card-w),92vw);height:auto;margin:0 auto 20px;padding:36px 28px 40px;order:2;
+width:100%;max-height:none;margin:0;padding:28px 24px 32px;
 }
 .jp-curiosities-band__side--left{
 order:3;
@@ -403,11 +412,11 @@ width:min(162px,42vw);max-width:162px;margin:24px 0 0!important;
 }
 .jp-polaroid--left{transform:rotate(-4deg);}
 .jp-polaroid--left-alt{transform:rotate(3deg);}
-.jp-curiosities__item{font-size:21px;padding-left:28px;margin-bottom:16px;}
+.jp-curiosities__item{font-size:19px;padding-left:26px;margin-bottom:12px;}
 }
 @media (max-width:480px){
 .jp-curiosities-mobile-title{font-size:38px;}
-.jp-curiosities__item{font-size:20px;padding-left:24px;}
+.jp-curiosities__item{font-size:18px;padding-left:22px;margin-bottom:10px;}
 .jp-polaroid--left{width:min(182px,52vw);max-width:none;}
 .jp-polaroid--left-alt{width:min(162px,48vw);max-width:none;}
 }
@@ -559,13 +568,13 @@ font-size:12px;
 }
 
 .jp-when-where{
-max-width:960px;margin:0 auto;padding:0 20px;text-align:center;width:100%;
+max-width:1200px;margin:0 auto;padding:0 20px;text-align:center;width:100%;
 }
 .jp-when-where__cards{
-display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
+display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;align-items:stretch;
 }
 .jp-when-where-card{
-max-width:none;margin:0;padding:11% 8% 10%;
+max-width:none;margin:0;padding:11% 8% 10%;height:100%;
 }
 .jp-when-where-card .eltdf-ib-text{
 margin-top:20px;margin-bottom:0;font-family:Cormorant,serif;font-size:30px;font-style:italic;line-height:1.55;color:#5c6474;
@@ -647,11 +656,11 @@ margin-top:auto;padding-top:14px;
 padding-top:72px!important;padding-bottom:40px!important;
 }
 #curiosidades{
-margin-top:-72px;margin-bottom:-120px;position:relative;z-index:2;
+margin-top:-32px;margin-bottom:-48px;position:relative;z-index:2;
 }
 #curiosidades #rev_slider_12_2_wrapper,
 #curiosidades #rev_slider_12_2{
-min-height:1390px!important;
+min-height:960px!important;
 }
 .elementor-827 .elementor-element.elementor-element-3ad4020{
 padding:72px 0 72px 0!important;
@@ -706,9 +715,6 @@ width:130px;height:130px;
 @media (min-width:768px) and (max-width:1024px){
 .jp-when-where__cards{
 grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px;gap:20px;
-}
-.jp-when-where-card:last-child{
-grid-column:1/-1;max-width:380px;margin:0 auto;width:100%;
 }
 .jp-when-where-card{
 padding:10% 7% 9%;
@@ -1773,7 +1779,6 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 </div>
 <div class="jp-curiosities-band__content">
 <p class="jp-curiosities-mobile-title">Curiosidades sobre os noivos</p>
-</div>
 <div class="jp-curiosities-card">
 <ul class="jp-curiosities__list">
 <li class="jp-curiosities__item" data-num="1">Na segunda vez que nos vimos, eu perdi uma aposta e fui obrigada a postar uma foto nossa de mãos dadas no Instagram. Mal imaginávamos que aquela foto era só o começo da nossa história.</li>
@@ -1782,6 +1787,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 <li class="jp-curiosities__item" data-num="4">Nossa banda favorita é o Projeto Sola, e fazemos de tudo para não perder um show.</li>
 <li class="jp-curiosities__item" data-num="5">Com apenas 2 meses de relacionamento, nós já falávamos sobre o nosso casamento. Na época, achávamos que estávamos sendo emocionados… hoje estamos aqui, contando os dias para o grande dia!</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -1858,6 +1864,14 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								<span class="eltdf-btn-text">Ver mapa</span>
 								<span class="eltdf-btn-line"></span>
 							</a>
+						</div>
+					</div>
+					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
+						<div class="eltdf-ib-icon">
+							<img src="media/jp/when-where-icon-rsvp.png" width="161" height="161" alt="" decoding="async" loading="lazy" />
+						</div>
+						<div class="eltdf-ib-content">
+							<p class="eltdf-ib-text">As confirmações de presença serão realizadas através da equipe de cerimonial dos noivos. Aguarde o contato!</p>
 						</div>
 					</div>
 				</div>

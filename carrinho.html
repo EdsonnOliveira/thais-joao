@@ -950,6 +950,10 @@ cursor:pointer;
 background:#fff;
 color:#4a6785;
 }
+.jp-cart-card__btn:disabled{
+opacity:.65;
+cursor:wait;
+}
 .jp-cart-feedback{
 margin:12px 0 0;
 font-family:Muli,sans-serif;
@@ -1233,9 +1237,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							</div>
 							<div class="jp-cart-pay-panel" id="jp-pay-card" role="tabpanel" hidden>
 								<p class="jp-cart-card__amount" id="jp-card-amount"></p>
-								<p class="jp-cart-note">Você será direcionado para o pagamento seguro no cartão de crédito.</p>
-								<a class="jp-cart-card__btn" id="jp-card-pay-btn" href="#" target="_blank" rel="noopener">Pagar com cartão</a>
-								<p class="jp-cart-note" id="jp-card-fallback" hidden>Configure o link de cartão em payment-config.json ou use o PDF da lista de presentes.</p>
+								<p class="jp-cart-note">Você será direcionado para o pagamento seguro no InfinitePay.</p>
+								<button type="button" class="jp-cart-card__btn" id="jp-card-pay-btn">Pagar com cartão</button>
+								<p class="jp-cart-feedback" id="jp-card-feedback" hidden></p>
+								<p class="jp-cart-note" id="jp-card-fallback" hidden>Configure o handle do InfinitePay em payment-config.json ou use o PDF da lista de presentes.</p>
 							</div>
 						</div>
 					</section>
@@ -1291,8 +1296,11 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var cardAmountNode = document.getElementById('jp-card-amount');
 			var cardPayBtn = document.getElementById('jp-card-pay-btn');
 			var cardFallbackNode = document.getElementById('jp-card-fallback');
+			var cardFeedbackNode = document.getElementById('jp-card-feedback');
+			var cardPayDefaultLabel = cardPayBtn ? cardPayBtn.textContent : '';
 			var paymentConfig = null;
 			var activeTab = 'pix';
+			var cardCheckoutLoading = false;
 
 			function renderList() {
 				var items = cart.readCart();
@@ -1373,14 +1381,34 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				}
 			}
 
+			function getCheckoutCustomer() {
+				if (!checkoutForm) {
+					return null;
+				}
+				var nameInput = checkoutForm.querySelector('#jp-guest-name');
+				var emailInput = checkoutForm.querySelector('#jp-guest-email');
+				var name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : '';
+				var email = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : '';
+				if (!name || !email) {
+					return null;
+				}
+				return { name: name, email: email };
+			}
+
+			function getDefaultRedirectUrl() {
+				var origin = window.location.origin || '';
+				var path = window.location.pathname || '/carrinho.html';
+				return origin + path + '?pagamento=ok';
+			}
+
 			function updateCardLink(total) {
 				if (!paymentConfig || !cardPayBtn) {
 					return;
 				}
-				var checkoutUrl = String((paymentConfig.credit_card || {}).checkout_url || '').trim();
-				if (checkoutUrl) {
-					cardPayBtn.href = checkoutUrl;
+				var handle = String((paymentConfig.credit_card || {}).handle || '').trim();
+				if (handle) {
 					cardPayBtn.hidden = false;
+					cardPayBtn.disabled = cardCheckoutLoading;
 					if (cardFallbackNode) {
 						cardFallbackNode.hidden = true;
 					}
@@ -1391,6 +1419,52 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					cardFallbackNode.hidden = false;
 					cardFallbackNode.innerHTML = 'Pagamento no cartão disponível na <a href="media/jp/lista-de-presente.pdf" target="_blank" rel="noopener">lista de presentes em PDF</a>. Total: <strong>' + cart.escapeHtml(cart.formatCurrency(total)) + '</strong>';
 				}
+			}
+
+			function startCardCheckout() {
+				if (!paymentConfig || !cardPayBtn || cardCheckoutLoading) {
+					return;
+				}
+				var items = cart.readCart();
+				if (!items.length) {
+					return;
+				}
+				if (checkoutForm && !checkoutForm.reportValidity()) {
+					if (cardFeedbackNode) {
+						cardFeedbackNode.hidden = false;
+						cardFeedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
+					}
+					return;
+				}
+				var customer = getCheckoutCustomer();
+				if (!customer) {
+					if (cardFeedbackNode) {
+						cardFeedbackNode.hidden = false;
+						cardFeedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
+					}
+					return;
+				}
+				cardCheckoutLoading = true;
+				cardPayBtn.disabled = true;
+				cardPayBtn.textContent = 'Gerando pagamento...';
+				if (cardFeedbackNode) {
+					cardFeedbackNode.hidden = true;
+				}
+				cart.createInfinityPayCheckout(paymentConfig, items, {
+					orderNsu: 'PRESENTE-' + Date.now(),
+					redirectUrl: getDefaultRedirectUrl(),
+					customer: customer,
+				}).then(function (checkoutUrl) {
+					window.location.href = checkoutUrl;
+				}).catch(function () {
+					cardCheckoutLoading = false;
+					cardPayBtn.disabled = false;
+					cardPayBtn.textContent = cardPayDefaultLabel;
+					if (cardFeedbackNode) {
+						cardFeedbackNode.hidden = false;
+						cardFeedbackNode.textContent = 'Não foi possível iniciar o pagamento. Tente novamente.';
+					}
+				});
 			}
 
 			function setTab(tab) {
@@ -1448,6 +1522,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					setTab(button.getAttribute('data-tab') || 'pix');
 				});
 			});
+
+			if (cardPayBtn) {
+				cardPayBtn.addEventListener('click', startCardCheckout);
+			}
 
 			if (pixCopyBtn && pixCopyNode && pixFeedbackNode) {
 				pixCopyBtn.addEventListener('click', function () {

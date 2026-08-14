@@ -6,7 +6,9 @@
     "city": "Brasilia"
   },
   "credit_card": {
-    "checkout_url": "",
-    "provider_label": "Mercado Pago"
+    "provider": "infinitepay",
+    "handle": "joao-pedro-ponte",
+    "redirect_url": "",
+    "provider_label": "InfinitePay"
   }
 }
