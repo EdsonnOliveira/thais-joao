@@ -4,7 +4,7 @@
 				
 			<meta property="og:url" content=""/>
 			<meta property="og:type" content="article"/>
-			<meta property="og:title" content="Lista de presentes – Thaís & João"/>
+			<meta property="og:title" content="Carrinho – Thaís & João"/>
 			<meta property="og:description" content="Site de casamento Thaís & João"/>
 			<meta property="og:image" content=""/>
 		
@@ -13,7 +13,7 @@
 		<link rel="profile" href="https://gmpg.org/xfn/11" />
 		
 				<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
-		<title>Lista de presentes &#8211; Thaís &amp; João</title>
+		<title>Carrinho &#8211; Tha&#237;s &amp; Jo&#227;o</title>
 <meta name='robots' content='max-image-preview:large' />
 
 <link rel='dns-prefetch' href='https://maps.googleapis.com/' />
@@ -72,7 +72,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel='stylesheet' id='wp-mediaelement-css' href='wp-includes/js/mediaelement/wp-mediaelement.min.css' type='text/css' media='all' />
 <link rel='stylesheet' id='theaisle-elated-woo-css' href='wp-content/themes/theaisle/assets/css/woocommerce.min.css' type='text/css' media='all' />
 <style id='theaisle-elated-woo-inline-css' type='text/css'>
-.page-id-shop .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-shop .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-shop .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-shop .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-shop .eltdf-page-header .eltdf-menu-area { background-color: rgba(255, 255, 255, 0);height: 140px !important;}.page-id-shop .eltdf-page-header .eltdf-drop-down .second { top: 85%;}
+.page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-cart .eltdf-page-header .eltdf-menu-area { background-color: rgba(255, 255, 255, 0);height: 140px !important;}.page-id-cart .eltdf-page-header .eltdf-drop-down .second { top: 85%;}
 </style>
 <link rel='stylesheet' id='theaisle-elated-woo-responsive-css' href='wp-content/themes/theaisle/assets/css/woocommerce-responsive.min.css' type='text/css' media='all' />
 <link rel='stylesheet' id='theaisle-elated-style-dynamic-css' href='wp-content/themes/theaisle/assets/css/style_dynamic.css' type='text/css' media='all' />
@@ -508,72 +508,6 @@ flex-shrink:0;
 background:#fff;
 color:#c78665;
 }
-.jp-gift-card__btn.is-added{
-background:#fff;
-color:#4a6785;
-border-color:#4a6785;
-}
-.jp-gift-card__btn.is-added:hover{
-background:#4a6785;
-color:#fff;
-}
-.jp-cart-bar{
-display:flex;
-justify-content:flex-end;
-align-items:center;
-gap:16px;
-max-width:1140px;
-margin:0 auto 24px;
-padding:0 24px;
-}
-.jp-cart-bar__link{
-display:inline-flex;
-align-items:center;
-gap:8px;
-font-family:Muli,sans-serif;
-font-size:12px;
-font-weight:700;
-letter-spacing:.12em;
-text-transform:uppercase;
-text-decoration:none;
-color:#3c4860;
-}
-.jp-cart-bar__count{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-min-width:22px;
-height:22px;
-padding:0 6px;
-border-radius:999px;
-background:#c78665;
-color:#fff;
-font-size:11px;
-font-weight:700;
-}
-.jp-cart-bar__count[hidden]{
-display:none;
-}
-.jp-gift-toast{
-position:fixed;
-left:50%;
-bottom:24px;
-transform:translateX(-50%);
-padding:12px 20px;
-background:#3c4860;
-color:#fff;
-font-family:Muli,sans-serif;
-font-size:12px;
-letter-spacing:.06em;
-border-radius:4px;
-opacity:0;
-pointer-events:none;
-transition:opacity .2s;
-z-index:9999;
-}
-.jp-gift-toast.is-visible{
-opacity:1;
-}
 .jp-payment{
 max-width:760px;
 margin:64px auto 0;
@@ -596,6 +530,29 @@ font-family:Cormorant,serif;
 font-size:20px;
 line-height:1.5;
 color:#3c4860;
+}
+.jp-payment__selected-label{
+margin:0 0 8px;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.18em;
+text-transform:uppercase;
+color:#4a6785;
+}
+.jp-payment__selected-name{
+margin:0 0 8px;
+font-family:Muli,sans-serif;
+font-size:14px;
+line-height:1.5;
+color:#3c4860;
+}
+.jp-payment__selected-price{
+margin:0 0 20px;
+font-family:Cormorant,serif;
+font-size:24px;
+font-style:italic;
+color:#c78665;
 }
 .jp-payment__link{
 display:inline-flex!important;
@@ -668,6 +625,349 @@ max-width:320px;
 min-height:370px;
 }
 }
+
+<style id="jp-cart-styles">
+.jp-cart-page{padding:32px 0 80px;}
+.jp-cart-bar{
+display:flex;
+justify-content:flex-end;
+align-items:center;
+gap:16px;
+max-width:1140px;
+margin:0 auto 24px;
+padding:0 24px;
+}
+.jp-cart-bar__link{
+display:inline-flex;
+align-items:center;
+gap:8px;
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
+text-decoration:none;
+color:#3c4860;
+}
+.jp-cart-bar__count{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:22px;
+height:22px;
+padding:0 6px;
+border-radius:999px;
+background:#c78665;
+color:#fff;
+font-size:11px;
+font-weight:700;
+}
+.jp-cart-layout{
+display:grid;
+grid-template-columns:minmax(0,1fr) 320px;
+gap:32px;
+max-width:1140px;
+margin:0 auto;
+padding:0 24px;
+align-items:start;
+}
+.jp-cart-panel{
+background:#fff;
+border:1px solid #e8e8e8;
+border-radius:4px;
+padding:24px;
+}
+.jp-cart-panel__title{
+margin:0 0 20px;
+font-family:Muli,sans-serif;
+font-size:14px;
+font-weight:700;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#bf7b5d;
+}
+.jp-cart-list{
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+.jp-cart-item{
+display:grid;
+grid-template-columns:88px minmax(0,1fr) auto;
+gap:16px;
+align-items:center;
+padding-bottom:16px;
+border-bottom:1px solid #eee;
+}
+.jp-cart-item:last-child{
+padding-bottom:0;
+border-bottom:none;
+}
+.jp-cart-item__media{
+width:88px;
+height:88px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:8px;
+background:#fff;
+border:1px solid #f0f0f0;
+}
+.jp-cart-item__media img{
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+}
+.jp-cart-item__name{
+margin:0 0 6px;
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:700;
+letter-spacing:.06em;
+text-transform:uppercase;
+line-height:1.45;
+color:#3c4860;
+}
+.jp-cart-item__price{
+margin:0;
+font-family:Cormorant,serif;
+font-size:20px;
+font-style:italic;
+color:#c78665;
+}
+.jp-cart-item__remove{
+border:none;
+background:transparent;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:#4a6785;
+cursor:pointer;
+padding:0;
+}
+.jp-cart-empty{
+margin:0;
+font-family:Cormorant,serif;
+font-size:20px;
+line-height:1.5;
+color:#3c4860;
+text-align:center;
+}
+.jp-cart-empty a{color:#c78665;}
+.jp-cart-summary__total-label{
+margin:0 0 8px;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.18em;
+text-transform:uppercase;
+color:#4a6785;
+}
+.jp-cart-summary__total{
+margin:0 0 20px;
+font-family:Cormorant,serif;
+font-size:32px;
+font-style:italic;
+color:#c78665;
+}
+.jp-cart-summary__count{
+margin:0 0 16px;
+font-family:Muli,sans-serif;
+font-size:13px;
+color:#3c4860;
+}
+.jp-cart-summary__btn{
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height:44px;
+margin-bottom:12px;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.14em;
+text-transform:uppercase;
+text-decoration:none;
+border:1px solid #c78665;
+cursor:pointer;
+}
+.jp-cart-summary__btn--primary{
+background:#c78665;
+color:#fff;
+}
+.jp-cart-summary__btn--primary:disabled{
+opacity:.45;
+cursor:not-allowed;
+}
+.jp-cart-summary__btn--ghost{
+background:#fff;
+color:#c78665;
+}
+.jp-cart-checkout{
+max-width:1140px;
+margin:40px auto 0;
+padding:0 24px;
+}
+.jp-cart-checkout__inner{
+background:#fff;
+border:1px solid #e8e8e8;
+border-radius:4px;
+padding:32px 24px;
+}
+.jp-cart-form{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:16px;
+margin-bottom:24px;
+}
+.jp-cart-field{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+.jp-cart-field label{
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
+color:#4a6785;
+}
+.jp-cart-field input{
+height:44px;
+padding:0 14px;
+border:1px solid #ddd;
+border-radius:2px;
+font-family:Muli,sans-serif;
+font-size:14px;
+color:#3c4860;
+}
+.jp-cart-tabs{
+display:flex;
+gap:12px;
+margin-bottom:24px;
+}
+.jp-cart-tab{
+flex:1;
+height:44px;
+border:1px solid #c78665;
+background:#fff;
+color:#c78665;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
+cursor:pointer;
+}
+.jp-cart-tab.is-active{
+background:#c78665;
+color:#fff;
+}
+.jp-cart-pay-panel[hidden]{display:none!important;}
+.jp-cart-pix{
+display:grid;
+grid-template-columns:220px minmax(0,1fr);
+gap:24px;
+align-items:start;
+}
+.jp-cart-pix__qr{
+width:220px;
+height:220px;
+border:1px solid #eee;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff;
+}
+.jp-cart-pix__qr img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+.jp-cart-pix__key{
+display:flex;
+gap:8px;
+margin:12px 0;
+}
+.jp-cart-pix__key input{
+flex:1;
+height:44px;
+padding:0 14px;
+border:1px solid #ddd;
+font-family:Muli,sans-serif;
+font-size:14px;
+color:#3c4860;
+}
+.jp-cart-pix__copy{
+height:44px;
+padding:0 16px;
+border:1px solid #c78665;
+background:#c78665;
+color:#fff;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+cursor:pointer;
+}
+.jp-cart-note{
+margin:0;
+font-family:Cormorant,serif;
+font-size:18px;
+line-height:1.5;
+color:#3c4860;
+}
+.jp-cart-card__amount{
+margin:0 0 16px;
+font-family:Cormorant,serif;
+font-size:28px;
+font-style:italic;
+color:#c78665;
+}
+.jp-cart-card__btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+height:44px;
+padding:0 28px;
+background:#4a6785;
+border:1px solid #4a6785;
+color:#fff;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.14em;
+text-transform:uppercase;
+text-decoration:none;
+cursor:pointer;
+}
+.jp-cart-card__btn:hover{
+background:#fff;
+color:#4a6785;
+}
+.jp-cart-feedback{
+margin:12px 0 0;
+font-family:Muli,sans-serif;
+font-size:12px;
+color:#4a6785;
+}
+.jp-gift-card__btn.is-added{
+background:#fff;
+color:#4a6785;
+border-color:#4a6785;
+}
+@media(max-width:900px){
+.jp-cart-layout{grid-template-columns:1fr;}
+.jp-cart-form{grid-template-columns:1fr;}
+.jp-cart-pix{grid-template-columns:1fr;}
+.jp-cart-pix__qr{margin:0 auto;}
+}
+</style>
 </style>
 
 
@@ -682,7 +982,7 @@ background:#fff;
 </style>
 
 </head>
-<body class="jp-shop-page page-template page-template-full-width page-template-full-width-php page page-id-shop theme-theaisle theaisle-core-2.2.1 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.5.7 theaisle-ver-2.5 eltdf-smooth-page-transitions eltdf-grid-1300 eltdf-wide-dropdown-menu-content-in-grid eltdf-no-behavior eltdf-dropdown-animate-height eltdf-header-divided eltdf-menu-area-shadow-disable eltdf-menu-area-in-grid-shadow-disable eltdf-menu-area-border-disable eltdf-menu-area-in-grid-border-disable eltdf-logo-area-border-disable eltdf-logo-area-in-grid-border-disable eltdf-side-menu-slide-from-right eltdf-woocommerce-columns-3 eltdf-woo-normal-space eltdf-woo-pl-info-below-image eltdf-woo-single-thumb-on-left-side eltdf-woo-single-has-pretty-photo eltdf-default-mobile-header eltdf-sticky-up-mobile-header eltdf-fullscreen-search eltdf-search-fade elementor-default elementor-kit-5320 elementor-page elementor-page-shop" itemscope itemtype="http://schema.org/WebPage">
+<body class="jp-shop-page page-template page-template-full-width page-template-full-width-php page page-id-cart theme-theaisle theaisle-core-2.2.1 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.5.7 theaisle-ver-2.5 eltdf-smooth-page-transitions eltdf-grid-1300 eltdf-wide-dropdown-menu-content-in-grid eltdf-no-behavior eltdf-dropdown-animate-height eltdf-header-divided eltdf-menu-area-shadow-disable eltdf-menu-area-in-grid-shadow-disable eltdf-menu-area-border-disable eltdf-menu-area-in-grid-border-disable eltdf-logo-area-border-disable eltdf-logo-area-in-grid-border-disable eltdf-side-menu-slide-from-right eltdf-woocommerce-columns-3 eltdf-woo-normal-space eltdf-woo-pl-info-below-image eltdf-woo-single-thumb-on-left-side eltdf-woo-single-has-pretty-photo eltdf-default-mobile-header eltdf-sticky-up-mobile-header eltdf-fullscreen-search eltdf-search-fade elementor-default elementor-kit-5320 elementor-page elementor-page-shop" itemscope itemtype="http://schema.org/WebPage">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><section class="eltdf-side-menu">
 	<a class="eltdf-close-side-menu eltdf-close-side-menu-predefined" href="index.html">
 		<span class="eltdf-hm-lines"><span class="eltdf-hm-line eltdf-line-1"></span><span class="eltdf-hm-line eltdf-line-2"></span></span>	</a>
@@ -795,7 +1095,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
              --><div class="eltdf-position-right-inner">
                     
 <nav class="eltdf-main-menu eltdf-drop-down eltdf-divided-right-part eltdf-default-nav">
-    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="index.html#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="loja.html" class=" current "><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="carrinho.html" class=""><span class="item_outer"><span class="item_text">Carrinho</span></span></a></li></ul></nav>
+    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="index.html#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="carrinho.html" class=" current "><span class="item_outer"><span class="item_text">Carrinho</span></span></a></li></ul></nav>
 
 
                 </div>
@@ -851,7 +1151,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
     <nav class="eltdf-mobile-nav" role="navigation" aria-label="Mobile Menu">
         <div class="eltdf-grid">
 
-            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#inicio" class=""><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener" class=""><span>Localização</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="loja.html" class=" current "><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="carrinho.html" class=""><span>Carrinho</span></a></li></ul>        </div>
+            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#inicio" class=""><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener" class=""><span>Localização</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="loja.html" class=""><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="carrinho.html" class=" current "><span>Carrinho</span></a></li></ul>        </div>
     </nav>
 
 	</div>
@@ -875,45 +1175,75 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 		<div class="eltdf-title-wrapper" style="height: 110px">
 		<div class="eltdf-title-inner">
 			<div class="eltdf-grid">
-				<div itemprop="breadcrumb" class="eltdf-breadcrumbs "><a itemprop="url" href="index.html">Início</a><span class="eltdf-delimiter">&nbsp; &#x2022; &nbsp;</span><span class="eltdf-current">Lista de presentes</span></div>			</div>
+				<div itemprop="breadcrumb" class="eltdf-breadcrumbs "><a itemprop="url" href="index.html">Início</a><span class="eltdf-delimiter">&nbsp; &#x2022; &nbsp;</span><a itemprop="url" href="loja.html">Lista de presentes</a><span class="eltdf-delimiter">&nbsp; &#x2022; &nbsp;</span><span class="eltdf-current">Carrinho</span></div>			</div>
 	    </div>
 	</div>
 </div>
+
 <div class="eltdf-container eltdf-default-page-template">
 	<div class="eltdf-container-inner clearfix">
 		<div class="eltdf-grid-row">
 			<div class="eltdf-page-content-holder eltdf-grid-col-12">
-				<div class="eltdf-pl-holder eltdf-grid-list eltdf-disable-bottom-space eltdf-standard-layout eltdf-three-columns eltdf-normal-space eltdf-info-below-image ">
-	<div class="eltdf-pl-outer eltdf-outer-space">
-		<div class="jp-cart-bar">
-			<a class="jp-cart-bar__link" href="carrinho.html">
-				Ver carrinho
-				<span class="jp-cart-bar__count" data-jp-cart-count hidden>0</span>
-			</a>
-		</div>
-		<div class="jp-gift-grid" id="jp-gift-grid" aria-live="polite"></div>
-		<section class="jp-payment" id="pagamentos">
-			<div class="jp-payment__inner">
-				<h2 class="jp-payment__title">Carrinho de presentes</h2>
-				<p class="jp-payment__lead">Adicione os presentes desejados e finalize no carrinho com PIX ou cartão de crédito.</p>
-				<a class="jp-payment__link eltdf-btn eltdf-btn-medium eltdf-btn-solid" href="carrinho.html">
-					<span class="eltdf-btn-text">Ir para o carrinho</span>
-				</a>
+				<div class="jp-cart-page">
+					<div class="jp-cart-layout">
+						<section class="jp-cart-panel">
+							<h2 class="jp-cart-panel__title">Presentes selecionados</h2>
+							<div class="jp-cart-list" id="jp-cart-list"></div>
+							<p class="jp-cart-empty" id="jp-cart-empty" hidden>Seu carrinho está vazio. <a href="loja.html">Escolher presentes</a></p>
+						</section>
+						<aside class="jp-cart-panel jp-cart-summary">
+							<h2 class="jp-cart-panel__title">Resumo</h2>
+							<p class="jp-cart-summary__count" id="jp-cart-count-label">0 presentes</p>
+							<p class="jp-cart-summary__total-label">Total</p>
+							<p class="jp-cart-summary__total" id="jp-cart-total">R$ 0,00</p>
+							<button type="button" class="jp-cart-summary__btn jp-cart-summary__btn--primary" id="jp-cart-checkout-btn" disabled>Finalizar presente</button>
+							<a href="loja.html" class="jp-cart-summary__btn jp-cart-summary__btn--ghost">Continuar escolhendo</a>
+						</aside>
+					</div>
+					<section class="jp-cart-checkout" id="pagamentos" hidden>
+						<div class="jp-cart-checkout__inner">
+							<h2 class="jp-cart-panel__title">Pagamento</h2>
+							<form class="jp-cart-form" id="jp-checkout-form">
+								<div class="jp-cart-field">
+									<label for="jp-guest-name">Seu nome</label>
+									<input id="jp-guest-name" name="guestName" type="text" required autocomplete="name" />
+								</div>
+								<div class="jp-cart-field">
+									<label for="jp-guest-email">Seu e-mail</label>
+									<input id="jp-guest-email" name="guestEmail" type="email" required autocomplete="email" />
+								</div>
+							</form>
+							<div class="jp-cart-tabs" role="tablist">
+								<button type="button" class="jp-cart-tab is-active" data-tab="pix" role="tab">PIX</button>
+								<button type="button" class="jp-cart-tab" data-tab="card" role="tab">Cartão de crédito</button>
+							</div>
+							<div class="jp-cart-pay-panel" id="jp-pay-pix" role="tabpanel">
+								<div class="jp-cart-pix">
+									<div class="jp-cart-pix__qr" id="jp-pix-qr"></div>
+									<div>
+										<p class="jp-cart-note" id="jp-pix-instructions">Preencha seus dados e finalize para gerar o PIX com o valor total.</p>
+										<p class="jp-cart-note"><strong id="jp-pix-amount"></strong></p>
+										<div class="jp-cart-pix__key">
+											<input id="jp-pix-copy" type="text" readonly />
+											<button type="button" class="jp-cart-pix__copy" id="jp-pix-copy-btn">Copiar PIX</button>
+										</div>
+										<p class="jp-cart-feedback" id="jp-pix-feedback" hidden></p>
+									</div>
+								</div>
+							</div>
+							<div class="jp-cart-pay-panel" id="jp-pay-card" role="tabpanel" hidden>
+								<p class="jp-cart-card__amount" id="jp-card-amount"></p>
+								<p class="jp-cart-note">Você será direcionado para o pagamento seguro no cartão de crédito.</p>
+								<a class="jp-cart-card__btn" id="jp-card-pay-btn" href="#" target="_blank" rel="noopener">Pagar com cartão</a>
+								<p class="jp-cart-note" id="jp-card-fallback" hidden>Configure o link de cartão em payment-config.json ou use o PDF da lista de presentes.</p>
+							</div>
+						</div>
+					</section>
+				</div>
 			</div>
-		</section>
-	</div>	</div>
-                </div>
-            </div>
-        </div>
-	</div>
-</div>
-	</div>
-</div>
-			</div>
 		</div>
 	</div>
 </div>
-
 </div> <!-- close div.content_inner -->
 	</div> <!-- close div.content -->
 					<footer class="eltdf-page-footer jp-footer-minimal-wrap">
@@ -937,95 +1267,214 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 		</script>
 <link href="fonts.googleapis.com/css-roboto-400.css" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
 
-	<script type="text/javascript">
-		(function () {
-			var c = document.body.className;
-			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-			document.body.className = c;
-		})();
-	</script>
+
 	<script type="text/javascript" src="media/jp/jp-gift-cart.js"></script>
 	<script type="text/javascript">
 		(function () {
-			var grid = document.getElementById('jp-gift-grid');
-			if (!grid) {
-				return;
-			}
 			var cart = window.JpGiftCart;
 			if (!cart) {
 				return;
 			}
-			var toastNode = document.createElement('div');
-			toastNode.className = 'jp-gift-toast';
-			toastNode.setAttribute('role', 'status');
-			document.body.appendChild(toastNode);
+			var listNode = document.getElementById('jp-cart-list');
+			var emptyNode = document.getElementById('jp-cart-empty');
+			var totalNode = document.getElementById('jp-cart-total');
+			var countLabelNode = document.getElementById('jp-cart-count-label');
+			var checkoutBtn = document.getElementById('jp-cart-checkout-btn');
+			var checkoutSection = document.getElementById('pagamentos');
+			var checkoutForm = document.getElementById('jp-checkout-form');
+			var pixQrNode = document.getElementById('jp-pix-qr');
+			var pixCopyNode = document.getElementById('jp-pix-copy');
+			var pixCopyBtn = document.getElementById('jp-pix-copy-btn');
+			var pixFeedbackNode = document.getElementById('jp-pix-feedback');
+			var pixAmountNode = document.getElementById('jp-pix-amount');
+			var pixInstructionsNode = document.getElementById('jp-pix-instructions');
+			var cardAmountNode = document.getElementById('jp-card-amount');
+			var cardPayBtn = document.getElementById('jp-card-pay-btn');
+			var cardFallbackNode = document.getElementById('jp-card-fallback');
+			var paymentConfig = null;
+			var activeTab = 'pix';
 
-			function showToast(message) {
-				toastNode.textContent = message;
-				toastNode.classList.add('is-visible');
-				window.setTimeout(function () {
-					toastNode.classList.remove('is-visible');
-				}, 2200);
-			}
-
-			function createCard(item) {
-				var card = document.createElement('article');
-				card.className = 'jp-gift-card';
-				var inCart = cart.hasItem(item.id);
-				card.innerHTML =
-					'<div class="jp-gift-card__media">' +
-					'<img loading="lazy" width="800" height="800" src="' +
-					cart.escapeHtml(item.imagem) +
-					'" alt="' +
-					cart.escapeHtml(item.produto) +
-					'" decoding="async" />' +
-					'</div>' +
-					'<div class="jp-gift-card__body">' +
-					'<h3 class="jp-gift-card__title">' +
-					cart.escapeHtml(item.produto) +
-					'</h3>' +
-					'<p class="jp-gift-card__price">' +
-					cart.escapeHtml(item.preco) +
-					'</p>' +
-					'<button type="button" class="jp-gift-card__btn' +
-					(inCart ? ' is-added' : '') +
-					'">' +
-					(inCart ? 'No carrinho' : 'Adicionar ao carrinho') +
-					'</button>' +
-					'</div>';
-				var button = card.querySelector('.jp-gift-card__btn');
-				if (button) {
-					button.addEventListener('click', function () {
-						if (cart.hasItem(item.id)) {
-							window.location.href = 'carrinho.html';
-							return;
-						}
-						cart.addItem(item);
-						button.classList.add('is-added');
-						button.textContent = 'No carrinho';
-						cart.updateBadges();
-						showToast('Presente adicionado ao carrinho.');
-					});
+			function renderList() {
+				var items = cart.readCart();
+				var total = cart.getTotal();
+				if (!listNode) {
+					return;
 				}
-				return card;
+				listNode.innerHTML = '';
+				items.forEach(function (item) {
+					var row = document.createElement('article');
+					row.className = 'jp-cart-item';
+					row.innerHTML =
+						'<div class="jp-cart-item__media"><img src="' +
+						cart.escapeHtml(item.imagem) +
+						'" alt="' +
+						cart.escapeHtml(item.produto) +
+						'" loading="lazy" decoding="async" /></div>' +
+						'<div><p class="jp-cart-item__name">' +
+						cart.escapeHtml(item.produto) +
+						'</p><p class="jp-cart-item__price">' +
+						cart.escapeHtml(item.preco) +
+						'</p></div>' +
+						'<button type="button" class="jp-cart-item__remove" data-id="' +
+						cart.escapeHtml(item.id) +
+						'">Remover</button>';
+					listNode.appendChild(row);
+				});
+				if (emptyNode) {
+					emptyNode.hidden = items.length > 0;
+				}
+				if (totalNode) {
+					totalNode.textContent = cart.formatCurrency(total);
+				}
+				if (countLabelNode) {
+					countLabelNode.textContent = items.length + (items.length === 1 ? ' presente' : ' presentes');
+				}
+				if (checkoutBtn) {
+					checkoutBtn.disabled = items.length === 0;
+				}
+				if (checkoutSection && items.length === 0) {
+					checkoutSection.hidden = true;
+				}
+				cart.updateBadges();
+				updatePaymentPanels(total);
 			}
 
-			fetch('items.json')
+			function updatePaymentPanels(total) {
+				var amountText = cart.formatCurrency(total);
+				if (pixAmountNode) {
+					pixAmountNode.textContent = 'Valor: ' + amountText;
+				}
+				if (cardAmountNode) {
+					cardAmountNode.textContent = amountText;
+				}
+				if (activeTab === 'pix') {
+					generatePix(total);
+				}
+				updateCardLink(total);
+			}
+
+			function generatePix(total) {
+				if (!paymentConfig || !pixCopyNode || !pixQrNode) {
+					return;
+				}
+				var payload = cart.buildPixPayload(paymentConfig, total, 'PRESENTE' + Date.now());
+				if (!payload) {
+					pixCopyNode.value = '';
+					pixQrNode.innerHTML = '';
+					if (pixInstructionsNode) {
+						pixInstructionsNode.textContent = 'Configure a chave PIX em payment-config.json para gerar o QR Code.';
+					}
+					return;
+				}
+				pixCopyNode.value = payload;
+				pixQrNode.innerHTML = '<img src="' + cart.getPixQrUrl(payload) + '" alt="QR Code PIX" width="220" height="220" />';
+				if (pixInstructionsNode) {
+					pixInstructionsNode.textContent = 'Escaneie o QR Code ou copie o código PIX abaixo.';
+				}
+			}
+
+			function updateCardLink(total) {
+				if (!paymentConfig || !cardPayBtn) {
+					return;
+				}
+				var checkoutUrl = String((paymentConfig.credit_card || {}).checkout_url || '').trim();
+				if (checkoutUrl) {
+					cardPayBtn.href = checkoutUrl;
+					cardPayBtn.hidden = false;
+					if (cardFallbackNode) {
+						cardFallbackNode.hidden = true;
+					}
+					return;
+				}
+				cardPayBtn.hidden = true;
+				if (cardFallbackNode) {
+					cardFallbackNode.hidden = false;
+					cardFallbackNode.innerHTML = 'Pagamento no cartão disponível na <a href="media/jp/lista-de-presente.pdf" target="_blank" rel="noopener">lista de presentes em PDF</a>. Total: <strong>' + cart.escapeHtml(cart.formatCurrency(total)) + '</strong>';
+				}
+			}
+
+			function setTab(tab) {
+				activeTab = tab;
+				document.querySelectorAll('.jp-cart-tab').forEach(function (button) {
+					button.classList.toggle('is-active', button.getAttribute('data-tab') === tab);
+				});
+				var pixPanel = document.getElementById('jp-pay-pix');
+				var cardPanel = document.getElementById('jp-pay-card');
+				if (pixPanel) {
+					pixPanel.hidden = tab !== 'pix';
+				}
+				if (cardPanel) {
+					cardPanel.hidden = tab !== 'card';
+				}
+				if (tab === 'pix') {
+					generatePix(cart.getTotal());
+				}
+			}
+
+			if (listNode) {
+				listNode.addEventListener('click', function (event) {
+					var target = event.target;
+					if (!(target instanceof HTMLElement)) {
+						return;
+					}
+					var id = target.getAttribute('data-id');
+					if (!id) {
+						return;
+					}
+					cart.removeItem(id);
+					renderList();
+				});
+			}
+
+			if (checkoutBtn && checkoutSection) {
+				checkoutBtn.addEventListener('click', function () {
+					if (cart.readCart().length === 0) {
+						return;
+					}
+					checkoutSection.hidden = false;
+					checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					generatePix(cart.getTotal());
+				});
+			}
+
+			if (checkoutForm) {
+				checkoutForm.addEventListener('input', function () {
+					generatePix(cart.getTotal());
+				});
+			}
+
+			document.querySelectorAll('.jp-cart-tab').forEach(function (button) {
+				button.addEventListener('click', function () {
+					setTab(button.getAttribute('data-tab') || 'pix');
+				});
+			});
+
+			if (pixCopyBtn && pixCopyNode && pixFeedbackNode) {
+				pixCopyBtn.addEventListener('click', function () {
+					if (!pixCopyNode.value) {
+						return;
+					}
+					navigator.clipboard.writeText(pixCopyNode.value).then(function () {
+						pixFeedbackNode.hidden = false;
+						pixFeedbackNode.textContent = 'Código PIX copiado.';
+					});
+				});
+			}
+
+			fetch('payment-config.json')
 				.then(function (response) {
 					if (!response.ok) {
-						throw new Error('items');
+						throw new Error('config');
 					}
 					return response.json();
 				})
-				.then(function (items) {
-					items.forEach(function (item) {
-						grid.appendChild(createCard(item));
-					});
-					cart.updateBadges();
+				.then(function (config) {
+					paymentConfig = config;
+					renderList();
 				})
 				.catch(function () {
-					grid.innerHTML =
-						'<p class="jp-gift-grid__error">Não foi possível carregar a lista de presentes.</p>';
+					paymentConfig = { pix: {}, credit_card: {} };
+					renderList();
 				});
 		})();
 	</script>

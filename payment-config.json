@@ -1,0 +1,12 @@
+{
+  "pix": {
+    "key": "",
+    "key_label": "Chave PIX",
+    "holder": "Thais e Joao",
+    "city": "Brasilia"
+  },
+  "credit_card": {
+    "checkout_url": "",
+    "provider_label": "Mercado Pago"
+  }
+}

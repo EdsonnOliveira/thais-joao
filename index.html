@@ -247,7 +247,7 @@ rs-slide[data-key="rs-25"] .rev-slidebg{
 object-position:center 38%!important;
 }
 #curiosidades{
-position:relative;
+position:relative;overflow:visible;--jp-curiosities-blue-h:1360px;--jp-curiosities-card-overflow:10px;--jp-curiosities-card-w:480px;
 }
 #curiosidades .elementor-element-819abf2 .elementor-column-wrap,
 #curiosidades .elementor-widget-wrap{
@@ -260,11 +260,11 @@ position:absolute;left:0;right:0;top:0;bottom:0;z-index:20;pointer-events:none;
 position:relative;max-width:1180px;height:100%;margin:0 auto;padding:0 24px;
 }
 #curiosidades .jp-curiosities-band__content{
-position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);width:min(560px,50vw);max-height:none;overflow:visible;pointer-events:auto;padding:72px 0 80px;
+position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:min(560px,50vw);max-height:none;overflow:visible;pointer-events:auto;padding:72px 0 80px;
 }
 #curiosidades #rev_slider_12_2_wrapper,
 #curiosidades #rev_slider_12_2{
-min-height:1560px!important;
+min-height:1390px!important;
 }
 #curiosidades rs-layer[id="slider-12-slide-28-layer-1"]{
 height:1360px!important;min-height:1360px!important;
@@ -290,8 +290,11 @@ position:absolute;top:50%;transform:translateY(-50%);width:205px;pointer-events:
 .jp-curiosities-band__side--left{
 left:2%;
 }
-.jp-curiosities-band__side--right{
-right:2%;
+#curiosidades .jp-curiosities-card{
+position:absolute;top:calc((100% - var(--jp-curiosities-blue-h))/2 + 20px - var(--jp-curiosities-card-overflow));bottom:calc((100% - var(--jp-curiosities-blue-h))/2 - 20px - var(--jp-curiosities-card-overflow));right:2%;width:min(var(--jp-curiosities-card-w),38vw);height:auto;min-height:0;max-height:none;margin:0;padding:48px 40px;display:flex;align-items:stretch;justify-content:flex-start;background:#fff;box-shadow:0 1px 10px 0 rgba(211,222,227,.7);box-sizing:border-box;text-align:left;opacity:1!important;transform:none!important;pointer-events:auto;z-index:21;overflow-y:auto;
+}
+.jp-curiosities-card .jp-curiosities__list{
+width:100%;
 }
 .jp-polaroid{
 background:#fff;padding:10px 10px 42px;box-shadow:0 8px 24px rgba(60,72,96,.14);
@@ -345,6 +348,12 @@ display:none!important;
 }
 @media (max-width:1024px){
 .jp-curiosities-band__side{display:none;}
+#curiosidades .jp-curiosities-card{
+position:relative;top:auto;right:auto;transform:none!important;width:min(var(--jp-curiosities-card-w),92vw);height:auto;margin:0 auto 24px;padding:36px 28px 40px;
+}
+#curiosidades .jp-curiosities-band__side--left{display:flex!important;flex-direction:column;justify-content:center;align-items:center;padding:0 16px 24px;}
+#curiosidades .jp-curiosities-band__side--left .jp-polaroid{display:block;width:min(182px,42vw);max-width:182px;margin:0!important;}
+#curiosidades .jp-curiosities-band__side--left .jp-polaroid--left-alt{margin-top:24px!important;}
 }
 @media (max-width:768px){
 #curiosidades #rev_slider_12_2_wrapper,
@@ -375,38 +384,32 @@ position:relative;background:#eaf1f4;
 display:flex;flex-direction:column;padding:0;
 }
 #curiosidades .jp-curiosities-band__content{
-position:relative;left:auto;top:auto;transform:none;width:100%;max-width:640px;margin:0 auto;padding:28px 20px 36px;max-height:none;order:1;
+position:relative;left:auto;top:auto;transform:none;width:100%;max-width:640px;margin:0 auto;padding:28px 20px 16px;max-height:none;order:1;
+}
+#curiosidades .jp-curiosities-card{
+position:relative;top:auto;right:auto;transform:none!important;width:min(var(--jp-curiosities-card-w),92vw);height:auto;margin:0 auto 20px;padding:36px 28px 40px;order:2;
 }
 .jp-curiosities-band__side--left{
-order:2;
-}
-.jp-curiosities-band__side--right{
 order:3;
 }
 .jp-curiosities-band__side{
-display:flex!important;position:relative;top:auto;right:auto;left:auto;transform:none;width:100%;justify-content:center;align-items:flex-start;gap:14px;flex-wrap:wrap;padding:8px 16px 32px;pointer-events:auto;
+display:flex!important;flex-direction:column;position:relative;top:auto;right:auto;left:auto;transform:none;width:100%;justify-content:center;align-items:center;gap:0;padding:8px 16px 32px;pointer-events:auto;
 }
-.jp-polaroid--left,
-.jp-polaroid--right{
-width:42%;max-width:172px;margin:0!important;
+.jp-polaroid--left{
+width:min(182px,46vw);max-width:182px;margin:0!important;
 }
-.jp-polaroid--left-alt,
-.jp-polaroid--right-alt{
-width:38%;max-width:152px;margin:0!important;
+.jp-polaroid--left-alt{
+width:min(162px,42vw);max-width:162px;margin:24px 0 0!important;
 }
 .jp-polaroid--left{transform:rotate(-4deg);}
 .jp-polaroid--left-alt{transform:rotate(3deg);}
-.jp-polaroid--right{transform:rotate(4deg);}
-.jp-polaroid--right-alt{transform:rotate(-3deg);}
 .jp-curiosities__item{font-size:21px;padding-left:28px;margin-bottom:16px;}
 }
 @media (max-width:480px){
 .jp-curiosities-mobile-title{font-size:38px;}
 .jp-curiosities__item{font-size:20px;padding-left:24px;}
-.jp-polaroid--left,
-.jp-polaroid--right{width:46%;max-width:none;}
-.jp-polaroid--left-alt,
-.jp-polaroid--right-alt{width:40%;max-width:none;}
+.jp-polaroid--left{width:min(182px,52vw);max-width:none;}
+.jp-polaroid--left-alt{width:min(162px,48vw);max-width:none;}
 }
 .jp-guest-manual{
 max-width:760px;margin:0 auto;padding:10px 20px 48px;text-align:center;
@@ -438,6 +441,123 @@ display:block;width:18px;height:18px;
 .jp-guest-manual__icon svg{width:16px;height:16px;}
 }
 
+.jp-dress-code{
+max-width:1320px;margin:0 auto;padding:0 20px 56px;
+}
+.jp-dress-code__tagline{
+margin:0 0 36px;font-family:Muli,sans-serif;font-size:14px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#bf7b5d;text-align:center;
+}
+.jp-dress-code__grid{
+display:grid;grid-template-columns:minmax(0,1fr) minmax(0,823px);gap:40px;align-items:center;
+}
+.jp-dress-code__content{
+text-align:left;
+}
+.jp-dress-code__block{
+margin-bottom:28px;
+}
+.jp-dress-code__block:last-child{
+margin-bottom:0;
+}
+.jp-dress-code__heading{
+margin:0 0 10px;font-family:Muli,sans-serif;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3c4860;
+}
+.jp-dress-code__text{
+margin:0;font-family:Cormorant,serif;font-size:28px;font-style:italic;line-height:1.55;color:#5c6474;
+}
+.jp-dress-code__reminder{
+margin-top:36px;padding:28px 32px;background:#fff;border:1px solid rgba(191,123,93,.34);border-radius:16px;box-shadow:0 10px 28px rgba(60,72,96,.08);
+}
+.jp-dress-code__reminder .jp-dress-code__heading{
+margin-bottom:18px;font-size:14px;color:#bf7b5d;
+}
+.jp-dress-code__reminder-list{
+list-style:none;margin:0;padding:0;
+}
+.jp-dress-code__reminder-list li{
+display:flex;align-items:flex-start;gap:14px;margin:0 0 16px;padding:0;
+}
+.jp-dress-code__reminder-list li:last-child{
+margin-bottom:0;
+}
+.jp-dress-code__color{
+flex-shrink:0;width:22px;height:22px;margin-top:.45em;border-radius:50%;box-shadow:0 0 0 1px rgba(60,72,96,.12);
+}
+.jp-dress-code__color--white{
+background:#fff;border:1px solid #c8d0da;
+}
+.jp-dress-code__color--navy{
+background:#4a6785;border:1px solid #4a6785;
+}
+.jp-dress-code__reminder-text{
+font-family:Cormorant,serif;font-size:26px;font-style:italic;line-height:1.5;color:#3c4860;
+}
+.jp-dress-code__reminder-text strong{
+font-weight:700;color:#121f38;
+}
+.jp-dress-code__figure{
+margin:0;
+}
+.jp-dress-code__figure img{
+display:block;width:100%;max-width:823px;height:auto;border-radius:8px;box-shadow:0 8px 24px rgba(60,72,96,.08);
+}
+@media (max-width:1200px){
+.jp-dress-code__grid{
+grid-template-columns:1fr;gap:28px;
+}
+.jp-dress-code__figure{
+width:100%;max-width:823px;margin:0 auto;
+}
+.jp-dress-code__content{
+text-align:center;
+}
+}
+@media (max-width:900px){
+.jp-dress-code__text{
+font-size:24px;
+}
+.jp-dress-code__reminder-text{
+font-size:23px;
+}
+}
+@media (max-width:680px){
+.jp-dress-code{
+padding:0 16px 40px;
+}
+.jp-dress-code__tagline{
+font-size:12px;margin-bottom:28px;letter-spacing:.16em;
+}
+.jp-dress-code__content{
+text-align:left;
+}
+.jp-dress-code__text{
+font-size:22px;
+}
+.jp-dress-code__reminder{
+padding:22px 20px;margin-top:28px;
+}
+.jp-dress-code__reminder-text{
+font-size:19px;
+}
+.jp-dress-code__color{
+width:20px;height:20px;
+}
+.jp-dress-code__figure{
+max-width:100%;
+}
+}
+@media (max-width:480px){
+.jp-dress-code__text{
+font-size:20px;
+}
+.jp-dress-code__reminder-text{
+font-size:18px;
+}
+.jp-dress-code__heading{
+font-size:12px;
+}
+}
+
 .jp-when-where{
 max-width:960px;margin:0 auto;padding:0 20px;text-align:center;width:100%;
 }
@@ -450,8 +570,12 @@ max-width:none;margin:0;padding:11% 8% 10%;
 .jp-when-where-card .eltdf-ib-text{
 margin-top:20px;margin-bottom:0;font-family:Cormorant,serif;font-size:30px;font-style:italic;line-height:1.55;color:#5c6474;
 }
-.jp-when-where-card .eltdf-ib-icon svg{
-display:block;width:68px;height:66px;margin:0 auto;
+.jp-when-where-card .eltdf-ib-icon,
+.jp-when-where-card .eltdf-ib-icon img{
+opacity:1!important;
+}
+.jp-when-where-card .eltdf-ib-icon img{
+display:block;width:161px;height:161px;margin:0 auto;object-fit:contain;
 }
 .jp-when-where-card .eltdf-btn{
 margin-top:18px;font-size:21px;
@@ -523,11 +647,11 @@ margin-top:auto;padding-top:14px;
 padding-top:72px!important;padding-bottom:40px!important;
 }
 #curiosidades{
-margin-top:-72px;margin-bottom:-56px;position:relative;z-index:2;
+margin-top:-72px;margin-bottom:-120px;position:relative;z-index:2;
 }
 #curiosidades #rev_slider_12_2_wrapper,
 #curiosidades #rev_slider_12_2{
-min-height:1560px!important;
+min-height:1390px!important;
 }
 .elementor-827 .elementor-element.elementor-element-3ad4020{
 padding:72px 0 72px 0!important;
@@ -535,8 +659,11 @@ padding:72px 0 72px 0!important;
 .eltdf-section-title-holder .eltdf-st-image{
 margin-bottom:20px!important;
 }
+.eltdf-section-title-holder .eltdf-st-image img{
+display:block;width:140px;height:140px;margin:0 auto;object-fit:contain;
+}
 .elementor-827 .elementor-element.elementor-element-86dff1b{
-padding:40px 0 32px 0!important;position:relative;z-index:2;
+padding:0 0 32px 0!important;position:relative;z-index:2;
 }
 .elementor-827 .elementor-element.elementor-element-9f54518{
 margin-top:0!important;width:100%;
@@ -554,7 +681,16 @@ padding:0!important;display:flex;align-items:center;justify-content:center;
 padding:48px 0 48px 0!important;
 }
 .elementor-827 .elementor-element.elementor-element-db8758a{
-padding:48px 0 56px 0!important;
+padding:48px 0 32px 0!important;
+}
+#dress-code{
+scroll-margin-top:120px;
+}
+.elementor-827 .elementor-element.elementor-element-jp-dress-code-title{
+padding:32px 0 0 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-jp-dress-code-content{
+padding:0 0 48px 0!important;
 }
 @media (max-width:900px){
 .jp-when-where__cards{
@@ -562,6 +698,23 @@ grid-template-columns:1fr;max-width:420px;margin:0 auto;
 }
 .jp-when-where-card .eltdf-ib-text{
 font-size:26px;
+}
+.jp-when-where-card .eltdf-ib-icon img{
+width:130px;height:130px;
+}
+}
+@media (min-width:768px) and (max-width:1024px){
+.jp-when-where__cards{
+grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px;gap:20px;
+}
+.jp-when-where-card:last-child{
+grid-column:1/-1;max-width:380px;margin:0 auto;width:100%;
+}
+.jp-when-where-card{
+padding:10% 7% 9%;
+}
+.jp-when-where-card .eltdf-ib-icon img{
+width:120px;height:120px;
 }
 }
 .jp-footer-minimal-wrap .eltdf-footer-top-holder,
@@ -653,6 +806,15 @@ width:50%!important;
 .eltdf-section-title-holder .eltdf-st-title{
 font-size:32px!important;
 }
+.eltdf-section-title-holder .eltdf-st-image img{
+width:130px;height:130px;
+}
+.elementor-827 .elementor-element.elementor-element-f063c7a{
+padding:56px 0!important;
+}
+#curiosidades{
+margin-bottom:-80px;
+}
 }
 @media (max-width:768px){
 #curiosidades{
@@ -685,6 +847,15 @@ padding:0 16px;
 .eltdf-google-map{
 height:360px!important;
 }
+.elementor-827 .elementor-element.elementor-element-3ad4020{
+padding:48px 0 48px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-3639815{
+padding-top:48px!important;padding-bottom:32px!important;
+}
+.jp-love-timeline{
+padding:40px 6% 36px;
+}
 }
 @media (max-width:680px){
 #historia .eltdf-four-columns .eltdf-bl-item{
@@ -710,6 +881,56 @@ margin-right:8px;
 }
 .eltdf-logo-wrapper img{
 max-height:80px!important;
+}
+.eltdf-section-title-holder .eltdf-st-image img{
+width:120px;height:120px;
+}
+.jp-when-where-card .eltdf-ib-icon img{
+width:110px;height:110px;
+}
+.jp-when-where-card .eltdf-ib-text{
+font-size:24px;
+}
+.jp-when-where-card{
+padding:12% 8% 10%;
+}
+.elementor-827 .elementor-element.elementor-element-f063c7a{
+padding:48px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-86dff1b{
+padding:0 0 24px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-jp-dress-code-title{
+padding:24px 0 0 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-jp-dress-code-content{
+padding:0 0 36px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-2281cbd{
+padding:36px 0 36px 0!important;
+}
+.elementor-827 .elementor-element.elementor-element-db8758a{
+padding:32px 0 24px 0!important;
+}
+#dress-code{
+scroll-margin-top:90px;
+}
+.jp-guest-manual__list{
+gap:10px;
+}
+.jp-guest-manual__bubble{
+width:100%;max-width:100%;justify-content:flex-start;
+}
+}
+@media (max-width:480px){
+.eltdf-section-title-holder .eltdf-st-image img{
+width:100px;height:100px;
+}
+.eltdf-section-title-holder .eltdf-st-title{
+font-size:24px!important;
+}
+.jp-when-where-card .eltdf-ib-text{
+font-size:22px;
 }
 }
 </style>
@@ -808,7 +1029,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 	            <div class="eltdf-position-left-inner">
                     
 	<nav class="eltdf-main-menu eltdf-drop-down eltdf-divided-left-part eltdf-default-nav">
-    <ul id="menu-divided-menu-left" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="#inicio" class=" current "><span class="item_outer"><span class="item_text">Início</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#noivos" class=""><span class="item_outer"><span class="item_text">Páginas</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#historia" class=""><span class="item_outer"><span class="item_text">Portfólio</span></span></a></li></ul>	</nav>
+    <ul id="menu-divided-menu-left" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="#inicio" class=" current "><span class="item_outer"><span class="item_text">Início</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#noivos" class=""><span class="item_outer"><span class="item_text">Páginas</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener" class=""><span class="item_outer"><span class="item_text">Localização</span></span></a></li></ul>	</nav>
 </div>
             </div>
             <div class="eltdf-position-center"><!--
@@ -827,7 +1048,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
              --><div class="eltdf-position-right-inner">
                     
 <nav class="eltdf-main-menu eltdf-drop-down eltdf-divided-right-part eltdf-default-nav">
-    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#curiosidades" class=""><span class="item_outer"><span class="item_text">Página de entrada</span></span></a></li></ul></nav>
+    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="carrinho.html" class=""><span class="item_outer"><span class="item_text">Carrinho</span></span></a></li></ul></nav>
 
 
                 </div>
@@ -883,7 +1104,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
     <nav class="eltdf-mobile-nav" role="navigation" aria-label="Mobile Menu">
         <div class="eltdf-grid">
 
-            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="#inicio" class=" current "><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#historia" class=""><span>Portfólio</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="loja.html" class=""><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#curiosidades" class=""><span>Página de entrada</span></a></li></ul>        </div>
+            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="#inicio" class=" current "><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener" class=""><span>Localização</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="loja.html" class=""><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="carrinho.html" class=""><span>Carrinho</span></a></li></ul>        </div>
     </nav>
 
 	</div>
@@ -1024,7 +1245,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " >
 	<div class="eltdf-st-inner">
         <div class="eltdf-st-image" style="margin-bottom: 0px">
-            <img width="87" height="63" src="wp-content/uploads/2018/10/section-title-img-7.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
+            <img width="140" height="140" src="media/jp/section-title-branch.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
 					<h2 class="eltdf-st-title" >
 				<span class="eltdf-st-title-word">Noiva</span> <span class="eltdf-st-title-word">&amp;</span> <span class="eltdf-st-title-word">Noivo</span>			</h2>
 					</div>
@@ -1209,7 +1430,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " style="text-align: center">
 	<div class="eltdf-st-inner">
         <div class="eltdf-st-image" style="margin-bottom: -24px">
-            <img width="87" height="63" src="wp-content/uploads/2018/10/section-title-img-7.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
+            <img width="140" height="140" src="media/jp/section-title-branch.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
 					<h2 class="eltdf-st-title" >
 				<span class="eltdf-st-title-word">Nossa</span> <span class="eltdf-st-title-word">História</span> <span class="eltdf-st-title-word">de Amor</span>			</h2>
 							<span class="eltdf-st-text" >
@@ -1469,7 +1690,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-type="image"
 								data-xy="x:c;y:m;yo:-340px,-250px,-250px,208px;"
 								data-text="l:22;a:inherit;"
-								data-dim="w:87px,87px,87px,87px;h:63px,63px,63px,63px;"
+								data-dim="w:140px,140px,140px,140px;h:140px,140px,140px,140px;"
 								data-vbility="t,t,t,f"
 								data-basealign="slide"
 								data-rsp_o="off"
@@ -1478,7 +1699,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								data-frame_1="sp:940;sR:10;"
 								data-frame_999="o:0;st:w;sR:2050;"
 								style="z-index:9;"
-							><img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="a" class="tp-rs-img rs-lazyload" width="87" height="63" data-lazyload="wp-content/uploads/2018/10/section-title-img-7.png" data-no-retina> 
+							><img decoding="async" src="wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="a" class="tp-rs-img rs-lazyload" width="140" height="140" data-lazyload="media/jp/section-title-branch.png" data-no-retina> 
 							</rs-layer><!--
 
 							--><rs-layer
@@ -1547,11 +1768,13 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 <div class="jp-curiosities-band">
 <div class="jp-curiosities-band__inner">
 <div class="jp-curiosities-band__side jp-curiosities-band__side--left">
-<figure class="jp-polaroid jp-polaroid--left"><img src="media/jp/rsvp-photo.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
-<figure class="jp-polaroid jp-polaroid--left-alt"><img src="media/jp/curiosities-02.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+<figure class="jp-polaroid jp-polaroid--left"><img src="media/jp/blog-01.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+<figure class="jp-polaroid jp-polaroid--left-alt"><img src="media/jp/blog-04.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
 </div>
 <div class="jp-curiosities-band__content">
 <p class="jp-curiosities-mobile-title">Curiosidades sobre os noivos</p>
+</div>
+<div class="jp-curiosities-card">
 <ul class="jp-curiosities__list">
 <li class="jp-curiosities__item" data-num="1">Na segunda vez que nos vimos, eu perdi uma aposta e fui obrigada a postar uma foto nossa de mãos dadas no Instagram. Mal imaginávamos que aquela foto era só o começo da nossa história.</li>
 <li class="jp-curiosities__item" data-num="2">Fazemos aniversário no mesmo dia e temos exatamente 1 ano de diferença.</li>
@@ -1559,10 +1782,6 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 <li class="jp-curiosities__item" data-num="4">Nossa banda favorita é o Projeto Sola, e fazemos de tudo para não perder um show.</li>
 <li class="jp-curiosities__item" data-num="5">Com apenas 2 meses de relacionamento, nós já falávamos sobre o nosso casamento. Na época, achávamos que estávamos sendo emocionados… hoje estamos aqui, contando os dias para o grande dia!</li>
 </ul>
-</div>
-<div class="jp-curiosities-band__side jp-curiosities-band__side--right">
-<figure class="jp-polaroid jp-polaroid--right"><img src="media/jp/curiosities-03.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
-<figure class="jp-polaroid jp-polaroid--right-alt"><img src="media/jp/curiosities-04.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
 </div>
 </div>
 </div>
@@ -1583,7 +1802,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " style="text-align: center">
 	<div class="eltdf-st-inner">
         <div class="eltdf-st-image" style="margin-bottom: -24px">
-            <img width="87" height="63" src="wp-content/uploads/2018/10/section-title-img-7.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
+            <img width="140" height="140" src="media/jp/section-title-branch.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
 					<h2 class="eltdf-st-title" >
 				<span class="eltdf-st-title-word">Quando</span> <span class="eltdf-st-title-word">&amp;</span> <span class="eltdf-st-title-word">Onde</span>			</h2>
 							<span class="eltdf-st-text" >
@@ -1615,7 +1834,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				<div class="jp-when-where__cards">
 					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
 						<div class="eltdf-ib-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 56" width="58" height="56" fill="none" aria-hidden="true"><rect x="6" y="12" width="46" height="40" rx="4" stroke="#bf7b5d" stroke-width="1.8"/><line x1="6" y1="22" x2="52" y2="22" stroke="#bf7b5d" stroke-width="1.8"/><circle cx="16" cy="8" r="2" stroke="#bf7b5d" stroke-width="1.8"/><line x1="16" y1="10" x2="16" y2="16" stroke="#bf7b5d" stroke-width="1.8"/><circle cx="29" cy="8" r="2" stroke="#bf7b5d" stroke-width="1.8"/><line x1="29" y1="10" x2="29" y2="16" stroke="#bf7b5d" stroke-width="1.8"/><circle cx="42" cy="8" r="2" stroke="#bf7b5d" stroke-width="1.8"/><line x1="42" y1="10" x2="42" y2="16" stroke="#bf7b5d" stroke-width="1.8"/><path d="M29 38c-4.5-3.5-8-6.5-8-10a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 3.5-3.5 6.5-8 10z" stroke="#bf7b5d" stroke-width="1.8" stroke-linejoin="round"/></svg>
+							<img src="media/jp/when-where-icon-calendar.png" width="161" height="161" alt="" decoding="async" loading="lazy" />
 						</div>
 						<div class="eltdf-ib-content">
 							<p class="eltdf-ib-text">Sexta-feira, 19 de fevereiro de 2027<br>Às 16 horas</p>
@@ -1623,7 +1842,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					</div>
 					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
 						<div class="eltdf-ib-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 56" width="58" height="56" fill="none" aria-hidden="true"><path d="M11 17 L17 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 14 L17 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 17 L23 14" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 19 L16 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 16 L16 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="33" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><path d="M17 33 V44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M14 45 H20" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M47 17 L41 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 14 L41 33" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 14 L47 17" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M45 19 L42 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 16 L42 31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="41" cy="33" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><path d="M41 33 V44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M38 45 H44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M11 47 H47" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M14 25 H20" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M38 25 H44" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><circle cx="15.5" cy="29" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><circle cx="42.5" cy="29" r="1.2" stroke="#bf7b5d" stroke-width="1.2"/><path d="M29 4 V8" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M27 6 H31" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M27.8 4.8 L30.2 7.2" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/><path d="M30.2 4.8 L27.8 7.2" stroke="#bf7b5d" stroke-width="1.8" stroke-linecap="round"/></svg>
+							<img src="media/jp/when-where-icon-champagne.png" width="161" height="161" alt="" decoding="async" loading="lazy" />
 						</div>
 						<div class="eltdf-ib-content">
 							<p class="eltdf-ib-text">Os noivos recepcionarão após a cerimônia no mesmo local</p>
@@ -1631,7 +1850,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					</div>
 					<div class="eltdf-ib clearfix shadow-enabled jp-when-where-card eltdf-ib-appeared">
 						<div class="eltdf-ib-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 56" width="58" height="56" fill="none" aria-hidden="true"><path d="M29 6c-10 0-17 8-17 18 0 12 17 26 17 26s17-14 17-26c0-10-7-18-17-18z" stroke="#bf7b5d" stroke-width="1.8" stroke-linejoin="round"/><path d="M29 20c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z" stroke="#bf7b5d" stroke-width="1.8"/></svg>
+							<img src="media/jp/when-where-icon-location.png" width="161" height="161" alt="" decoding="async" loading="lazy" />
 						</div>
 						<div class="eltdf-ib-content">
 							<p class="eltdf-ib-text">Maison Mizuno<br>QNL 06 Chácara 18 - Taguatinga, Brasília - DF</p>
@@ -1674,7 +1893,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-cta-text"><span style="color: #ffffff; font-size: 17px;">Maison Mizuno</span></div>
 		</div>
 		<div class="eltdf-cta-button-holder" >
-			<div class="eltdf-cta-button"><a itemprop="url" href="#" target="_self" style="color: #C78665;background-color: #FFFFFF" class="eltdf-btn eltdf-btn-medium eltdf-btn-solid" >    <span class="eltdf-btn-text">Detalhes</span>                <span class="eltdf-btn-line eltdf-btn-line-top"></span>        <span class="eltdf-btn-line eltdf-btn-line-right"></span>        <span class="eltdf-btn-line eltdf-btn-line-bottom"></span>        <span class="eltdf-btn-line eltdf-btn-line-left"></span>    	</a></div>
+			<div class="eltdf-cta-button"><a itemprop="url" href="loja.html" target="_self" style="color: #C78665;background-color: #FFFFFF" class="eltdf-btn eltdf-btn-medium eltdf-btn-solid" >    <span class="eltdf-btn-text">Ver lista de presentes</span>                <span class="eltdf-btn-line eltdf-btn-line-top"></span>        <span class="eltdf-btn-line eltdf-btn-line-right"></span>        <span class="eltdf-btn-line eltdf-btn-line-bottom"></span>        <span class="eltdf-btn-line eltdf-btn-line-left"></span>    	</a></div>
 		</div>
 	</div>
 </div>		</div>
@@ -1696,7 +1915,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-section-title-holder  eltdf-st-standard eltdf-st-with-dots " style="text-align: center">
 	<div class="eltdf-st-inner">
         <div class="eltdf-st-image" style="margin-bottom: -24px">
-            <img width="87" height="63" src="wp-content/uploads/2018/10/section-title-img-7.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
+            <img width="140" height="140" src="media/jp/section-title-branch.png" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" />        </div>
 					<h2 class="eltdf-st-title" >
 				<span class="eltdf-st-title-word">Manual</span> <span class="eltdf-st-title-word">do</span> <span class="eltdf-st-title-word">convidado</span>			</h2>
 							<span class="eltdf-st-text" >
@@ -1763,6 +1982,76 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								</span>
 							</li>
 						</ul>
+					</div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-jp-dress-code-title eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="jp-dress-code-title" data-element_type="section" id="dress-code">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-jp-dress-code-title-col" data-id="jp-dress-code-title-col" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-jp-dress-code-title-widget elementor-widget elementor-widget-eltdf_section_title" data-id="jp-dress-code-title-widget" data-element_type="widget" data-widget_type="eltdf_section_title.default">
+				<div class="elementor-widget-container">
+			<div class="eltdf-section-title-holder eltdf-st-standard eltdf-st-with-dots" style="text-align: center">
+	<div class="eltdf-st-inner">
+        <div class="eltdf-st-image" style="margin-bottom: -24px">
+            <img width="140" height="140" src="media/jp/section-title-branch.png" class="attachment-full size-full" alt="" decoding="async" loading="lazy" />        </div>
+					<h2 class="eltdf-st-title" >
+				<span class="eltdf-st-title-word">Dress</span> <span class="eltdf-st-title-word">Code</span>			</h2>
+			</div>
+</div>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-jp-dress-code-content eltdf-elementor-row-grid-section elementor-section-boxed elementor-section-height-default elementor-section-height-default eltdf-parallax-row-no eltdf-content-aligment-left eltdf-disabled-bg-image-bellow-no" data-id="jp-dress-code-content" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-jp-dress-code-content-col" data-id="jp-dress-code-content-col" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-jp-dress-code-text elementor-widget elementor-widget-text-editor" data-id="jp-dress-code-text" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="jp-dress-code">
+						<p class="jp-dress-code__tagline">Passeio completo / Esporte fino</p>
+						<div class="jp-dress-code__grid">
+							<div class="jp-dress-code__content">
+								<div class="jp-dress-code__block">
+									<h3 class="jp-dress-code__heading">Para elas</h3>
+									<p class="jp-dress-code__text">Vestidos midi, longos ou macacões elegantes de festa, adequados para a ocasião</p>
+								</div>
+								<div class="jp-dress-code__block">
+									<h3 class="jp-dress-code__heading">Para eles</h3>
+									<p class="jp-dress-code__text">Trajes sociais e elegantes, como terno completo ou camisa social com calça de alfaiataria. Tênis ou sapato casual social são uma boa escolha.</p>
+								</div>
+								<div class="jp-dress-code__reminder">
+									<h3 class="jp-dress-code__heading">Lembrete especial</h3>
+									<ul class="jp-dress-code__reminder-list">
+										<li>
+											<span class="jp-dress-code__color jp-dress-code__color--white" aria-hidden="true"></span>
+											<span class="jp-dress-code__reminder-text">A cor <strong>branca</strong> é reservada para a noiva.</span>
+										</li>
+										<li>
+											<span class="jp-dress-code__color jp-dress-code__color--navy" aria-hidden="true"></span>
+											<span class="jp-dress-code__reminder-text">O <strong>azul-marinho</strong> foi escolhido para as madrinhas.</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<figure class="jp-dress-code__figure">
+								<img src="media/jp/dress-code-reference.jpg" width="823" height="549" alt="Referência ilustrativa de traje esporte fino" decoding="async" loading="lazy" />
+							</figure>
+						</div>
 					</div>
 				</div>
 				</div>
