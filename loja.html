@@ -403,6 +403,52 @@ window.addEventListener('load',function(){playAll();setTimeout(playAll,300);setT
 .eltdf-pl-holder{padding:40px 0 80px;}
 .eltdf-title-holder{border-bottom:1px solid #e6e6e6;}
 .jp-shop-page .eltdf-page-header{border-bottom:1px solid #e6e6e6;}
+.jp-shop-info{
+max-width:1140px;
+margin:0 auto 24px;
+padding:0 24px;
+}
+.jp-shop-info__inner{
+padding:28px 32px;
+background:#fff;
+border:1px solid #e8e8e8;
+border-radius:4px;
+text-align:center;
+}
+.jp-shop-info__label{
+margin:0 0 12px;
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:700;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#bf7b5d;
+}
+.jp-shop-info__text{
+margin:0;
+font-family:Cormorant,serif;
+font-size:21px;
+font-style:italic;
+line-height:1.55;
+color:#3c4860;
+}
+.jp-shop-info__list{
+margin:16px 0 0;
+padding:0;
+list-style:none;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px 24px;
+}
+.jp-shop-info__item{
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:600;
+letter-spacing:.06em;
+text-transform:uppercase;
+color:#4a6785;
+}
 .jp-palette{
 max-width:1140px;
 margin:0 auto 32px;
@@ -721,6 +767,22 @@ font-size:10px;
 margin-top:48px;
 padding-top:32px;
 }
+.jp-shop-info{
+margin-bottom:20px;
+padding:0 12px;
+}
+.jp-shop-info__inner{
+padding:22px 18px;
+}
+.jp-shop-info__text{
+font-size:18px;
+}
+.jp-shop-info__list{
+gap:8px 14px;
+}
+.jp-shop-info__item{
+font-size:10px;
+}
 .jp-palette{
 margin-bottom:24px;
 padding:0 12px;
@@ -973,6 +1035,19 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			<div class="eltdf-page-content-holder eltdf-grid-col-12">
 				<div class="eltdf-pl-holder eltdf-grid-list eltdf-disable-bottom-space eltdf-standard-layout eltdf-three-columns eltdf-normal-space eltdf-info-below-image ">
 	<div class="eltdf-pl-outer eltdf-outer-space">
+		<section class="jp-shop-info" aria-label="Informações sobre a compra">
+			<div class="jp-shop-info__inner">
+				<p class="jp-shop-info__label">Compra segura</p>
+				<p class="jp-shop-info__text">Vocês podem comprar no site com segurança, via InfinitePay, por PIX ou cartão de crédito parcelado sem juros. O presente chega direto para os noivos e, após a compra, os dados não ficam salvos.</p>
+				<ul class="jp-shop-info__list">
+					<li class="jp-shop-info__item">InfinitePay</li>
+					<li class="jp-shop-info__item">PIX</li>
+					<li class="jp-shop-info__item">Cartão parcelado sem juros</li>
+					<li class="jp-shop-info__item">Entrega direta aos noivos</li>
+					<li class="jp-shop-info__item">Dados não salvos</li>
+				</ul>
+			</div>
+		</section>
 		<section class="jp-palette" aria-label="Paleta de cores dos presentes">
 			<div class="jp-palette__inner">
 				<p class="jp-palette__label">Paleta de cores</p>
