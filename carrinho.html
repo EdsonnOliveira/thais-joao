@@ -1645,6 +1645,9 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				var defaults = cart.getDefaultGiftMessage(items);
 				giftMessageState = stored || defaults;
 				giftMessageState.presente = defaults.presente;
+				if (giftMessageState.de === 'Nome de teste') {
+					giftMessageState.de = '';
+				}
 				if (!String(giftMessageState.de || '').trim()) {
 					giftMessageState.de = defaults.de;
 				}

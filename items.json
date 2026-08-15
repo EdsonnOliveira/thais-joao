@@ -1,15 +1,5 @@
 [
   {
-    "id": "test",
-    "numero": 0,
-    "produto": "Presente teste - Pagamento",
-    "preco": "R$ 1,00",
-    "preco_valor": 1.0,
-    "imagem": "media/jp/logo-black.png",
-    "pagina_pdf": 0,
-    "shop_file": "logo-black.png"
-  },
-  {
     "id": "01",
     "numero": 1,
     "produto": "Philips Walita Airfryer Forno Série 5000 - Fritadeira sem Óleo 12L, Janela Transparente, Tela Touch com 10 Programas, Aquecimento Rápido 1900W, Timer 24h, Acessórios Multifuncionais, 220v (AI551-08)",

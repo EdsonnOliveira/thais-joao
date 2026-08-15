@@ -457,7 +457,7 @@
       .join(', ');
     return {
       cardId: VIRTUAL_CARDS[0].id,
-      de: 'Nome de teste',
+      de: '',
       presente: presente,
       mensagem: '',
     };
