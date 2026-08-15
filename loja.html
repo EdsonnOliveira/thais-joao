@@ -320,6 +320,26 @@ max-height:110px;width:auto;height:auto;
 .eltdf-mobile-header img{
 max-height:70px;width:auto;height:auto;
 }
+.jp-site-music-toggle{
+position:fixed;right:20px;bottom:20px;z-index:99999;display:flex;align-items:center;justify-content:center;width:46px;height:46px;padding:0;border:1px solid rgba(199,134,101,.35);border-radius:50%;background:rgba(255,255,255,.94);color:#c78665;box-shadow:0 10px 28px rgba(60,72,96,.16),0 3px 10px rgba(211,222,227,.55);cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s;
+}
+.jp-site-music-toggle:hover{
+background:#c78665;color:#fff;border-color:#c78665;
+}
+.jp-site-music-toggle svg{
+display:block;width:20px;height:20px;
+}
+.jp-site-music-toggle--playing{
+animation:jp-site-music-pulse 2.4s ease-in-out infinite;
+}
+@keyframes jp-site-music-pulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.04);}
+}
+@media (max-width:680px){
+.jp-site-music-toggle{right:14px;bottom:14px;width:42px;height:42px;}
+.jp-site-music-toggle svg{width:18px;height:18px;}
+}
 </style>
 <script id="jp-media-script">
 (function(){
@@ -1521,6 +1541,7 @@ wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 		if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
 	</script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2306b9119979a7f',t:'MTc4NTM3MzE2MQ=='};var a=document.createElement('script');a.src="#";document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script type="text/javascript" src="media/jp/jp-site-music.js"></script>
 
 </body>
 </html>

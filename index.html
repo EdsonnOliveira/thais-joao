@@ -246,7 +246,15 @@ rs-slide[data-key="rs-25"] .rev-slidebg{
 object-position:center 38%!important;
 }
 #curiosidades{
-position:relative;overflow:visible;--jp-curiosities-blue-h:680px;--jp-curiosities-card-w:390px;--jp-curiosities-card-overlap:60px;
+position:relative;overflow:visible;--jp-curiosities-blue-h:680px;--jp-curiosities-card-w:390px;--jp-curiosities-card-overlap:40px;--jp-curiosities-photo-w:272px;
+}
+@keyframes jp-polaroid-float-left{
+0%,100%{transform:translateY(0) rotate(-7deg);}
+50%{transform:translateY(-14px) rotate(-5deg);}
+}
+@keyframes jp-polaroid-float-right{
+0%,100%{transform:translateY(0) rotate(6deg);}
+50%{transform:translateY(-14px) rotate(4deg);}
 }
 #curiosidades .elementor-element-819abf2 .elementor-column-wrap,
 #curiosidades .elementor-widget-wrap{
@@ -271,8 +279,8 @@ min-height:960px!important;
 #curiosidades rs-layer[id="slider-12-slide-28-layer-1"]{
 height:680px!important;min-height:680px!important;
 }
-.jp-curiosities-mobile-title{
-display:block;position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);width:max-content;max-width:min(400px,92vw);font-family:'LearningCurve',cursive;font-size:38px;line-height:1.08;color:#121f38;text-align:center;margin:0;white-space:nowrap;
+.jp-curiosities-title{
+display:block;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:min(760px,92vw);max-width:760px;pointer-events:auto;z-index:22;text-align:center;
 }
 .jp-curiosities__list{
 list-style:none;margin:0;padding:0;
@@ -287,16 +295,16 @@ margin-bottom:0;
 content:attr(data-num);position:absolute;left:0;top:0;font-family:Muli,sans-serif;font-size:15px;font-weight:700;font-style:normal;color:#bf7b5d;
 }
 .jp-curiosities-band__side{
-position:absolute;top:50%;transform:translateY(-50%);width:205px;pointer-events:none;z-index:2;
+position:absolute;top:50%;width:auto;pointer-events:none;z-index:2;
 }
 .jp-curiosities-band__side--left{
-left:2%;
+left:0;transform:translateY(-52%) translateX(-16px);
 }
 .jp-curiosities-band__side--right{
-right:2%;
+right:0;transform:translateY(-48%) translateX(16px);
 }
 #curiosidades .jp-curiosities-card{
-position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;height:auto;min-height:calc(var(--jp-curiosities-blue-h) + (var(--jp-curiosities-card-overlap) * 2));max-height:none;margin:0;padding:52px 40px 56px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;background:#fff;border-radius:2px;box-shadow:0 32px 64px rgba(60,72,96,.18),0 14px 32px rgba(60,72,96,.11),0 4px 14px rgba(211,222,227,.7);box-sizing:border-box;text-align:left;opacity:1!important;transform:none!important;pointer-events:auto;z-index:21;overflow:visible;
+position:relative;top:auto;right:auto;bottom:auto;left:auto;width:100%;height:auto;min-height:calc(var(--jp-curiosities-blue-h) + (var(--jp-curiosities-card-overlap) * 2));max-height:none;margin:0;padding:44px 36px 48px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;background:#fff;border-radius:2px;box-shadow:0 32px 64px rgba(60,72,96,.18),0 14px 32px rgba(60,72,96,.11),0 4px 14px rgba(211,222,227,.7);box-sizing:border-box;text-align:left;opacity:1!important;transform:none!important;pointer-events:auto;z-index:21;overflow:visible;
 }
 .jp-curiosities-card .jp-curiosities__list{
 width:100%;flex:1;display:flex;flex-direction:column;justify-content:space-between;
@@ -304,40 +312,26 @@ width:100%;flex:1;display:flex;flex-direction:column;justify-content:space-betwe
 #curiosidades .jp-curiosities-card .jp-curiosities__item{
 margin-bottom:0;line-height:1.62;
 }
-.jp-polaroid{
-background:#fff;padding:10px 10px 42px;box-shadow:0 8px 24px rgba(60,72,96,.14);
+#curiosidades .jp-polaroid{
+width:var(--jp-curiosities-photo-w);margin:0;padding:10px 10px 36px;background:#fff;box-shadow:0 18px 42px rgba(60,72,96,.22),0 8px 24px rgba(60,72,96,.14),0 2px 10px rgba(211,222,227,.6);
 }
-.jp-polaroid img{
-display:block;width:100%;height:auto;object-fit:cover;
+#curiosidades .jp-polaroid img{
+display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;box-shadow:none;
 }
-.jp-polaroid figcaption{
-margin-top:8px;text-align:center;font-family:'LearningCurve',cursive;font-size:22px;color:#121f38;line-height:1;
+#curiosidades .jp-polaroid--left{
+animation:jp-polaroid-float-left 5.5s ease-in-out infinite;
 }
-.jp-polaroid--left{
-width:182px;transform:rotate(-7deg);
+#curiosidades .jp-polaroid--left img{
+object-position:center 28%;
 }
-.jp-polaroid--left img{
-aspect-ratio:3/4;
+#curiosidades .jp-polaroid--right{
+margin-left:auto;animation:jp-polaroid-float-right 5.5s ease-in-out infinite;animation-delay:1.1s;
 }
-.jp-polaroid--left-alt{
-width:162px;margin:24px 0 0;transform:rotate(5deg);overflow:hidden;
+#curiosidades .jp-polaroid--right img{
+object-position:center 22%;
 }
-.jp-polaroid--left-alt img{
-aspect-ratio:4/5;object-fit:cover;object-position:center 35%;
-}
-.jp-polaroid--right{
-width:192px;margin-left:auto;transform:rotate(8deg);
-}
-.jp-polaroid--right img{
-aspect-ratio:3/4;object-position:center top;
-}
-.jp-polaroid--right-alt{
-width:162px;margin:24px 0 0 auto;transform:rotate(-4deg);
-}
-.jp-polaroid--right-alt img{
-aspect-ratio:1/1;
-}
-#curiosidades rs-layer[id="slider-12-slide-28-layer-4"]{
+#curiosidades rs-layer[id="slider-12-slide-28-layer-4"],
+#curiosidades rs-layer[id="slider-12-slide-28-layer-6"]{
 display:none!important;
 }
 #curiosidades rs-layer[id="slider-12-slide-28-layer-8"]{
@@ -368,12 +362,10 @@ flex:none;display:block;justify-content:flex-start;
 #curiosidades .jp-curiosities-card .jp-curiosities__item{
 margin-bottom:12px;line-height:1.45;
 }
-#curiosidades .jp-curiosities-band__side--left{display:flex!important;flex-direction:column;justify-content:center;align-items:center;padding:0 16px 24px;}
-#curiosidades .jp-curiosities-band__side--left .jp-polaroid{display:block;width:min(182px,42vw);max-width:182px;margin:0!important;}
-#curiosidades .jp-curiosities-band__side--left .jp-polaroid--left-alt{margin-top:24px!important;}
-#curiosidades .jp-curiosities-band__side--right{display:flex!important;flex-direction:column;justify-content:center;align-items:center;padding:0 16px 24px;}
-#curiosidades .jp-curiosities-band__side--right .jp-polaroid{display:block;width:min(192px,42vw);max-width:192px;margin:0!important;}
-#curiosidades .jp-curiosities-band__side--right .jp-polaroid--right-alt{margin-top:24px!important;}
+#curiosidades .jp-curiosities-band__side--left{display:flex!important;flex-direction:column;justify-content:center;align-items:flex-start;padding:0;}
+#curiosidades .jp-curiosities-band__side--left .jp-polaroid{display:block;width:min(var(--jp-curiosities-photo-w),42vw);max-width:var(--jp-curiosities-photo-w);margin:0!important;}
+#curiosidades .jp-curiosities-band__side--right{display:flex!important;flex-direction:column;justify-content:center;align-items:flex-end;padding:0;}
+#curiosidades .jp-curiosities-band__side--right .jp-polaroid{display:block;width:min(var(--jp-curiosities-photo-w),42vw);max-width:var(--jp-curiosities-photo-w);margin:0!important;}
 }
 @media (max-width:768px){
 #curiosidades #rev_slider_12_2_wrapper,
@@ -384,14 +376,9 @@ min-height:auto!important;height:auto!important;
 height:120px!important;min-height:120px!important;
 }
 #curiosidades rs-layer[id="slider-12-slide-28-layer-4"],
+#curiosidades rs-layer[id="slider-12-slide-28-layer-6"],
 #curiosidades rs-layer[id="slider-12-slide-28-layer-8"]{
 display:none!important;
-}
-#curiosidades rs-layer[id="slider-12-slide-28-layer-6"]{
-transform:none!important;top:auto!important;
-}
-.jp-curiosities-mobile-title{
-display:block;position:relative;left:auto;bottom:auto;transform:none;width:auto;max-width:none;font-family:'LearningCurve',cursive;font-size:42px;line-height:1.15;color:#121f38;text-align:center;margin:0 0 22px;white-space:normal;
 }
 #curiosidades .elementor-widget-slider_revolution,
 #curiosidades .wp-block-themepunch-revslider{
@@ -408,6 +395,9 @@ position:relative;left:auto;right:auto;top:auto;transform:none;display:flex;flex
 }
 #curiosidades .jp-curiosities-band__content{
 position:relative;left:auto;top:auto;transform:none;width:100%;max-width:640px;margin:0 auto;padding:28px 20px 16px;max-height:none;order:1;
+}
+#curiosidades .jp-curiosities-title{
+display:block;position:relative;left:auto;bottom:auto;transform:none;width:100%;max-width:none;margin:0 0 24px;
 }
 #curiosidades .jp-curiosities-card{
 width:100%;min-height:0;max-height:none;margin:0;padding:28px 24px 32px;
@@ -427,31 +417,15 @@ order:4;
 .jp-curiosities-band__side{
 display:flex!important;flex-direction:column;position:relative;top:auto;right:auto;left:auto;transform:none;width:100%;justify-content:center;align-items:center;gap:0;padding:8px 16px 32px;pointer-events:auto;
 }
-.jp-polaroid--left{
-width:min(182px,46vw);max-width:182px;margin:0!important;
+#curiosidades .jp-polaroid--left,#curiosidades .jp-polaroid--right{
+animation:none;width:min(var(--jp-curiosities-photo-w),56vw);max-width:var(--jp-curiosities-photo-w);margin:0!important;
 }
-.jp-polaroid--left-alt{
-width:min(162px,42vw);max-width:162px;margin:24px 0 0!important;
-}
-.jp-polaroid--right{
-width:min(192px,46vw);max-width:192px;margin:0!important;
-}
-.jp-polaroid--right-alt{
-width:min(162px,42vw);max-width:162px;margin:24px 0 0!important;
-}
-.jp-polaroid--left{transform:rotate(-4deg);}
-.jp-polaroid--left-alt{transform:rotate(3deg);}
-.jp-polaroid--right{transform:rotate(4deg);}
-.jp-polaroid--right-alt{transform:rotate(-3deg);}
+#curiosidades .jp-polaroid--left{transform:rotate(-4deg);}
+#curiosidades .jp-polaroid--right{transform:rotate(4deg);}
 .jp-curiosities__item{font-size:19px;padding-left:26px;margin-bottom:12px;}
 }
 @media (max-width:480px){
-.jp-curiosities-mobile-title{font-size:38px;}
 .jp-curiosities__item{font-size:18px;padding-left:22px;margin-bottom:10px;}
-.jp-polaroid--left{width:min(182px,52vw);max-width:none;}
-.jp-polaroid--left-alt{width:min(162px,48vw);max-width:none;}
-.jp-polaroid--right{width:min(192px,52vw);max-width:none;}
-.jp-polaroid--right-alt{width:min(162px,48vw);max-width:none;}
 }
 .jp-guest-manual{
 max-width:760px;margin:0 auto;padding:10px 20px 48px;text-align:center;
@@ -692,10 +666,10 @@ display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hi
 margin-top:auto;padding-top:14px;
 }
 .elementor-827 .elementor-element.elementor-element-3639815{
-padding-top:72px!important;padding-bottom:40px!important;
+padding-top:72px!important;padding-bottom:80px!important;
 }
 #curiosidades{
-margin-top:-32px;margin-bottom:-48px;position:relative;z-index:2;
+margin-top:32px;margin-bottom:0;position:relative;z-index:2;
 }
 #curiosidades #rev_slider_12_2_wrapper,
 #curiosidades #rev_slider_12_2{
@@ -711,7 +685,10 @@ margin-bottom:20px!important;
 display:block;width:140px;height:140px;margin:0 auto;object-fit:contain;
 }
 .elementor-827 .elementor-element.elementor-element-86dff1b{
-padding:0 0 32px 0!important;position:relative;z-index:2;
+padding:56px 0 32px 0!important;position:relative;z-index:2;
+}
+.elementor-827 .elementor-element.elementor-element-86dff1b .eltdf-st-image{
+margin-top:12px!important;
 }
 .elementor-827 .elementor-element.elementor-element-9f54518{
 margin-top:0!important;width:100%;
@@ -781,6 +758,33 @@ max-height:110px;width:auto;height:auto;
 .eltdf-mobile-logo-wrapper img,
 .eltdf-mobile-header img{
 max-height:70px;width:auto;height:auto;
+}
+.jp-site-music-toggle{
+position:fixed;right:20px;bottom:20px;z-index:99999;display:flex;align-items:center;justify-content:center;width:46px;height:46px;padding:0;border:1px solid rgba(199,134,101,.35);border-radius:50%;background:rgba(255,255,255,.94);color:#c78665;box-shadow:0 10px 28px rgba(60,72,96,.16),0 3px 10px rgba(211,222,227,.55);cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s;
+}
+.jp-site-music-toggle:hover{
+background:#c78665;color:#fff;border-color:#c78665;
+}
+.jp-site-music-toggle svg{
+display:block;width:20px;height:20px;
+}
+.jp-site-music-toggle--playing{
+animation:jp-site-music-pulse 2.4s ease-in-out infinite;
+}
+@keyframes jp-site-music-pulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.04);}
+}
+@media (max-width:680px){
+.jp-site-music-toggle{right:14px;bottom:14px;width:42px;height:42px;}
+.jp-site-music-toggle svg{width:18px;height:18px;}
+}
+
+.elementor-element-6f3aae6 .eltdf-single-image-holder .eltdf-si-inner{
+display:inline-block;background:transparent;padding:0;box-shadow:none;
+}
+.elementor-element-6f3aae6 .eltdf-single-image-holder .eltdf-si-inner img{
+display:block;width:100%;height:auto;box-shadow:0 16px 38px rgba(60,72,96,.2),0 8px 22px rgba(60,72,96,.12),0 2px 8px rgba(211,222,227,.55);
 }
 
 .jp-love-timeline{
@@ -858,12 +862,12 @@ width:130px;height:130px;
 padding:56px 0!important;
 }
 #curiosidades{
-margin-bottom:-80px;
+margin-bottom:0;
 }
 }
 @media (max-width:768px){
 #curiosidades{
-margin-top:-32px;margin-bottom:0;
+margin-top:24px;margin-bottom:0;
 }
 #curiosidades #rev_slider_12_2_wrapper,
 #curiosidades #rev_slider_12_2{
@@ -1340,23 +1344,6 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 	<div class="eltdf-team-inner">
 				<div class="eltdf-team-info">
 													<p class="eltdf-team-text" >A cada conversa nos conhecíamos melhor, e a amizade logo deu lugar a um sentimento que crescia de forma natural.</p>
-										<div class="eltdf-team-social-holder">
-											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
-                    <a class="" href="https://www.instagram.com/qodeinteractive/" target="_blank">
-                    <span aria-hidden="true" class="eltdf-icon-font-elegant social_instagram eltdf-icon-element"></span>                    </a>
-            </span>
-</span>
-											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
-                    <a class="" href="https://twitter.com/QodeInteractive" target="_blank">
-                    <span aria-hidden="true" class="eltdf-icon-font-elegant social_twitter eltdf-icon-element"></span>                    </a>
-            </span>
-</span>
-											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
-                    <a class="" href="https://www.facebook.com/QodeInteractive/" target="_blank">
-                    <span aria-hidden="true" class="eltdf-icon-font-elegant social_facebook eltdf-icon-element"></span>                    </a>
-            </span>
-</span>
-									</div>
 					</div>
 	</div>
 </div>		</div>
@@ -1437,23 +1424,6 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 	<div class="eltdf-team-inner">
 				<div class="eltdf-team-info">
 													<p class="eltdf-team-text" >Hoje, nossa maior oração é que Cristo seja o centro do nosso casamento.</p>
-										<div class="eltdf-team-social-holder">
-											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
-                    <a class="" href="https://www.instagram.com/qodeinteractive/" target="_blank">
-                    <span aria-hidden="true" class="eltdf-icon-font-elegant social_instagram eltdf-icon-element"></span>                    </a>
-            </span>
-</span>
-											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
-                    <a class="" href="https://twitter.com/QodeInteractive" target="_blank">
-                    <span aria-hidden="true" class="eltdf-icon-font-elegant social_twitter eltdf-icon-element"></span>                    </a>
-            </span>
-</span>
-											<span class="eltdf-team-icon">    <span class="eltdf-icon-shortcode eltdf-normal   ">
-                    <a class="" href="https://www.facebook.com/QodeInteractive/" target="_blank">
-                    <span aria-hidden="true" class="eltdf-icon-font-elegant social_facebook eltdf-icon-element"></span>                    </a>
-            </span>
-</span>
-									</div>
 					</div>
 	</div>
 </div>		</div>
@@ -1813,11 +1783,20 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 <div class="jp-curiosities-band">
 <div class="jp-curiosities-band__inner">
 <div class="jp-curiosities-band__side jp-curiosities-band__side--left">
-<figure class="jp-polaroid jp-polaroid--left"><img src="media/jp/blog-01.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
-<figure class="jp-polaroid jp-polaroid--left-alt"><img src="media/jp/blog-04.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+<figure class="jp-polaroid jp-polaroid--left"><img src="media/jp/curiosities-polaroid-left.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
 </div>
 <div class="jp-curiosities-band__content">
-<p class="jp-curiosities-mobile-title">Curiosidades sobre os noivos</p>
+<div class="eltdf-section-title-holder eltdf-st-standard eltdf-st-with-dots jp-curiosities-title" style="text-align: center">
+<div class="eltdf-st-inner">
+<div class="eltdf-st-image" style="margin-bottom: -24px">
+<img width="140" height="140" src="media/jp/section-title-branch.png" class="attachment-full size-full" alt="" decoding="async" loading="lazy" />
+</div>
+<h2 class="eltdf-st-title">
+<span class="eltdf-st-title-word">Curiosidades</span> <span class="eltdf-st-title-word">sobre</span> <span class="eltdf-st-title-word">os</span> <span class="eltdf-st-title-word">noivos</span>
+</h2>
+<span class="eltdf-st-text">Pequenos detalhes da nossa história que nos fazem sorrir e nos lembram por que chegamos até aqui.</span>
+</div>
+</div>
 <div class="jp-curiosities-card">
 <ul class="jp-curiosities__list">
 <li class="jp-curiosities__item" data-num="1">Na segunda vez que nos vimos, eu perdi uma aposta e fui obrigada a postar uma foto nossa de mãos dadas no Instagram. Mal imaginávamos que aquela foto era só o começo da nossa história.</li>
@@ -1829,8 +1808,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 </div>
 </div>
 <div class="jp-curiosities-band__side jp-curiosities-band__side--right">
-<figure class="jp-polaroid jp-polaroid--right"><img src="media/jp/blog-02.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
-<figure class="jp-polaroid jp-polaroid--right-alt"><img src="media/jp/blog-03.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
+<figure class="jp-polaroid jp-polaroid--right"><img src="media/jp/curiosities-polaroid-right.jpg" alt="Thaís & João" decoding="async" loading="lazy" /></figure>
 </div>
 </div>
 </div>
@@ -2407,6 +2385,7 @@ wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 		if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
 	</script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2306b9119979a7f',t:'MTc4NTM3MzE2MQ=='};var a=document.createElement('script');a.src="#";document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script type="text/javascript" src="media/jp/jp-site-music.js"></script>
 
 </body>
 </html>
