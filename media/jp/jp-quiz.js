@@ -488,6 +488,94 @@
     });
   }
 
+  function getQuestionPoints(qIndex, targetPlayerId) {
+    var answer = getPlayerAnswer(qIndex, targetPlayerId);
+    return answer ? answer.points_earned : 0;
+  }
+
+  function sortPlayersByQuestion(qIndex) {
+    return players.slice().sort(function (a, b) {
+      var scoreA = getQuestionPoints(qIndex, a.id);
+      var scoreB = getQuestionPoints(qIndex, b.id);
+      if (scoreB !== scoreA) {
+        return scoreB - scoreA;
+      }
+      return a.display_name.localeCompare(b.display_name);
+    });
+  }
+
+  function getQuestionRankPosition(qIndex, targetPlayerId) {
+    var sorted = sortPlayersByQuestion(qIndex);
+    for (var i = 0; i < sorted.length; i += 1) {
+      if (sorted[i].id === targetPlayerId) {
+        return i + 1;
+      }
+    }
+    return 0;
+  }
+
+  function shouldUseQuestionRanking() {
+    return session && (session.status === 'question' || session.status === 'results');
+  }
+
+  function renderQuestionRankingRows(qIndex, highlightId, limit) {
+    var ranked = sortPlayersByQuestion(qIndex).slice(0, limit || 10);
+    if (!ranked.length) {
+      return '<p class="jp-quiz-empty">Ninguém no ranking ainda.</p>';
+    }
+    var maxScore = getQuestionPoints(qIndex, ranked[0].id) || 1;
+    return ranked
+      .map(function (player, index) {
+        var questionScore = getQuestionPoints(qIndex, player.id);
+        var medal = '';
+        if (index === 0 && questionScore > 0) {
+          medal = '🥇';
+        } else if (index === 1 && questionScore > 0) {
+          medal = '🥈';
+        } else if (index === 2 && questionScore > 0) {
+          medal = '🥉';
+        }
+        var width = Math.max(8, Math.round((questionScore / maxScore) * 100));
+        var placeClass = '';
+        if (index === 0 && questionScore > 0) {
+          placeClass = ' jp-quiz-rank__row--gold';
+        } else if (index === 1 && questionScore > 0) {
+          placeClass = ' jp-quiz-rank__row--silver';
+        } else if (index === 2 && questionScore > 0) {
+          placeClass = ' jp-quiz-rank__row--bronze';
+        }
+        var activeClass =
+          highlightId && player.id === highlightId && index > 2
+            ? ' jp-quiz-rank__row--me'
+            : '';
+        return (
+          '<div class="jp-quiz-rank__row' +
+          placeClass +
+          activeClass +
+          '">' +
+          '<span class="jp-quiz-rank__pos">' +
+          (medal || index + 1) +
+          '</span>' +
+          renderPlayerAvatar(player, 'jp-quiz-rank__avatar') +
+          '<div class="jp-quiz-rank__info">' +
+          '<div class="jp-quiz-rank__name">' +
+          escapeHtml(player.display_name) +
+          '</div>' +
+          '<div class="jp-quiz-rank__bar"><span style="width:' +
+          width +
+          '%;background:' +
+          escapeHtml(player.avatar_color) +
+          '"></span></div>' +
+          '</div>' +
+          '<span class="jp-quiz-rank__score">' +
+          questionScore.toLocaleString('pt-BR') +
+          '</span>' +
+          '</div>'
+        );
+      })
+      .join('');
+  }
+
   function renderRankingRows(list, highlightId, limit) {
     var ranked = sortPlayers(list).slice(0, limit || 10);
     if (!ranked.length) {
@@ -590,6 +678,12 @@
         renderBtnIcon('reset') +
         '<span class="jp-quiz-btn__label">Reiniciar quiz</span></button>'
       : '';
+    var qIndex = getCurrentQuestionIndex();
+    var useQuestionRank = shouldUseQuestionRanking();
+    var rankLabel = useQuestionRank ? 'Ranking da pergunta' : 'Jogadores na sala';
+    var rankRows = useQuestionRank
+      ? renderQuestionRankingRows(qIndex, null, 10)
+      : renderRankingRows(players, null, 10);
     return (
       '<aside class="jp-quiz-host">' +
       '<p class="jp-quiz-host__label">Painel do host</p>' +
@@ -600,9 +694,11 @@
       finishButton +
       resetButton +
       '</div>' +
-      '<p class="jp-quiz-host__rank-label">Jogadores na sala</p>' +
+      '<p class="jp-quiz-host__rank-label">' +
+      rankLabel +
+      '</p>' +
       '<div class="jp-quiz-host__rank">' +
-      renderRankingRows(players, null, 10) +
+      rankRows +
       '</div>' +
       '</aside>'
     );
@@ -848,14 +944,11 @@
       '</div>' +
       '</div>' +
       '<div class="jp-quiz-rank jp-quiz-rank--panel">' +
-      '<h3 class="jp-quiz-rank__title">Ranking</h3>' +
-      renderRankingRows(players, playerId, 10) +
+      '<h3 class="jp-quiz-rank__title">Ranking da pergunta</h3>' +
+      renderQuestionRankingRows(qIndex, playerId, 10) +
       (!isHost && playerRecord
         ? '<p class="jp-quiz-rank__me">Sua posição: <strong>#' +
-          (sortPlayers(players).findIndex(function (p) {
-            return p.id === playerRecord.id;
-          }) +
-            1) +
+          getQuestionRankPosition(qIndex, playerRecord.id) +
           '</strong></p>'
         : '') +
       '</div>' +
@@ -1054,6 +1147,15 @@
     var myAnswerSig = myAnswer
       ? myAnswer.selected_option + ':' + myAnswer.points_earned
       : 'none';
+    var questionAnswerSig = answers
+      .filter(function (answer) {
+        return answer.question_index === qIndex;
+      })
+      .map(function (answer) {
+        return answer.player_id + ':' + answer.points_earned;
+      })
+      .sort()
+      .join('|');
     return [
       session.status,
       qIndex,
@@ -1062,6 +1164,7 @@
       playerSig,
       answers.length,
       myAnswerSig,
+      questionAnswerSig,
     ].join('::');
   }
 
@@ -1209,23 +1312,29 @@
     patchPlayersCountBadge();
     var hostRank = appNode.querySelector('.jp-quiz-host__rank');
     if (hostRank) {
-      hostRank.innerHTML = renderRankingRows(players, null, 10);
+      var qIndex = getCurrentQuestionIndex();
+      hostRank.innerHTML = shouldUseQuestionRanking()
+        ? renderQuestionRankingRows(qIndex, null, 10)
+        : renderRankingRows(players, null, 10);
+    }
+    var hostRankLabel = appNode.querySelector('.jp-quiz-host__rank-label');
+    if (hostRankLabel) {
+      hostRankLabel.textContent = shouldUseQuestionRanking()
+        ? 'Ranking da pergunta'
+        : 'Jogadores na sala';
     }
     var rankPanel = appNode.querySelector('.jp-quiz-rank--panel');
     if (rankPanel && session.status === 'results') {
-      var qIndex = getCurrentQuestionIndex();
-      var myAnswer = playerId ? getPlayerAnswer(qIndex, playerId) : null;
+      var resultsQIndex = getCurrentQuestionIndex();
+      var myAnswer = playerId ? getPlayerAnswer(resultsQIndex, playerId) : null;
       var points = myAnswer ? myAnswer.points_earned : 0;
       var rankHtml =
-        '<h3 class="jp-quiz-rank__title">Ranking</h3>' +
-        renderRankingRows(players, playerId, 10);
+        '<h3 class="jp-quiz-rank__title">Ranking da pergunta</h3>' +
+        renderQuestionRankingRows(resultsQIndex, playerId, 10);
       if (playerRecord && !isHost) {
         rankHtml +=
           '<p class="jp-quiz-rank__me">Sua posição: <strong>#' +
-          (sortPlayers(players).findIndex(function (p) {
-            return p.id === playerRecord.id;
-          }) +
-            1) +
+          getQuestionRankPosition(resultsQIndex, playerRecord.id) +
           '</strong></p>';
       }
       rankPanel.innerHTML = rankHtml;
