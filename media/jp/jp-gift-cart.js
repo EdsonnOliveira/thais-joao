@@ -1,6 +1,11 @@
 (function (window) {
   var STORAGE_KEY = 'jp_gift_cart_v1';
   var GIFT_MESSAGE_KEY = 'jp_gift_message_v1';
+  var SUPABASE_URL = 'https://mghmldhsdtbsawcmwuet.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_x4ncGwsOMqCjOZAB3QthrA_ry91d6S6';
+  var purchasedIds = [];
+  var supabaseClient = null;
+  var purchasesChannel = null;
   var VIRTUAL_CARDS = [
     {
       id: '1',
@@ -44,11 +49,12 @@
     {
       id: '5',
       align: 'line',
+      lineShift: -1.1,
       image: 'media/jp/cartoes/cartao-5.png',
       layout: {
-        de: { top: 56, left: 22.1, width: 55, size: 2.8 },
-        presente: { top: 68.3, left: 29.3, width: 42, size: 2.8 },
-        mensagem: { top: 74.7, left: 32.2, width: 40, height: 10, size: 2.5 },
+        de: { top: 65.7, left: 22.1, width: 55, size: 2.8 },
+        presente: { top: 76.5, left: 29.3, width: 42, size: 2.8 },
+        mensagem: { top: 82.3, left: 32.2, width: 40, height: 10, size: 2.5 },
       },
     },
     {
@@ -65,11 +71,12 @@
     {
       id: '7',
       align: 'line',
+      lineShift: -1,
       image: 'media/jp/cartoes/cartao-7.png',
       layout: {
-        de: { top: 64.2, left: 18.7, width: 55, size: 2.8 },
-        presente: { top: 74.7, left: 26.4, width: 42, size: 2.8 },
-        mensagem: { top: 80.3, left: 29.2, width: 40, height: 10, size: 2.5 },
+        de: { top: 65.5, left: 18.7, width: 55, size: 2.8 },
+        presente: { top: 76.2, left: 26.4, width: 42, size: 2.8 },
+        mensagem: { top: 81.8, left: 29.2, width: 40, height: 10, size: 2.5 },
       },
     },
     {
@@ -107,6 +114,110 @@
       style: 'currency',
       currency: 'BRL',
     });
+  }
+
+  function getSupabaseClient() {
+    if (supabaseClient) {
+      return supabaseClient;
+    }
+    if (!window.supabase || !window.supabase.createClient) {
+      return null;
+    }
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    return supabaseClient;
+  }
+
+  function fetchPurchasedIds() {
+    var client = getSupabaseClient();
+    if (!client) {
+      return Promise.resolve(purchasedIds.slice());
+    }
+    return client
+      .from('gift_purchases')
+      .select('item_id')
+      .then(function (result) {
+        if (result.error) {
+          return purchasedIds.slice();
+        }
+        purchasedIds = (result.data || []).map(function (row) {
+          return String(row.item_id);
+        });
+        window.dispatchEvent(new CustomEvent('jp-purchases-updated'));
+        return purchasedIds.slice();
+      });
+  }
+
+  function isPurchased(id) {
+    return purchasedIds.indexOf(String(id)) !== -1;
+  }
+
+  function markItemsPurchased(items, customer) {
+    var client = getSupabaseClient();
+    if (!client || !items.length) {
+      return Promise.resolve(purchasedIds.slice());
+    }
+    var rows = items
+      .filter(function (item) {
+        return !isPurchased(item.id);
+      })
+      .map(function (item) {
+        return {
+          item_id: String(item.id),
+          guest_name:
+            customer && customer.name ? String(customer.name).substring(0, 100) : null,
+          guest_email:
+            customer && customer.email ? String(customer.email).substring(0, 100) : null,
+        };
+      });
+    if (!rows.length) {
+      return Promise.resolve(purchasedIds.slice());
+    }
+    return client
+      .from('gift_purchases')
+      .upsert(rows, { onConflict: 'item_id', ignoreDuplicates: true })
+      .then(function (result) {
+        if (result.error) {
+          return Promise.reject(result.error);
+        }
+        rows.forEach(function (row) {
+          if (purchasedIds.indexOf(row.item_id) === -1) {
+            purchasedIds.push(row.item_id);
+          }
+        });
+        window.dispatchEvent(new CustomEvent('jp-purchases-updated'));
+        return purchasedIds.slice();
+      });
+  }
+
+  function removePurchasedFromCart() {
+    var items = readCart().filter(function (item) {
+      return !isPurchased(item.id);
+    });
+    if (items.length !== readCart().length) {
+      writeCart(items);
+    }
+  }
+
+  function subscribePurchases(onUpdate) {
+    var client = getSupabaseClient();
+    if (!client || purchasesChannel) {
+      return;
+    }
+    purchasesChannel = client
+      .channel('jp-gift-purchases')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'gift_purchases' },
+        function () {
+          fetchPurchasedIds().then(function () {
+            removePurchasedFromCart();
+            if (typeof onUpdate === 'function') {
+              onUpdate();
+            }
+          });
+        },
+      )
+      .subscribe();
   }
 
   function readCart() {
@@ -156,6 +267,9 @@
 
   function addItem(item) {
     var normalized = normalizeItem(item);
+    if (isPurchased(normalized.id)) {
+      return false;
+    }
     var items = readCart();
     if (items.some(function (entry) { return entry.id === normalized.id; })) {
       return false;
@@ -247,9 +361,20 @@
     });
   }
 
+  function getInfinitePaySettings(config, source) {
+    var section = (config || {})[source] || (config || {}).credit_card || {};
+    return {
+      handle: String(section.handle || '').trim(),
+      redirectUrl: String(section.redirect_url || '').trim(),
+      webhookUrl: String(section.webhook_url || '').trim(),
+    };
+  }
+
   function createInfinityPayCheckout(config, cartItems, options) {
-    var creditCard = config.credit_card || {};
-    var handle = String(creditCard.handle || '').trim();
+    var opts = options || {};
+    var source = String(opts.handleSource || 'credit_card');
+    var settings = getInfinitePaySettings(config, source);
+    var handle = String(opts.handle || settings.handle).trim();
     if (!handle) {
       return Promise.reject(new Error('handle'));
     }
@@ -261,15 +386,19 @@
       handle: handle,
       items: items,
     };
-    var orderNsu = String((options || {}).orderNsu || '').trim();
+    var orderNsu = String(opts.orderNsu || '').trim();
     if (orderNsu) {
       payload.order_nsu = orderNsu;
     }
-    var redirectUrl = String(creditCard.redirect_url || (options || {}).redirectUrl || '').trim();
+    var redirectUrl = String(opts.redirectUrl || settings.redirectUrl || '').trim();
     if (redirectUrl) {
       payload.redirect_url = redirectUrl;
     }
-    var customer = (options || {}).customer;
+    var webhookUrl = String(opts.webhookUrl || settings.webhookUrl || '').trim();
+    if (webhookUrl) {
+      payload.webhook_url = webhookUrl;
+    }
+    var customer = opts.customer;
     if (customer && customer.name && customer.email) {
       payload.customer = {
         name: String(customer.name).substring(0, 100),
@@ -302,10 +431,27 @@
     return VIRTUAL_CARDS.slice();
   }
 
+  function truncatePresenteLabel(value) {
+    var text = String(value || '').trim();
+    if (!text) {
+      return '';
+    }
+    var spaces = 0;
+    for (var i = 0; i < text.length; i++) {
+      if (text.charAt(i) === ' ') {
+        spaces += 1;
+        if (spaces === 3) {
+          return text.slice(0, i);
+        }
+      }
+    }
+    return text;
+  }
+
   function getDefaultGiftMessage(cartItems) {
     var presente = cartItems
       .map(function (item) {
-        return String(item.produto || '').trim();
+        return truncatePresenteLabel(String(item.produto || '').trim());
       })
       .filter(Boolean)
       .join(', ');
@@ -313,7 +459,7 @@
       cardId: VIRTUAL_CARDS[0].id,
       de: 'Nome de teste',
       presente: presente,
-      mensagem: 'Mensagem de teste',
+      mensagem: '',
     };
   }
 
@@ -446,14 +592,21 @@
     addItem: addItem,
     removeItem: removeItem,
     clearCart: clearCart,
+    fetchPurchasedIds: fetchPurchasedIds,
+    isPurchased: isPurchased,
+    markItemsPurchased: markItemsPurchased,
+    removePurchasedFromCart: removePurchasedFromCart,
+    subscribePurchases: subscribePurchases,
     buildPixPayload: buildPixPayload,
     getPixQrUrl: getPixQrUrl,
     buildInfinityPayItems: buildInfinityPayItems,
+    getInfinitePaySettings: getInfinitePaySettings,
     createInfinityPayCheckout: createInfinityPayCheckout,
     updateBadges: updateBadges,
     getVirtualCards: getVirtualCards,
     getVirtualCardById: getVirtualCardById,
     getDefaultGiftMessage: getDefaultGiftMessage,
+    truncatePresenteLabel: truncatePresenteLabel,
     readGiftMessage: readGiftMessage,
     writeGiftMessage: writeGiftMessage,
     buildGiftMessagePayload: buildGiftMessagePayload,

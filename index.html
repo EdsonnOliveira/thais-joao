@@ -16,7 +16,6 @@
 		<title>Thaís & João</title>
 <meta name='robots' content='max-image-preview:large' />
 
-<link rel='dns-prefetch' href='https://maps.googleapis.com/' />
 <link rel='dns-prefetch' href='fonts.googleapis.com/' />
 <script type="text/javascript">
 window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"wp-includes/js/wp-emoji-release.min.js"}};
@@ -589,6 +588,12 @@ display:block;width:161px;height:161px;margin:0 auto;object-fit:contain;
 .jp-when-where-card .eltdf-btn{
 margin-top:18px;font-size:21px;
 }
+.jp-location-map{
+width:100%;height:555px;
+}
+.jp-location-map__frame{
+width:100%;height:100%;border:0;display:block;
+}
 #historia .eltdf-bl-wrapper .eltdf-blog-list{
 display:flex;flex-wrap:wrap;align-items:stretch;
 }
@@ -850,7 +855,7 @@ padding:8px 16px 36px;
 .jp-when-where{
 padding:0 16px;
 }
-.eltdf-google-map{
+.jp-location-map{
 height:360px!important;
 }
 .elementor-827 .elementor-element.elementor-element-3ad4020{
@@ -2083,163 +2088,17 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							<div class="elementor-widget-wrap">
 						<div class="elementor-element elementor-element-2ba6d2e elementor-widget elementor-widget-eltdf_google_map" data-id="2ba6d2e" data-element_type="widget" data-widget_type="eltdf_google_map.default">
 				<div class="elementor-widget-container">
-			<div class="eltdf-google-map-holder">
-		<div class="eltdf-google-map" id="eltdf-map-1145885" data-addresses='["QNL 06 Chácara 18 Maison Mizuno - Taguatinga, Brasília - DF, 72155-600"]' data-custom-map-style= data-color-overlay= data-saturation= data-lightness= data-zoom=11 data-pin=wp-content/uploads/2018/11/pin-1.png data-unique-id=1145885 data-scroll-wheel=no data-height=555 data-snazzy-map-style=yes></div>
-					<input type="hidden" class="eltdf-snazzy-map" value="`{`
-{
-``featureType``: ``administrative``,
-``elementType``: ``labels.text.fill``,
-``stylers``: `{`
-{
-``color``: ``#5d7e9e``
-}
-`}`
-},
-{
-``featureType``: ``landscape``,
-``elementType``: ``all``,
-``stylers``: `{`
-{
-``color``: ``#f2f2f2``
-}
-`}`
-},
-{
-``featureType``: ``landscape``,
-``elementType``: ``geometry.fill``,
-``stylers``: `{`
-{
-``color``: ``#ffffff``
-}
-`}`
-},
-{
-``featureType``: ``poi``,
-``elementType``: ``all``,
-``stylers``: `{`
-{
-``visibility``: ``off``
-}
-`}`
-},
-{
-``featureType``: ``poi.park``,
-``elementType``: ``geometry.fill``,
-``stylers``: `{`
-{
-``color``: ``#e6f3d6``
-},
-{
-``visibility``: ``on``
-}
-`}`
-},
-{
-``featureType``: ``road``,
-``elementType``: ``all``,
-``stylers``: `{`
-{
-``saturation``: -100
-},
-{
-``lightness``: 45
-},
-{
-``visibility``: ``simplified``
-}
-`}`
-},
-{
-``featureType``: ``road.highway``,
-``elementType``: ``all``,
-``stylers``: `{`
-{
-``visibility``: ``simplified``
-}
-`}`
-},
-{
-``featureType``: ``road.highway``,
-``elementType``: ``geometry.fill``,
-``stylers``: `{`
-{
-``visibility``: ``simplified``
-},
-{
-``color``: ``#f4a8a8``
-}
-`}`
-},
-{
-``featureType``: ``road.highway``,
-``elementType``: ``labels.text``,
-``stylers``: `{`
-{
-``color``: ``#4e4e4e``
-}
-`}`
-},
-{
-``featureType``: ``road.arterial``,
-``elementType``: ``geometry.fill``,
-``stylers``: `{`
-{
-``color``: ``#f4f4f4``
-}
-`}`
-},
-{
-``featureType``: ``road.arterial``,
-``elementType``: ``labels.text.fill``,
-``stylers``: `{`
-{
-``color``: ``#787878``
-}
-`}`
-},
-{
-``featureType``: ``road.arterial``,
-``elementType``: ``labels.icon``,
-``stylers``: `{`
-{
-``visibility``: ``off``
-}
-`}`
-},
-{
-``featureType``: ``transit``,
-``elementType``: ``all``,
-``stylers``: `{`
-{
-``visibility``: ``off``
-}
-`}`
-},
-{
-``featureType``: ``water``,
-``elementType``: ``all``,
-``stylers``: `{`
-{
-``color``: ``#eaf6f8``
-},
-{
-``visibility``: ``on``
-}
-`}`
-},
-{
-``featureType``: ``water``,
-``elementType``: ``geometry.fill``,
-``stylers``: `{`
-{
-``color``: ``#eaf6f8``
-}
-`}`
-}
-`}`"/>
-				<div class="eltdf-google-map-overlay"></div>
+			<div class="eltdf-google-map-holder jp-location-map">
+		<iframe
+			class="jp-location-map__frame"
+			title="Localização Maison Mizuno"
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.5!2d-48.053!3d-15.84!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a332c916d9d1f%3A0xcbc8f2f157ef77ba!2sMaison%20Mizuno!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+			loading="lazy"
+			referrerpolicy="no-referrer-when-downgrade"
+			allowfullscreen
+		></iframe>
 	</div>		</div>
-				</div>
+			</div>
 						</div>
 					</div>
 		</div>
@@ -2361,10 +2220,6 @@ var _wpmejsSettings = {"pluginPath":"\/elementor\/wp-includes\/js\/mediaelement\
 <script type='text/javascript' src='wp-content/plugins/qi-addons-for-elementor/inc/masonry/assets/js/plugins/isotope.pkgd.min.js' id='isotope-js'></script>
 <script type='text/javascript' src='wp-content/plugins/qi-addons-for-elementor/inc/masonry/assets/js/plugins/packery-mode.pkgd.min.js' id='packery-js'></script>
 <script type='text/javascript' src='wp-content/plugins/woocommerce/assets/js/select2/select2.full.min.js' id='select2-js'></script>
-<script type='text/javascript' id='theaisle-elated-google-map-api-js-before'>
-window.eltdfEmptyCallback = function () {};
-</script>
-<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCVMTk7E-eV5ZpPf5MPRfboQg6FP4azCQE&amp;callback=eltdfEmptyCallback&amp;ver=6.1.10' id='theaisle-elated-google-map-api-js'></script>
 <script type='text/javascript' id='theaisle-elated-modules-js-extra'>
 /* <![CDATA[ */
 var eltdfGlobalVars = {"vars":{"eltdfAddForAdminBar":0,"eltdfElementAppearAmount":-100,"eltdfAjaxUrl":"#","sliderNavPrevArrow":"eltdf-custom-arrow-left","sliderNavNextArrow":"eltdf-custom-arrow-right","ppExpand":"Expandir a imagem","ppNext":"Próximo","ppPrev":"Anterior","ppClose":"Fechar","eltdfStickyHeaderHeight":0,"eltdfStickyHeaderTransparencyHeight":70,"eltdfTopBarHeight":0,"eltdfLogoAreaHeight":0,"eltdfMenuAreaHeight":140,"eltdfMobileHeaderHeight":70}};

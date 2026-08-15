@@ -1381,14 +1381,14 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								</div>
 							</section>
 							<h2 class="jp-cart-panel__title">Pagamento</h2>
-							<form class="jp-cart-form" id="jp-checkout-form">
+							<form class="jp-cart-form" id="jp-checkout-form" novalidate>
 								<div class="jp-cart-field">
 									<label for="jp-guest-name">Seu nome</label>
-									<input id="jp-guest-name" name="guestName" type="text" required autocomplete="name" />
+									<input id="jp-guest-name" name="guestName" type="text" autocomplete="name" />
 								</div>
 								<div class="jp-cart-field">
 									<label for="jp-guest-email">Seu e-mail</label>
-									<input id="jp-guest-email" name="guestEmail" type="email" required autocomplete="email" />
+									<input id="jp-guest-email" name="guestEmail" type="email" autocomplete="email" inputmode="email" />
 								</div>
 							</form>
 							<div class="jp-cart-tabs" role="tablist">
@@ -1396,18 +1396,11 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								<button type="button" class="jp-cart-tab" data-tab="card" role="tab">Cartão de crédito</button>
 							</div>
 							<div class="jp-cart-pay-panel" id="jp-pay-pix" role="tabpanel">
-								<div class="jp-cart-pix">
-									<div class="jp-cart-pix__qr" id="jp-pix-qr"></div>
-									<div>
-										<p class="jp-cart-note" id="jp-pix-instructions">Preencha seus dados e finalize para gerar o PIX com o valor total.</p>
-										<p class="jp-cart-note"><strong id="jp-pix-amount"></strong></p>
-										<div class="jp-cart-pix__key">
-											<input id="jp-pix-copy" type="text" readonly />
-											<button type="button" class="jp-cart-pix__copy" id="jp-pix-copy-btn">Copiar PIX</button>
-										</div>
-										<p class="jp-cart-feedback" id="jp-pix-feedback" hidden></p>
-									</div>
-								</div>
+								<p class="jp-cart-card__amount" id="jp-pix-amount"></p>
+								<p class="jp-cart-note">Você será direcionado para pagar com PIX no InfinitePay.</p>
+								<button type="button" class="jp-cart-card__btn" id="jp-pix-pay-btn">Pagar com PIX</button>
+								<p class="jp-cart-feedback" id="jp-pix-feedback" hidden></p>
+								<p class="jp-cart-note" id="jp-pix-fallback" hidden>Configure o handle do InfinitePay em payment-config.json ou use o PDF da lista de presentes.</p>
 							</div>
 							<div class="jp-cart-pay-panel" id="jp-pay-card" role="tabpanel" hidden>
 								<p class="jp-cart-card__amount" id="jp-card-amount"></p>
@@ -1447,6 +1440,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 <link href="fonts.googleapis.com/css-roboto-400.css" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
 
 
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<script type="text/javascript" src="media/jp/jp-gift-cart.js"></script>
 	<script type="text/javascript">
 		(function () {
@@ -1461,12 +1455,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var checkoutBtn = document.getElementById('jp-cart-checkout-btn');
 			var checkoutSection = document.getElementById('pagamentos');
 			var checkoutForm = document.getElementById('jp-checkout-form');
-			var pixQrNode = document.getElementById('jp-pix-qr');
-			var pixCopyNode = document.getElementById('jp-pix-copy');
-			var pixCopyBtn = document.getElementById('jp-pix-copy-btn');
-			var pixFeedbackNode = document.getElementById('jp-pix-feedback');
 			var pixAmountNode = document.getElementById('jp-pix-amount');
-			var pixInstructionsNode = document.getElementById('jp-pix-instructions');
+			var pixPayBtn = document.getElementById('jp-pix-pay-btn');
+			var pixFallbackNode = document.getElementById('jp-pix-fallback');
+			var pixFeedbackNode = document.getElementById('jp-pix-feedback');
 			var cardAmountNode = document.getElementById('jp-card-amount');
 			var cardPayBtn = document.getElementById('jp-card-pay-btn');
 			var cardFallbackNode = document.getElementById('jp-card-fallback');
@@ -1475,6 +1467,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var paymentConfig = null;
 			var activeTab = 'pix';
 			var cardCheckoutLoading = false;
+			var pixCheckoutLoading = false;
 			var giftMessageSubmitted = false;
 			var giftMessageSubmitting = false;
 			var cardGridNode = document.getElementById('jp-card-grid');
@@ -1486,6 +1479,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var cardPresenteInput = document.getElementById('jp-card-presente');
 			var cardMensagemInput = document.getElementById('jp-card-mensagem');
 			var cardPayDefaultLabel = cardPayBtn ? cardPayBtn.textContent : '';
+			var pixPayDefaultLabel = pixPayBtn ? pixPayBtn.textContent : '';
 			var syncGuestToCard = true;
 			var giftMessageState = cart.getDefaultGiftMessage(cart.readCart());
 
@@ -1544,7 +1538,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					cardPreviewDe.textContent = message.de;
 				}
 				if (cardPreviewPresente) {
-					cardPreviewPresente.textContent = message.presente;
+					cardPreviewPresente.textContent = cart.truncatePresenteLabel(message.presente);
 				}
 				if (cardPreviewMensagem) {
 					cardPreviewMensagem.textContent = message.mensagem;
@@ -1594,6 +1588,9 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				giftMessageState.presente = defaults.presente;
 				if (!String(giftMessageState.de || '').trim()) {
 					giftMessageState.de = defaults.de;
+				}
+				if (giftMessageState.mensagem === 'Mensagem de teste') {
+					giftMessageState.mensagem = '';
 				}
 				if (!String(giftMessageState.mensagem || '').trim()) {
 					giftMessageState.mensagem = defaults.mensagem;
@@ -1719,50 +1716,145 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			function updatePaymentPanels(total) {
 				var amountText = cart.formatCurrency(total);
 				if (pixAmountNode) {
-					pixAmountNode.textContent = 'Valor: ' + amountText;
+					pixAmountNode.textContent = amountText;
 				}
 				if (cardAmountNode) {
 					cardAmountNode.textContent = amountText;
 				}
-				if (activeTab === 'pix') {
-					generatePix(total);
-				}
+				updatePixPanel(total);
 				updateCardLink(total);
 			}
 
-			function generatePix(total) {
-				if (!paymentConfig || !pixCopyNode || !pixQrNode) {
+			function getInfinitePayHandle(source) {
+				if (!paymentConfig) {
+					return '';
+				}
+				return cart.getInfinitePaySettings(paymentConfig, source).handle;
+			}
+
+			function updatePixPanel(total) {
+				if (!paymentConfig || !pixPayBtn) {
 					return;
 				}
-				if (checkoutForm && !checkoutForm.reportValidity()) {
+				var handle = getInfinitePayHandle('pix');
+				if (handle) {
+					pixPayBtn.hidden = false;
+					pixPayBtn.disabled = pixCheckoutLoading;
+					if (pixFallbackNode) {
+						pixFallbackNode.hidden = true;
+					}
+					return;
+				}
+				pixPayBtn.hidden = true;
+				if (pixFallbackNode) {
+					pixFallbackNode.hidden = false;
+					pixFallbackNode.innerHTML = 'Pagamento via PIX disponível na <a href="media/jp/lista-de-presente.pdf" target="_blank" rel="noopener">lista de presentes em PDF</a>. Total: <strong>' + cart.escapeHtml(cart.formatCurrency(total)) + '</strong>';
+				}
+			}
+
+			function finalizePurchasedItems(customer, clearCartAfter) {
+				var items = cart.readCart();
+				if (!items.length) {
+					return Promise.resolve();
+				}
+				return cart.markItemsPurchased(items, customer || {}).then(function () {
+					if (clearCartAfter) {
+						cart.clearCart();
+					}
+					cart.removePurchasedFromCart();
+					renderList();
+				});
+			}
+
+			function handlePaymentReturn() {
+				var params = new URLSearchParams(window.location.search);
+				var paid =
+					params.get('pagamento') === 'ok' ||
+					params.get('capture_method') === 'pix' ||
+					params.get('capture_method') === 'credit_card';
+				if (!paid) {
+					return Promise.resolve();
+				}
+				return finalizePurchasedItems(getCheckoutCustomer(), true).then(function () {
+					if (pixFeedbackNode) {
+						pixFeedbackNode.hidden = false;
+						pixFeedbackNode.textContent = 'Pagamento confirmado! Obrigado pelo presente.';
+					}
+					if (checkoutSection) {
+						checkoutSection.hidden = false;
+					}
+					window.history.replaceState({}, document.title, window.location.pathname);
+				});
+			}
+
+			function startInfinitePayCheckout(source) {
+				var isPix = source === 'pix';
+				var payBtn = isPix ? pixPayBtn : cardPayBtn;
+				var feedbackNode = isPix ? pixFeedbackNode : cardFeedbackNode;
+				var defaultLabel = isPix ? pixPayDefaultLabel : cardPayDefaultLabel;
+				if (!paymentConfig || !payBtn || (isPix ? pixCheckoutLoading : cardCheckoutLoading)) {
+					return;
+				}
+				var items = cart.readCart();
+				if (!items.length) {
 					return;
 				}
 				var customer = getCheckoutCustomer();
 				if (!customer) {
+					if (feedbackNode) {
+						feedbackNode.hidden = false;
+						feedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
+					}
 					return;
 				}
+				syncGuestNameToCard();
 				submitGiftMessageIfNeeded(true).then(function () {
-					var payload = cart.buildPixPayload(paymentConfig, total, 'PRESENTE' + Date.now());
-					if (!payload) {
-						pixCopyNode.value = '';
-						pixQrNode.innerHTML = '';
-						if (pixInstructionsNode) {
-							pixInstructionsNode.textContent = 'Configure a chave PIX em payment-config.json para gerar o QR Code.';
-						}
+					if (isPix) {
+						pixCheckoutLoading = true;
+					} else {
+						cardCheckoutLoading = true;
+					}
+					payBtn.disabled = true;
+					payBtn.textContent = 'Gerando pagamento...';
+					if (feedbackNode) {
+						feedbackNode.hidden = true;
+					}
+					return cart.createInfinityPayCheckout(paymentConfig, items, {
+						handleSource: source,
+						orderNsu: 'PRESENTE-' + Date.now(),
+						redirectUrl: getDefaultRedirectUrl(),
+						customer: customer,
+					});
+				}).then(function (checkoutUrl) {
+					window.location.href = checkoutUrl;
+				}).catch(function (error) {
+					if (isPix) {
+						pixCheckoutLoading = false;
+					} else {
+						cardCheckoutLoading = false;
+					}
+					payBtn.disabled = false;
+					payBtn.textContent = defaultLabel;
+					if (error && error.message === 'card-name') {
+						showCardFeedback('Preencha seu nome no cartão virtual antes de pagar.', true);
 						return;
 					}
-					pixCopyNode.value = payload;
-					pixQrNode.innerHTML = '<img src="' + cart.getPixQrUrl(payload) + '" alt="QR Code PIX" width="220" height="220" />';
-					if (pixInstructionsNode) {
-						pixInstructionsNode.textContent = 'Escaneie o QR Code ou copie o código PIX abaixo.';
+					if (error && error.message === 'submit') {
+						return;
 					}
-				}).catch(function (error) {
-					if (error && error.message === 'card-name') {
-						if (pixInstructionsNode) {
-							pixInstructionsNode.textContent = 'Preencha seu nome no cartão virtual antes de gerar o PIX.';
-						}
+					if (feedbackNode) {
+						feedbackNode.hidden = false;
+						feedbackNode.textContent = 'Não foi possível iniciar o pagamento. Tente novamente.';
 					}
 				});
+			}
+
+			function startPixCheckout() {
+				startInfinitePayCheckout('pix');
+			}
+
+			function isValidEmail(value) {
+				return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 			}
 
 			function getCheckoutCustomer() {
@@ -1773,7 +1865,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				var emailInput = checkoutForm.querySelector('#jp-guest-email');
 				var name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : '';
 				var email = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : '';
-				if (!name || !email) {
+				if (!name || !email || !isValidEmail(email)) {
 					return null;
 				}
 				return { name: name, email: email };
@@ -1789,7 +1881,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				if (!paymentConfig || !cardPayBtn) {
 					return;
 				}
-				var handle = String((paymentConfig.credit_card || {}).handle || '').trim();
+				var handle = getInfinitePayHandle('credit_card');
 				if (handle) {
 					cardPayBtn.hidden = false;
 					cardPayBtn.disabled = cardCheckoutLoading;
@@ -1806,59 +1898,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			}
 
 			function startCardCheckout() {
-				if (!paymentConfig || !cardPayBtn || cardCheckoutLoading) {
-					return;
-				}
-				var items = cart.readCart();
-				if (!items.length) {
-					return;
-				}
-				if (checkoutForm && !checkoutForm.reportValidity()) {
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = false;
-						cardFeedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
-					}
-					return;
-				}
-				var customer = getCheckoutCustomer();
-				if (!customer) {
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = false;
-						cardFeedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
-					}
-					return;
-				}
-				syncGuestNameToCard();
-				submitGiftMessageIfNeeded(true).then(function () {
-					cardCheckoutLoading = true;
-					cardPayBtn.disabled = true;
-					cardPayBtn.textContent = 'Gerando pagamento...';
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = true;
-					}
-					return cart.createInfinityPayCheckout(paymentConfig, items, {
-						orderNsu: 'PRESENTE-' + Date.now(),
-						redirectUrl: getDefaultRedirectUrl(),
-						customer: customer,
-					});
-				}).then(function (checkoutUrl) {
-					window.location.href = checkoutUrl;
-				}).catch(function (error) {
-					cardCheckoutLoading = false;
-					cardPayBtn.disabled = false;
-					cardPayBtn.textContent = cardPayDefaultLabel;
-					if (error && error.message === 'card-name') {
-						showCardFeedback('Preencha seu nome no cartão virtual antes de pagar.', true);
-						return;
-					}
-					if (error && error.message === 'submit') {
-						return;
-					}
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = false;
-						cardFeedbackNode.textContent = 'Não foi possível iniciar o pagamento. Tente novamente.';
-					}
-				});
+				startInfinitePayCheckout('credit_card');
 			}
 
 			function setTab(tab) {
@@ -1873,9 +1913,6 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				}
 				if (cardPanel) {
 					cardPanel.hidden = tab !== 'card';
-				}
-				if (tab === 'pix') {
-					generatePix(cart.getTotal());
 				}
 			}
 
@@ -1902,14 +1939,13 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					hydrateGiftMessageForm(cart.readCart());
 					checkoutSection.hidden = false;
 					checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-					generatePix(cart.getTotal());
+					updatePaymentPanels(cart.getTotal());
 				});
 			}
 
 			if (checkoutForm) {
 				checkoutForm.addEventListener('input', function () {
 					syncGuestNameToCard();
-					generatePix(cart.getTotal());
 				});
 			}
 
@@ -1937,37 +1973,31 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				});
 			});
 
+			if (pixPayBtn) {
+				pixPayBtn.addEventListener('click', startPixCheckout);
+			}
+
 			if (cardPayBtn) {
 				cardPayBtn.addEventListener('click', startCardCheckout);
 			}
 
-			if (pixCopyBtn && pixCopyNode && pixFeedbackNode) {
-				pixCopyBtn.addEventListener('click', function () {
-					if (!pixCopyNode.value) {
-						return;
-					}
-					navigator.clipboard.writeText(pixCopyNode.value).then(function () {
-						pixFeedbackNode.hidden = false;
-						pixFeedbackNode.textContent = 'Código PIX copiado.';
-					});
-				});
-			}
-
-			fetch('payment-config.json')
-				.then(function (response) {
-					if (!response.ok) {
-						throw new Error('config');
-					}
-					return response.json();
-				})
-				.then(function (config) {
-					paymentConfig = config;
-					renderList();
-				})
-				.catch(function () {
-					paymentConfig = { pix: {}, credit_card: {} };
-					renderList();
-				});
+			cart.fetchPurchasedIds().then(function () {
+				cart.removePurchasedFromCart();
+				return handlePaymentReturn();
+			}).then(function () {
+				return fetch('payment-config.json');
+			}).then(function (response) {
+				if (!response.ok) {
+					throw new Error('config');
+				}
+				return response.json();
+			}).then(function (config) {
+				paymentConfig = config;
+				renderList();
+			}).catch(function () {
+				paymentConfig = { pix: {}, credit_card: {} };
+				renderList();
+			});
 		})();
 	</script>
 	<script>

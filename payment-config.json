@@ -1,9 +1,9 @@
 {
   "pix": {
-    "key": "",
-    "key_label": "Chave PIX",
-    "holder": "Thais e Joao",
-    "city": "Brasilia"
+    "provider": "infinitepay",
+    "handle": "joao-pedro-ponte",
+    "redirect_url": "",
+    "provider_label": "InfinitePay"
   },
   "credit_card": {
     "provider": "infinitepay",

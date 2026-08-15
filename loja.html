@@ -630,6 +630,41 @@ border-color:#4a6785;
 background:#4a6785;
 color:#fff;
 }
+.jp-gift-card.is-unavailable{
+background:#fafafa;
+border-color:#ececec;
+opacity:.72;
+}
+.jp-gift-card.is-unavailable .jp-gift-card__media,
+.jp-gift-card.is-unavailable .jp-gift-card__body{
+filter:grayscale(.25);
+}
+.jp-gift-card.is-unavailable .jp-gift-card__title,
+.jp-gift-card.is-unavailable .jp-gift-card__price{
+color:#b8bcc4;
+}
+.jp-gift-card__badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+margin:0 0 12px;
+padding:6px 12px;
+font-family:Muli,sans-serif;
+font-size:10px;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
+color:#9aa3b0;
+background:#f3f3f3;
+border:1px solid #e6e6e6;
+}
+.jp-gift-card__btn.is-unavailable{
+background:#ececec;
+border-color:#ececec;
+color:#a8adb8;
+cursor:not-allowed;
+pointer-events:none;
+}
 .jp-cart-bar{
 display:flex;
 justify-content:flex-end;
@@ -1143,6 +1178,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			document.body.className = c;
 		})();
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<script type="text/javascript" src="media/jp/jp-gift-cart.js"></script>
 	<script type="text/javascript">
 		(function () {
@@ -1158,6 +1194,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			toastNode.className = 'jp-gift-toast';
 			toastNode.setAttribute('role', 'status');
 			document.body.appendChild(toastNode);
+			var shopItems = [];
 
 			function showToast(message) {
 				toastNode.textContent = message;
@@ -1168,9 +1205,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			}
 
 			function createCard(item) {
+				var unavailable = cart.isPurchased(item.id);
+				var inCart = !unavailable && cart.hasItem(item.id);
 				var card = document.createElement('article');
-				card.className = 'jp-gift-card';
-				var inCart = cart.hasItem(item.id);
+				card.className = 'jp-gift-card' + (unavailable ? ' is-unavailable' : '');
 				card.innerHTML =
 					'<div class="jp-gift-card__media">' +
 					'<img loading="lazy" width="800" height="800" src="' +
@@ -1180,6 +1218,9 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					'" decoding="async" />' +
 					'</div>' +
 					'<div class="jp-gift-card__body">' +
+					(unavailable
+						? '<span class="jp-gift-card__badge">Indisponível</span>'
+						: '') +
 					'<h3 class="jp-gift-card__title">' +
 					cart.escapeHtml(item.produto) +
 					'</h3>' +
@@ -1187,45 +1228,68 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					cart.escapeHtml(item.preco) +
 					'</p>' +
 					'<button type="button" class="jp-gift-card__btn' +
-					(inCart ? ' is-added' : '') +
-					'">' +
-					(inCart ? 'No carrinho' : 'Adicionar ao carrinho') +
+					(unavailable ? ' is-unavailable' : inCart ? ' is-added' : '') +
+					'"' +
+					(unavailable ? ' disabled' : '') +
+					'>' +
+					(unavailable ? 'Indisponível' : inCart ? 'No carrinho' : 'Adicionar ao carrinho') +
 					'</button>' +
 					'</div>';
-				var button = card.querySelector('.jp-gift-card__btn');
-				if (button) {
-					button.addEventListener('click', function () {
-						if (cart.hasItem(item.id)) {
-							window.location.href = 'carrinho.html';
-							return;
-						}
-						cart.addItem(item);
-						button.classList.add('is-added');
-						button.textContent = 'No carrinho';
-						cart.updateBadges();
-						showToast('Presente adicionado ao carrinho.');
-					});
+				if (!unavailable) {
+					var button = card.querySelector('.jp-gift-card__btn');
+					if (button) {
+						button.addEventListener('click', function () {
+							if (cart.isPurchased(item.id)) {
+								return;
+							}
+							if (cart.hasItem(item.id)) {
+								window.location.href = 'carrinho.html';
+								return;
+							}
+							if (!cart.addItem(item)) {
+								return;
+							}
+							button.classList.add('is-added');
+							button.textContent = 'No carrinho';
+							cart.updateBadges();
+							showToast('Presente adicionado ao carrinho.');
+						});
+					}
 				}
 				return card;
 			}
 
-			fetch('items.json?v=5')
-				.then(function (response) {
-					if (!response.ok) {
-						throw new Error('items');
-					}
-					return response.json();
-				})
-				.then(function (items) {
-					items.forEach(function (item) {
-						grid.appendChild(createCard(item));
-					});
-					cart.updateBadges();
-				})
-				.catch(function () {
-					grid.innerHTML =
-						'<p class="jp-gift-grid__error">Não foi possível carregar a lista de presentes.</p>';
+			function renderGrid() {
+				grid.innerHTML = '';
+				shopItems.forEach(function (item) {
+					grid.appendChild(createCard(item));
 				});
+				cart.updateBadges();
+			}
+
+			function loadShop() {
+				return Promise.all([
+					fetch('items.json?v=6').then(function (response) {
+						if (!response.ok) {
+							throw new Error('items');
+						}
+						return response.json();
+					}),
+					cart.fetchPurchasedIds(),
+				])
+					.then(function (results) {
+						shopItems = results[0];
+						cart.removePurchasedFromCart();
+						renderGrid();
+						cart.subscribePurchases(renderGrid);
+					})
+					.catch(function () {
+						grid.innerHTML =
+							'<p class="jp-gift-grid__error">Não foi possível carregar a lista de presentes.</p>';
+					});
+			}
+
+			loadShop();
 		})();
 	</script>
 	<script>
