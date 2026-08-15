@@ -845,6 +845,32 @@ font-family:Muli,sans-serif;
 font-size:14px;
 color:#3c4860;
 }
+.jp-cart-field.is-invalid input{
+border-color:#b04a4a;
+background:#fff8f8;
+box-shadow:0 0 0 1px #b04a4a;
+}
+.jp-cart-field__required{
+color:#b04a4a;
+}
+.jp-cart-field__error{
+margin:0;
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:700;
+color:#b04a4a;
+}
+.jp-cart-checkout-alert{
+margin:-8px 0 20px;
+padding:12px 14px;
+background:#fff3f3;
+border:1px solid #e8a0a0;
+border-radius:2px;
+font-family:Muli,sans-serif;
+font-size:13px;
+font-weight:700;
+color:#b04a4a;
+}
 .jp-cart-tabs{
 display:flex;
 gap:12px;
@@ -959,6 +985,11 @@ margin:12px 0 0;
 font-family:Muli,sans-serif;
 font-size:12px;
 color:#4a6785;
+}
+.jp-cart-feedback.is-error{
+color:#b04a4a;
+font-size:13px;
+font-weight:700;
 }
 .jp-virtual-card{
 margin-bottom:32px;
@@ -1382,15 +1413,18 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							</section>
 							<h2 class="jp-cart-panel__title">Pagamento</h2>
 							<form class="jp-cart-form" id="jp-checkout-form" novalidate>
-								<div class="jp-cart-field">
-									<label for="jp-guest-name">Seu nome</label>
-									<input id="jp-guest-name" name="guestName" type="text" autocomplete="name" />
+								<div class="jp-cart-field" id="jp-guest-name-field">
+									<label for="jp-guest-name">Seu nome <span class="jp-cart-field__required">*</span></label>
+									<input id="jp-guest-name" name="guestName" type="text" autocomplete="name" placeholder="Ex: Maria Silva" />
+									<p class="jp-cart-field__error" id="jp-guest-name-error" hidden></p>
 								</div>
-								<div class="jp-cart-field">
-									<label for="jp-guest-email">Seu e-mail</label>
-									<input id="jp-guest-email" name="guestEmail" type="email" autocomplete="email" inputmode="email" />
+								<div class="jp-cart-field" id="jp-guest-email-field">
+									<label for="jp-guest-email">Seu e-mail <span class="jp-cart-field__required">*</span></label>
+									<input id="jp-guest-email" name="guestEmail" type="email" autocomplete="email" inputmode="email" placeholder="Ex: maria@email.com" />
+									<p class="jp-cart-field__error" id="jp-guest-email-error" hidden></p>
 								</div>
 							</form>
+							<p class="jp-cart-checkout-alert" id="jp-checkout-alert" hidden role="alert">Preencha nome e e-mail acima para continuar o pagamento.</p>
 							<div class="jp-cart-tabs" role="tablist">
 								<button type="button" class="jp-cart-tab is-active" data-tab="pix" role="tab">PIX</button>
 								<button type="button" class="jp-cart-tab" data-tab="card" role="tab">Cartão de crédito</button>
@@ -1455,6 +1489,11 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var checkoutBtn = document.getElementById('jp-cart-checkout-btn');
 			var checkoutSection = document.getElementById('pagamentos');
 			var checkoutForm = document.getElementById('jp-checkout-form');
+			var checkoutAlertNode = document.getElementById('jp-checkout-alert');
+			var guestNameField = document.getElementById('jp-guest-name-field');
+			var guestEmailField = document.getElementById('jp-guest-email-field');
+			var guestNameErrorNode = document.getElementById('jp-guest-name-error');
+			var guestEmailErrorNode = document.getElementById('jp-guest-email-error');
 			var pixAmountNode = document.getElementById('jp-pix-amount');
 			var pixPayBtn = document.getElementById('jp-pix-pay-btn');
 			var pixFallbackNode = document.getElementById('jp-pix-fallback');
@@ -1799,13 +1838,17 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				if (!items.length) {
 					return;
 				}
-				var customer = getCheckoutCustomer();
+				var customer = validateCheckoutForm(true);
 				if (!customer) {
 					if (feedbackNode) {
 						feedbackNode.hidden = false;
-						feedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
+						feedbackNode.classList.add('is-error');
+						feedbackNode.textContent = 'Complete os campos em vermelho acima.';
 					}
 					return;
+				}
+				if (feedbackNode) {
+					feedbackNode.classList.remove('is-error');
 				}
 				syncGuestNameToCard();
 				submitGiftMessageIfNeeded(true).then(function () {
@@ -1857,18 +1900,88 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 			}
 
-			function getCheckoutCustomer() {
-				if (!checkoutForm) {
-					return null;
-				}
-				var nameInput = checkoutForm.querySelector('#jp-guest-name');
-				var emailInput = checkoutForm.querySelector('#jp-guest-email');
+			function getCheckoutFieldState() {
+				var nameInput = checkoutForm ? checkoutForm.querySelector('#jp-guest-name') : null;
+				var emailInput = checkoutForm ? checkoutForm.querySelector('#jp-guest-email') : null;
 				var name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : '';
 				var email = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : '';
-				if (!name || !email || !isValidEmail(email)) {
+				return {
+					name: name,
+					email: email,
+					nameMissing: !name,
+					emailMissing: !email,
+					emailInvalid: Boolean(email) && !isValidEmail(email),
+				};
+			}
+
+			function setCheckoutFieldError(fieldNode, errorNode, message) {
+				if (fieldNode) {
+					fieldNode.classList.toggle('is-invalid', Boolean(message));
+				}
+				if (errorNode) {
+					errorNode.hidden = !message;
+					errorNode.textContent = message || '';
+				}
+			}
+
+			function clearCheckoutErrors() {
+				setCheckoutFieldError(guestNameField, guestNameErrorNode, '');
+				setCheckoutFieldError(guestEmailField, guestEmailErrorNode, '');
+				if (checkoutAlertNode) {
+					checkoutAlertNode.hidden = true;
+				}
+				if (pixFeedbackNode) {
+					pixFeedbackNode.classList.remove('is-error');
+					pixFeedbackNode.hidden = true;
+				}
+				if (cardFeedbackNode) {
+					cardFeedbackNode.classList.remove('is-error');
+					cardFeedbackNode.hidden = true;
+				}
+			}
+
+			function validateCheckoutForm(showErrors) {
+				var state = getCheckoutFieldState();
+				if (!showErrors) {
+					if (state.nameMissing || state.emailMissing || state.emailInvalid) {
+						return null;
+					}
+					return { name: state.name, email: state.email };
+				}
+				var nameMessage = state.nameMissing ? 'Informe seu nome.' : '';
+				var emailMessage = state.emailMissing
+					? 'Informe seu e-mail.'
+					: state.emailInvalid
+						? 'E-mail inválido.'
+						: '';
+				setCheckoutFieldError(guestNameField, guestNameErrorNode, nameMessage);
+				setCheckoutFieldError(guestEmailField, guestEmailErrorNode, emailMessage);
+				if (checkoutAlertNode) {
+					checkoutAlertNode.hidden = !(nameMessage || emailMessage);
+				}
+				var focusInput = null;
+				if (state.nameMissing) {
+					focusInput = checkoutForm ? checkoutForm.querySelector('#jp-guest-name') : null;
+				} else if (state.emailMissing || state.emailInvalid) {
+					focusInput = checkoutForm ? checkoutForm.querySelector('#jp-guest-email') : null;
+				}
+				if (focusInput instanceof HTMLInputElement) {
+					focusInput.focus();
+					if (guestNameField && focusInput.id === 'jp-guest-name') {
+						guestNameField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					}
+					if (guestEmailField && focusInput.id === 'jp-guest-email') {
+						guestEmailField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					}
+				}
+				if (state.nameMissing || state.emailMissing || state.emailInvalid) {
 					return null;
 				}
-				return { name: name, email: email };
+				return { name: state.name, email: state.email };
+			}
+
+			function getCheckoutCustomer() {
+				return validateCheckoutForm(false);
 			}
 
 			function getDefaultRedirectUrl() {
@@ -1945,6 +2058,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 
 			if (checkoutForm) {
 				checkoutForm.addEventListener('input', function () {
+					clearCheckoutErrors();
 					syncGuestNameToCard();
 				});
 			}
