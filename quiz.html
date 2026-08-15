@@ -4,7 +4,7 @@
 				
 			<meta property="og:url" content=""/>
 			<meta property="og:type" content="article"/>
-			<meta property="og:title" content="Carrinho – Thaís & João"/>
+			<meta property="og:title" content="Quiz – Thaís & João"/>
 			<meta property="og:description" content="Site de casamento Thaís & João"/>
 			<meta property="og:image" content=""/>
 		
@@ -13,7 +13,7 @@
 		<link rel="profile" href="https://gmpg.org/xfn/11" />
 		
 				<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
-		<title>Carrinho &#8211; Tha&#237;s &amp; Jo&#227;o</title>
+		<title>Quiz &#8211; Tha&#237;s &amp; Jo&#227;o</title>
 <meta name='robots' content='max-image-preview:large' />
 
 <link rel='dns-prefetch' href='https://maps.googleapis.com/' />
@@ -72,7 +72,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel='stylesheet' id='wp-mediaelement-css' href='wp-includes/js/mediaelement/wp-mediaelement.min.css' type='text/css' media='all' />
 <link rel='stylesheet' id='theaisle-elated-woo-css' href='wp-content/themes/theaisle/assets/css/woocommerce.min.css' type='text/css' media='all' />
 <style id='theaisle-elated-woo-inline-css' type='text/css'>
-.page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-cart .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-cart .eltdf-page-header .eltdf-menu-area { background-color: rgba(255, 255, 255, 0);height: 140px !important;}.page-id-cart .eltdf-page-header .eltdf-drop-down .second { top: 85%;}
+.page-id-quiz .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-quiz .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-quiz .eltdf-content .eltdf-content-inner > .eltdf-container > .eltdf-container-inner, .page-id-quiz .eltdf-content .eltdf-content-inner > .eltdf-full-width > .eltdf-full-width-inner { padding: 0px;}.page-id-quiz .eltdf-page-header .eltdf-menu-area { background-color: rgba(255, 255, 255, 0);height: 140px !important;}.page-id-quiz .eltdf-page-header .eltdf-drop-down .second { top: 85%;}
 </style>
 <link rel='stylesheet' id='theaisle-elated-woo-responsive-css' href='wp-content/themes/theaisle/assets/css/woocommerce-responsive.min.css' type='text/css' media='all' />
 <link rel='stylesheet' id='theaisle-elated-style-dynamic-css' href='wp-content/themes/theaisle/assets/css/style_dynamic.css' type='text/css' media='all' />
@@ -626,492 +626,685 @@ min-height:370px;
 }
 }
 
-<style id="jp-cart-styles">
-.jp-cart-page{padding:32px 0 80px;}
-.jp-cart-bar{
-display:flex;
-justify-content:flex-end;
-align-items:center;
-gap:16px;
-max-width:1140px;
-margin:0 auto 24px;
-padding:0 24px;
-}
-.jp-cart-bar__link{
-display:inline-flex;
-align-items:center;
-gap:8px;
+<style id="jp-quiz-styles">
+html.jp-quiz-active .eltdf-page-header,
+html.jp-quiz-active .eltdf-mobile-header,
+html.jp-quiz-active .jp-footer-minimal-wrap{display:none!important;}
+html.jp-quiz-active .eltdf-content{padding:0!important;}
+html.jp-quiz-active .eltdf-container,
+html.jp-quiz-active .eltdf-container-inner,
+html.jp-quiz-active .eltdf-page-content-holder{padding:0!important;max-width:none!important;}
+#jp-quiz-app{
+min-height:100vh;
+background:linear-gradient(180deg,#fff8f4 0%,#fff 40%);
 font-family:Muli,sans-serif;
-font-size:12px;
-font-weight:700;
-letter-spacing:.12em;
-text-transform:uppercase;
-text-decoration:none;
 color:#3c4860;
+position:relative;
+overflow:hidden;
 }
-.jp-cart-bar__count{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-min-width:22px;
-height:22px;
-padding:0 6px;
-border-radius:999px;
-background:#c78665;
-color:#fff;
-font-size:11px;
-font-weight:700;
-}
-.jp-cart-layout{
-display:grid;
-grid-template-columns:minmax(0,1fr) 320px;
-gap:32px;
-max-width:1140px;
+.jp-quiz-stage{position:relative;z-index:1;}
+.jp-quiz-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:20;}
+.jp-quiz-screen{
+max-width:960px;
 margin:0 auto;
-padding:0 24px;
-align-items:start;
-}
-.jp-cart-panel{
-background:#fff;
-border:1px solid #e8e8e8;
-border-radius:4px;
-padding:24px;
-}
-.jp-cart-panel__title{
-margin:0 0 20px;
-font-family:Muli,sans-serif;
-font-size:14px;
-font-weight:700;
-letter-spacing:.22em;
-text-transform:uppercase;
-color:#bf7b5d;
-}
-.jp-cart-list{
+padding:24px 20px 48px;
 display:flex;
 flex-direction:column;
-gap:16px;
+gap:24px;
+animation:jp-quiz-screen-in .5s ease both;
 }
-.jp-cart-item{
-display:grid;
-grid-template-columns:88px minmax(0,1fr) auto;
-gap:16px;
+.jp-quiz-screen--lobby{
 align-items:center;
-padding-bottom:16px;
-border-bottom:1px solid #eee;
 }
-.jp-cart-item:last-child{
-padding-bottom:0;
-border-bottom:none;
+.jp-quiz-screen--lobby .jp-quiz-card{
+width:100%;
+max-width:560px;
 }
-.jp-cart-item__media{
-width:88px;
-height:88px;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:8px;
+.jp-quiz-card{
 background:#fff;
-border:1px solid #f0f0f0;
+border:1px solid #eee;
+border-radius:8px;
+padding:28px 24px;
+box-shadow:0 8px 24px rgba(60,72,96,.06);
+animation:jp-quiz-scale-in .55s cubic-bezier(.34,1.15,.64,1) both;
 }
-.jp-cart-item__media img{
-max-width:100%;
-max-height:100%;
-object-fit:contain;
-}
-.jp-cart-item__name{
-margin:0 0 6px;
-font-family:Muli,sans-serif;
-font-size:12px;
-font-weight:700;
-letter-spacing:.06em;
-text-transform:uppercase;
-line-height:1.45;
-color:#3c4860;
-}
-.jp-cart-item__price{
-margin:0;
-font-family:Cormorant,serif;
-font-size:20px;
-font-style:italic;
-color:#c78665;
-}
-.jp-cart-item__remove{
-border:none;
-background:transparent;
-font-family:Muli,sans-serif;
-font-size:11px;
-font-weight:700;
-letter-spacing:.08em;
-text-transform:uppercase;
-color:#4a6785;
-cursor:pointer;
-padding:0;
-}
-.jp-cart-empty{
-margin:0;
-font-family:Cormorant,serif;
-font-size:20px;
-line-height:1.5;
-color:#3c4860;
-text-align:center;
-}
-.jp-cart-empty a{color:#c78665;}
-.jp-cart-summary__total-label{
+.jp-quiz-kicker{
 margin:0 0 8px;
-font-family:Muli,sans-serif;
 font-size:11px;
 font-weight:700;
 letter-spacing:.18em;
 text-transform:uppercase;
-color:#4a6785;
+color:#bf7b5d;
+animation:jp-quiz-fade-up .45s ease .05s both;
 }
-.jp-cart-summary__total{
-margin:0 0 20px;
+.jp-quiz-title{
+margin:0 0 12px;
 font-family:Cormorant,serif;
-font-size:32px;
-font-style:italic;
+font-size:clamp(28px,6vw,42px);
+font-weight:400;
 color:#c78665;
+animation:jp-quiz-fade-up .5s ease .1s both;
 }
-.jp-cart-summary__count{
-margin:0 0 16px;
-font-family:Muli,sans-serif;
-font-size:13px;
-color:#3c4860;
-}
-.jp-cart-summary__btn{
-display:flex;
-align-items:center;
-justify-content:center;
-width:100%;
-height:44px;
-margin-bottom:12px;
-font-family:Muli,sans-serif;
-font-size:11px;
-font-weight:700;
-letter-spacing:.14em;
-text-transform:uppercase;
-text-decoration:none;
-border:1px solid #c78665;
-cursor:pointer;
-}
-.jp-cart-summary__btn--primary{
-background:#c78665;
-color:#fff;
-}
-.jp-cart-summary__btn--primary:disabled{
-opacity:.45;
-cursor:not-allowed;
-}
-.jp-cart-summary__btn--ghost{
-background:#fff;
-color:#c78665;
-}
-.jp-cart-checkout{
-max-width:1140px;
-margin:40px auto 0;
-padding:0 24px;
-}
-.jp-cart-checkout__inner{
-background:#fff;
-border:1px solid #e8e8e8;
-border-radius:4px;
-padding:32px 24px;
-}
-.jp-cart-form{
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:16px;
-margin-bottom:24px;
-}
-.jp-cart-field{
-display:flex;
-flex-direction:column;
-gap:8px;
-}
-.jp-cart-field label{
-font-family:Muli,sans-serif;
-font-size:11px;
-font-weight:700;
-letter-spacing:.12em;
-text-transform:uppercase;
-color:#4a6785;
-}
-.jp-cart-field input{
-height:44px;
-padding:0 14px;
-border:1px solid #ddd;
-border-radius:2px;
-font-family:Muli,sans-serif;
-font-size:14px;
-color:#3c4860;
-}
-.jp-cart-tabs{
-display:flex;
-gap:12px;
-margin-bottom:24px;
-}
-.jp-cart-tab{
-flex:1;
-height:44px;
-border:1px solid #c78665;
-background:#fff;
-color:#c78665;
-font-family:Muli,sans-serif;
-font-size:11px;
-font-weight:700;
-letter-spacing:.12em;
-text-transform:uppercase;
-cursor:pointer;
-}
-.jp-cart-tab.is-active{
-background:#c78665;
-color:#fff;
-}
-.jp-cart-pay-panel[hidden]{display:none!important;}
-.jp-cart-pix{
-display:grid;
-grid-template-columns:220px minmax(0,1fr);
-gap:24px;
-align-items:start;
-}
-.jp-cart-pix__qr{
-width:220px;
-height:220px;
-border:1px solid #eee;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#fff;
-}
-.jp-cart-pix__qr img{
-width:100%;
-height:100%;
-object-fit:contain;
-}
-.jp-cart-pix__key{
-display:flex;
-gap:8px;
-margin:12px 0;
-}
-.jp-cart-pix__key input{
-flex:1;
-height:44px;
-padding:0 14px;
-border:1px solid #ddd;
-font-family:Muli,sans-serif;
-font-size:14px;
-color:#3c4860;
-}
-.jp-cart-pix__copy{
-height:44px;
-padding:0 16px;
-border:1px solid #c78665;
-background:#c78665;
-color:#fff;
-font-family:Muli,sans-serif;
-font-size:11px;
-font-weight:700;
-letter-spacing:.08em;
-text-transform:uppercase;
-cursor:pointer;
-}
-.jp-cart-note{
+.jp-quiz-subtitle,.jp-quiz-note,.jp-quiz-player-tag{
 margin:0;
 font-family:Cormorant,serif;
-font-size:18px;
+font-size:20px;
 line-height:1.5;
 color:#3c4860;
+animation:jp-quiz-fade-up .5s ease .15s both;
 }
-.jp-cart-card__amount{
+.jp-quiz-players-badge{
+display:inline-flex;
+align-items:center;
+gap:12px;
 margin:0 0 16px;
-font-family:Cormorant,serif;
-font-size:28px;
-font-style:italic;
-color:#c78665;
+padding:10px 18px;
+border-radius:999px;
+background:linear-gradient(135deg,#9aa3ad,#8a9199);
+box-shadow:0 4px 16px rgba(120,130,140,.25);
+animation:jp-quiz-fade-up .5s ease .15s both;
+transition:background .25s ease,box-shadow .25s ease;
 }
-.jp-cart-card__btn{
+.jp-quiz-players-badge--ready{
+background:linear-gradient(135deg,#00a854,#00c96e);
+box-shadow:0 4px 16px rgba(0,168,84,.35);
+}
+.jp-quiz-players-badge__count{
 display:inline-flex;
 align-items:center;
 justify-content:center;
-height:44px;
-padding:0 28px;
-background:#4a6785;
-border:1px solid #4a6785;
+min-width:36px;
+height:36px;
+padding:0 10px;
+border-radius:999px;
+background:#fff;
+color:#8a9199;
+font-family:Muli,sans-serif;
+font-size:18px;
+font-weight:700;
+line-height:1;
+transition:color .25s ease;
+}
+.jp-quiz-players-badge--ready .jp-quiz-players-badge__count{
+color:#00a854;
+}
+.jp-quiz-players-badge__label{
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
 color:#fff;
+}
+.jp-quiz-players-badge--host{
+background:rgba(255,255,255,.12);
+box-shadow:none;
+border:1px solid rgba(255,255,255,.2);
+margin-bottom:16px;
+}
+.jp-quiz-players-badge--host.jp-quiz-players-badge--ready{
+background:linear-gradient(135deg,#00a854,#00c96e);
+border-color:transparent;
+box-shadow:0 4px 16px rgba(0,168,84,.28);
+}
+.jp-quiz-players-badge--host .jp-quiz-players-badge__count{
+background:#fff;
+color:#8a9199;
+}
+.jp-quiz-players-badge--host.jp-quiz-players-badge--ready .jp-quiz-players-badge__count{
+color:#00a854;
+}
+.jp-quiz-players-badge--host .jp-quiz-players-badge__label{
+color:rgba(255,255,255,.92);
+}
+.jp-quiz-join{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:20px;
+}
+.jp-quiz-join > *{
+animation:jp-quiz-fade-up .45s ease both;
+}
+.jp-quiz-join > *:nth-child(1){animation-delay:.08s;}
+.jp-quiz-join > *:nth-child(2){animation-delay:.14s;}
+.jp-quiz-join > *:nth-child(3){animation-delay:.2s;}
+.jp-quiz-join > *:nth-child(4){animation-delay:.26s;}
+.jp-quiz-join > *:nth-child(5){animation-delay:.32s;}
+.jp-quiz-join > *:nth-child(6){animation-delay:.38s;}
+.jp-quiz-join--host-name .jp-quiz-join__photo-block{display:none;}
+.jp-quiz-join label{
+font-size:11px;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
+color:#4a6785;
+}
+.jp-quiz-join input{
+height:52px;
+padding:0 16px;
+border:1px solid #ddd;
+border-radius:4px;
+font-family:Muli,sans-serif;
+font-size:16px;
+}
+.jp-quiz-join__photo{
+display:flex;
+align-items:center;
+gap:16px;
+}
+.jp-quiz-join__preview{
+width:72px;
+height:72px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #c78665;
+flex-shrink:0;
+transition:transform .3s ease,box-shadow .3s ease;
+}
+.jp-quiz-join__preview:not(.jp-quiz-join__preview--empty){
+animation:jp-quiz-photo-pop .45s cubic-bezier(.34,1.4,.64,1) both;
+}
+.jp-quiz-join__preview--empty{
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f5f5f5;
+color:#4a6785;
+font-family:Muli,sans-serif;
+font-size:10px;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+text-align:center;
+padding:8px;
+}
+.jp-quiz-join__photo-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+min-height:44px;
+padding:0 16px;
+border:1px solid #c78665;
+border-radius:4px;
+background:#fff;
+color:#c78665;
 font-family:Muli,sans-serif;
 font-size:11px;
 font-weight:700;
-letter-spacing:.14em;
+letter-spacing:.1em;
 text-transform:uppercase;
-text-decoration:none;
 cursor:pointer;
 }
-.jp-cart-card__btn:hover{
+.jp-quiz-avatar{
+display:inline-block;
+width:32px;
+height:32px;
+border-radius:50%;
+flex-shrink:0;
+overflow:hidden;
+}
+.jp-quiz-avatar--photo-wrap{
+border:2px solid rgba(255,255,255,.9);
 background:#fff;
-color:#4a6785;
 }
-.jp-cart-card__btn:disabled{
-opacity:.65;
-cursor:wait;
+.jp-quiz-avatar__img{
+display:block;
+width:100%;
+height:100%;
+max-width:none;
+object-fit:cover;
+object-position:center;
 }
-.jp-cart-feedback{
-margin:12px 0 0;
+.jp-quiz-rank__avatar{width:32px;height:32px;}
+.jp-quiz-podium__avatar{width:48px;height:48px;}
+.jp-quiz-player-tag{
+display:flex;
+align-items:center;
+gap:12px;
+margin-top:12px;
+}
+.jp-quiz-player-tag__avatar{width:40px;height:40px;}
+.jp-quiz-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+min-height:48px;
+padding:0 24px;
+border:none;
+border-radius:4px;
 font-family:Muli,sans-serif;
 font-size:12px;
-color:#4a6785;
-}
-.jp-virtual-card{
-margin-bottom:32px;
-padding-bottom:32px;
-border-bottom:1px solid #eee;
-}
-.jp-virtual-card__lead{
-margin:0 0 24px;
-font-family:Cormorant,serif;
-font-size:18px;
-line-height:1.5;
-color:#3c4860;
-}
-.jp-virtual-card__layout{
-display:grid;
-grid-template-columns:minmax(0,1fr) minmax(280px,360px);
-gap:32px;
-align-items:start;
-}
-.jp-virtual-card__grid{
-display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:12px;
-}
-.jp-virtual-card__option{
-display:block;
-width:100%;
-padding:0;
-border:2px solid #e8e8e8;
-background:#fff;
+font-weight:700;
+letter-spacing:.12em;
+text-transform:uppercase;
 cursor:pointer;
-transition:border-color .2s ease,box-shadow .2s ease;
 }
-.jp-virtual-card__option.is-selected{
-border-color:#c78665;
-box-shadow:0 0 0 1px #c78665;
-}
-.jp-virtual-card__option img{
+.jp-quiz-btn__icon{
+width:16px;
+height:16px;
+flex-shrink:0;
 display:block;
-width:100%;
-height:auto;
 }
-.jp-virtual-card__preview-wrap{
+.jp-quiz-btn__label{
+line-height:1;
+}
+.jp-quiz-btn:disabled{opacity:.45;cursor:not-allowed;}
+.jp-quiz-btn--primary{background:#c78665;color:#fff;}
+.jp-quiz-btn--ghost{
+background:transparent;
+border:1px solid #c78665;
+color:#c78665;
+margin-top:16px;
+}
+.jp-quiz-btn--host{background:#3c4860;color:#fff;width:100%;margin-bottom:8px;}
+.jp-quiz-question-head{
 display:flex;
-flex-direction:column;
-gap:20px;
-}
-.jp-virtual-card__preview{
-position:relative;
-width:100%;
-max-width:360px;
-margin:0 auto;
-border:1px solid #eee;
-background:#fff;
-container-type:inline-size;
-}
-.jp-virtual-card__preview img{
-display:block;
-width:100%;
-height:auto;
-}
-.jp-virtual-card__overlay{
-position:absolute;
-inset:0;
-pointer-events:none;
-}
-.jp-virtual-card__value{
-position:absolute;
-margin:0;
-padding:0;
-font-family:Cormorant,serif;
-font-style:italic;
-line-height:1.2;
-color:#3c4860;
-overflow:hidden;
-word-break:break-word;
-}
-.jp-virtual-card__value--de{
-top:var(--jp-card-de-top,66%);
-left:var(--jp-card-de-left,20%);
-width:var(--jp-card-de-width,70%);
-font-size:var(--jp-card-de-size,2.8cqi);
-}
-.jp-virtual-card__value--presente{
-top:var(--jp-card-presente-top,74%);
-left:var(--jp-card-presente-left,24%);
-width:var(--jp-card-presente-width,66%);
-font-size:var(--jp-card-presente-size,2.8cqi);
-}
-.jp-virtual-card__value--mensagem{
-top:var(--jp-card-mensagem-top,80%);
-left:var(--jp-card-mensagem-left,18%);
-width:var(--jp-card-mensagem-width,68%);
-height:var(--jp-card-mensagem-height,auto);
-font-size:var(--jp-card-mensagem-size,2.5cqi);
-white-space:pre-wrap;
-}
-.jp-virtual-card__preview[data-card-align="line"] .jp-virtual-card__value--de,
-.jp-virtual-card__preview[data-card-align="line"] .jp-virtual-card__value--presente,
-.jp-virtual-card__preview[data-card-align="line"] .jp-virtual-card__value--mensagem{
-line-height:1;
-transform:translateY(var(--jp-card-line-shift,-0.8em));
-}
-.jp-virtual-card__preview[data-card-align="box-line"] .jp-virtual-card__value--de,
-.jp-virtual-card__preview[data-card-align="box-line"] .jp-virtual-card__value--presente,
-.jp-virtual-card__preview[data-card-align="box-line"] .jp-virtual-card__value--mensagem{
-line-height:1;
-transform:translateY(-0.4em);
-}
-.jp-virtual-card__preview[data-card-align="mixed"] .jp-virtual-card__value--de{
-line-height:1;
-transform:translateY(-0.65em);
-}
-.jp-virtual-card__preview[data-card-align="mixed"] .jp-virtual-card__value--presente{
-line-height:1;
-transform:translateY(-0.45em);
-}
-.jp-virtual-card__form{
-display:grid;
-grid-template-columns:1fr;
+align-items:center;
+justify-content:space-between;
 gap:16px;
 }
-.jp-cart-field textarea{
-min-height:112px;
-padding:12px 14px;
-border:1px solid #ddd;
-border-radius:2px;
-font-family:Muli,sans-serif;
-font-size:14px;
-line-height:1.5;
-color:#3c4860;
-resize:vertical;
+.jp-quiz-badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:8px 14px;
+border-radius:999px;
+background:#c78665;
+color:#fff;
+font-size:12px;
+font-weight:700;
+letter-spacing:.08em;
+animation:jp-quiz-scale-in .45s ease both;
 }
-.jp-virtual-card__feedback{
-margin:12px 0 0;
+.jp-quiz-badge--extra{
+background:linear-gradient(135deg,#d89e00,#c78665);
+animation:jp-quiz-badge-extra .8s ease both;
+}
+.jp-quiz-extra-banner{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:6px;
+width:100%;
+max-width:100%;
+min-width:0;
+margin:0 0 20px;
+padding:20px 24px;
+border-radius:12px;
+background:linear-gradient(135deg,#fff3d6,#ffe8c2);
+border:2px solid #d89e00;
+box-shadow:0 8px 28px rgba(216,158,0,.28);
+box-sizing:border-box;
+overflow:hidden;
+animation:jp-quiz-badge-extra .8s cubic-bezier(.34,1.35,.64,1) both;
+}
+.jp-quiz-extra-banner--compact{
+padding:16px 20px;
+margin-bottom:16px;
+}
+.jp-quiz-extra-banner__label{
+font-family:Muli,sans-serif;
+font-size:clamp(36px,10vw,56px);
+font-weight:800;
+letter-spacing:.18em;
+line-height:1;
+text-transform:uppercase;
+color:#d89e00;
+text-shadow:0 2px 0 rgba(255,255,255,.8);
+max-width:100%;
+}
+.jp-quiz-extra-banner__sub{
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.2em;
+text-transform:uppercase;
+color:#c78665;
+}
+.jp-quiz-question-head--extra{
+justify-content:center;
+}
+.jp-quiz-kicker--extra{
+color:#d89e00;
+animation:jp-quiz-fade-up .5s ease both;
+}
+@keyframes jp-quiz-badge-extra{
+0%{opacity:0;transform:scale(.92);}
+60%{transform:scale(1.02);}
+100%{opacity:1;transform:scale(1);}
+}
+.jp-quiz-timer{
+position:relative;
+width:72px;
+height:72px;
+flex-shrink:0;
+animation:jp-quiz-scale-in .5s ease .08s both;
+}
+.jp-quiz-timer svg{width:100%;height:100%;transform:rotate(-90deg);}
+.jp-quiz-timer__track{fill:none;stroke:#eee;stroke-width:8;}
+.jp-quiz-timer__progress{fill:none;stroke:#c78665;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .2s linear;}
+.jp-quiz-timer--urgent .jp-quiz-timer__progress{
+stroke:#e21b3c;
+animation:jp-quiz-timer-blink .45s ease-in-out infinite;
+}
+.jp-quiz-timer--urgent .jp-quiz-timer__value{
+color:#e21b3c;
+animation:jp-quiz-timer-blink .45s ease-in-out infinite;
+}
+.jp-quiz-timer--urgent{animation:jp-quiz-timer-blink .45s ease-in-out infinite;}
+.jp-quiz-timer__value{
+position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+font-size:22px;font-weight:700;color:#3c4860;
+}
+.jp-quiz-question{
+margin:8px 0 20px;
+font-family:Cormorant,serif;
+font-size:clamp(24px,5vw,34px);
+line-height:1.25;
+color:#3c4860;
+animation:jp-quiz-fade-up .55s ease .12s both;
+}
+.jp-quiz-options{display:grid;grid-template-columns:1fr;gap:12px;}
+.jp-quiz-option{
+display:flex;align-items:center;gap:16px;min-height:72px;padding:16px 18px;
+border:none;border-radius:8px;color:#fff;text-align:left;cursor:pointer;
+box-shadow:0 4px 0 rgba(0,0,0,.15);transition:transform .15s ease,opacity .15s ease,box-shadow .15s ease;
+animation:jp-quiz-option-in .5s cubic-bezier(.34,1.2,.64,1) both;
+}
+.jp-quiz-options .jp-quiz-option:nth-child(1){animation-delay:.15s;}
+.jp-quiz-options .jp-quiz-option:nth-child(2){animation-delay:.24s;}
+.jp-quiz-options .jp-quiz-option:nth-child(3){animation-delay:.33s;}
+.jp-quiz-option:active:not(:disabled){transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.15);}
+.jp-quiz-option.is-picked{animation:jp-quiz-answer-pop .45s cubic-bezier(.34,1.5,.64,1) both;}
+.jp-quiz-option.is-selected{outline:3px solid #fff;outline-offset:-3px;box-shadow:0 0 0 3px #3c4860;}
+.jp-quiz-option.is-locked{opacity:.75;cursor:not-allowed;}
+.jp-quiz-option__label{
+display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;
+border-radius:6px;background:rgba(255,255,255,.22);font-size:18px;font-weight:700;
+}
+.jp-quiz-option__text{font-size:16px;font-weight:600;line-height:1.3;}
+.jp-quiz-points{
+margin:12px 0 20px;font-size:clamp(36px,8vw,56px);font-weight:700;text-align:center;
+font-family:Muli,sans-serif;
+animation:jp-quiz-points-pop .65s cubic-bezier(.34,1.5,.64,1) .15s both;
+}
+.jp-quiz-points.is-correct{color:#00a854;}
+.jp-quiz-points.is-wrong{color:#cf2e2e;animation-name:jp-quiz-shake;}
+.jp-quiz-result-options{display:grid;gap:10px;}
+.jp-quiz-result-option{
+padding:14px 16px;border-left:6px solid #ddd;border-radius:4px;background:#fafafa;
+font-family:Cormorant,serif;font-size:18px;
+animation:jp-quiz-reveal .5s ease both;
+}
+.jp-quiz-result-options .jp-quiz-result-option:nth-child(1){animation-delay:.22s;}
+.jp-quiz-result-options .jp-quiz-result-option:nth-child(2){animation-delay:.36s;}
+.jp-quiz-result-options .jp-quiz-result-option:nth-child(3){animation-delay:.5s;}
+.jp-quiz-result-option__label{
+font-family:Muli,sans-serif;
+font-size:20px;
+font-weight:700;
+color:#3c4860;
+}
+.jp-quiz-result-option.is-correct{background:#eafff1;border-color:#00a854;animation-name:jp-quiz-reveal-correct;}
+.jp-quiz-result-option.is-wrong{background:#fff0f0;border-color:#cf2e2e;animation-name:jp-quiz-reveal-wrong;}
+.jp-quiz-rank--panel{background:#fff;border:1px solid #eee;border-radius:8px;padding:20px;}
+.jp-quiz-rank__title{margin:0 0 16px;font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#bf7b5d;}
+.jp-quiz-rank__row{display:grid;grid-template-columns:36px 32px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0;animation:jp-quiz-rank-in .45s ease both;}
+.jp-quiz-rank__row:nth-child(1){animation-delay:.05s;}
+.jp-quiz-rank__row:nth-child(2){animation-delay:.1s;}
+.jp-quiz-rank__row:nth-child(3){animation-delay:.15s;}
+.jp-quiz-rank__row:nth-child(4){animation-delay:.2s;}
+.jp-quiz-rank__row:nth-child(5){animation-delay:.25s;}
+.jp-quiz-rank__row:nth-child(6){animation-delay:.3s;}
+.jp-quiz-rank__row:nth-child(7){animation-delay:.35s;}
+.jp-quiz-rank__row:nth-child(8){animation-delay:.4s;}
+.jp-quiz-rank__row:nth-child(9){animation-delay:.45s;}
+.jp-quiz-rank__row:nth-child(10){animation-delay:.5s;}
+.jp-quiz-rank__row--gold{background:#fff8e1;margin:0 -12px;padding:10px 12px;border-radius:6px;border-bottom-color:transparent;}
+.jp-quiz-rank__row--silver{background:#f0f3f7;margin:0 -12px;padding:10px 12px;border-radius:6px;border-bottom-color:transparent;}
+.jp-quiz-rank__row--bronze{background:#fdf0e6;margin:0 -12px;padding:10px 12px;border-radius:6px;border-bottom-color:transparent;}
+.jp-quiz-rank__row--me{background:#fff8f4;margin:0 -12px;padding:10px 12px;border-radius:6px;}
+.jp-quiz-rank__pos{font-weight:700;text-align:center;}
+.jp-quiz-rank__avatar{width:32px;height:32px;border-radius:50%;}
+.jp-quiz-rank__name{font-weight:600;font-size:14px;}
+.jp-quiz-rank__bar{height:6px;background:#f0f0f0;border-radius:999px;overflow:hidden;margin-top:6px;}
+.jp-quiz-rank__bar span{display:block;height:100%;border-radius:999px;transition:width .6s ease;}
+.jp-quiz-rank__score{font-weight:700;font-size:14px;color:#c78665;}
+.jp-quiz-rank__me{margin:12px 0 0;font-family:Cormorant,serif;font-size:18px;}
+.jp-quiz-host{
+background:#3c4860;color:#fff;border-radius:8px;padding:20px;
+min-width:0;
+overflow:hidden;
+}
+.jp-quiz-host__label{margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.8;}
+.jp-quiz-host__rank-label{
+margin:16px 0 10px;
+font-size:11px;
+font-weight:700;
+letter-spacing:.16em;
+text-transform:uppercase;
+color:rgba(255,255,255,.75);
+}
+.jp-quiz-host__duration{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+margin-bottom:16px;
+padding:10px 12px;
+border-radius:8px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.14);
+}
+.jp-quiz-host__duration-label{
+display:flex;
+align-items:center;
+gap:8px;
+margin:0;
+min-width:0;
+flex:1;
+font-size:10px;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:rgba(255,255,255,.85);
+line-height:1.2;
+}
+.jp-quiz-host__duration-label .jp-quiz-btn__icon{
+width:14px;
+height:14px;
+flex-shrink:0;
+}
+.jp-quiz-host__duration-field{
+display:inline-flex;
+align-items:center;
+gap:6px;
+flex-shrink:0;
+}
+.jp-quiz-host__duration-input{
+width:52px;
+min-width:52px;
+max-width:52px;
+height:36px;
+min-height:36px;
+margin:0;
+padding:0 6px;
+border:1px solid rgba(255,255,255,.28);
+border-radius:6px;
+background:#fff;
+color:#3c4860;
+font-family:Muli,sans-serif;
+font-size:15px;
+font-weight:700;
+font-style:normal;
+line-height:36px;
+text-align:center;
+box-sizing:border-box;
+-webkit-appearance:none;
+appearance:none;
+}
+.jp-quiz-host__duration-input::-webkit-outer-spin-button,
+.jp-quiz-host__duration-input::-webkit-inner-spin-button{
+-webkit-appearance:none;
+margin:0;
+}
+.jp-quiz-host__duration-input:focus{
+outline:none;
+border-color:#c78665;
+box-shadow:0 0 0 2px rgba(199,134,101,.25);
+}
+.jp-quiz-host__duration-suffix{
 font-family:Muli,sans-serif;
 font-size:12px;
-color:#4a6785;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:rgba(255,255,255,.72);
 }
-.jp-gift-card__btn.is-added{
+.jp-quiz-host__rank{
+max-height:320px;
+overflow-y:auto;
+padding-right:4px;
+}
+.jp-quiz-host .jp-quiz-rank__row{
+display:grid;
+grid-template-columns:24px 36px minmax(0,1fr) auto;
+gap:8px;
+align-items:center;
+background:rgba(255,255,255,.1);
+margin:0 0 8px;
+padding:10px 8px;
+border-radius:8px;
+border-bottom:none;
+color:#fff;
+}
+.jp-quiz-host .jp-quiz-rank__info{
+min-width:0;
+overflow:hidden;
+}
+.jp-quiz-host .jp-quiz-rank__pos{
+font-size:16px;
+line-height:1;
+}
+.jp-quiz-host .jp-quiz-rank__avatar,
+.jp-quiz-host .jp-quiz-avatar{
+width:36px;
+height:36px;
+min-width:36px;
+min-height:36px;
+border-radius:50%;
+flex-shrink:0;
+overflow:hidden;
+}
+.jp-quiz-host .jp-quiz-avatar--photo-wrap{
+border:2px solid rgba(255,255,255,.35);
 background:#fff;
-color:#4a6785;
-border-color:#4a6785;
 }
-@media(max-width:900px){
-.jp-cart-layout{grid-template-columns:1fr;}
-.jp-cart-form{grid-template-columns:1fr;}
-.jp-cart-pix{grid-template-columns:1fr;}
-.jp-cart-pix__qr{margin:0 auto;}
-.jp-virtual-card__layout{grid-template-columns:1fr;}
-.jp-virtual-card__grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+.jp-quiz-host .jp-quiz-rank__name{
+color:#fff;
+font-size:14px;
+font-weight:700;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
 }
-</style>
+.jp-quiz-host .jp-quiz-rank__score{
+color:#ffd6a5;
+font-size:13px;
+font-weight:700;
+white-space:nowrap;
+padding-left:4px;
+}
+.jp-quiz-host .jp-quiz-rank__bar{
+height:5px;
+background:rgba(255,255,255,.18);
+margin-top:4px;
+}
+.jp-quiz-host .jp-quiz-rank__row--gold{
+background:rgba(255,214,102,.22);
+border:1px solid rgba(255,214,102,.45);
+}
+.jp-quiz-host .jp-quiz-rank__row--silver{
+background:rgba(210,220,235,.2);
+border:1px solid rgba(210,220,235,.4);
+}
+.jp-quiz-host .jp-quiz-rank__row--bronze{
+background:rgba(232,180,140,.22);
+border:1px solid rgba(232,180,140,.42);
+}
+.jp-quiz-host .jp-quiz-rank__row--me{
+background:rgba(255,255,255,.16);
+border:1px solid rgba(255,255,255,.22);
+}
+.jp-quiz-host .jp-quiz-empty{color:rgba(255,255,255,.8);}
+.jp-quiz-podium{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end;margin-top:16px;}
+.jp-quiz-podium__item{
+display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px;
+background:#fff8f4;border-radius:8px;text-align:center;
+animation:jp-quiz-podium-rise .75s cubic-bezier(.34,1.35,.64,1) both;
+}
+.jp-quiz-podium__item:nth-child(1){animation-delay:.2s;}
+.jp-quiz-podium__item:nth-child(2){animation-delay:.5s;}
+.jp-quiz-podium__item:nth-child(3){animation-delay:.35s;}
+.jp-quiz-podium__item--first{min-height:180px;background:#fff8e1;}
+.jp-quiz-podium__item--second{min-height:140px;background:#f0f3f7;}
+.jp-quiz-podium__item--third{min-height:120px;background:#fdf0e6;}
+.jp-quiz-podium__avatar{width:48px;height:48px;border-radius:50%;}
+.jp-quiz-podium__medal{font-size:28px;animation:jp-quiz-medal-bounce .7s cubic-bezier(.34,1.6,.64,1) both;}
+.jp-quiz-podium__item:nth-child(1) .jp-quiz-podium__medal{animation-delay:.45s;}
+.jp-quiz-podium__item:nth-child(2) .jp-quiz-podium__medal{animation-delay:.75s;}
+.jp-quiz-podium__item:nth-child(3) .jp-quiz-podium__medal{animation-delay:.6s;}
+.jp-quiz-empty{margin:0;padding:24px;text-align:center;font-family:Cormorant,serif;font-size:20px;color:#3c4860;}
+.jp-quiz-confetti{
+position:absolute;top:-12px;width:10px;height:18px;border-radius:2px;
+animation:jp-quiz-confetti-fall linear forwards;pointer-events:none;
+}
+.jp-quiz-confetti--light{opacity:.85;}
+@keyframes jp-quiz-screen-in{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes jp-quiz-fade-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes jp-quiz-scale-in{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:scale(1);}}
+@keyframes jp-quiz-option-in{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
+@keyframes jp-quiz-answer-pop{0%{transform:scale(1);}45%{transform:scale(1.05);}100%{transform:scale(1);}}
+@keyframes jp-quiz-photo-pop{0%{transform:scale(.85);opacity:0;}100%{transform:scale(1);opacity:1;}}
+@keyframes jp-quiz-reveal{from{opacity:0;transform:translateX(-14px);}to{opacity:1;transform:translateX(0);}}
+@keyframes jp-quiz-reveal-correct{0%{opacity:0;transform:scale(.92);}60%{transform:scale(1.03);}100%{opacity:1;transform:scale(1);}}
+@keyframes jp-quiz-reveal-wrong{0%,100%{transform:translateX(0);}20%{transform:translateX(-5px);}40%{transform:translateX(5px);}60%{transform:translateX(-4px);}80%{transform:translateX(4px);}}
+@keyframes jp-quiz-points-pop{0%{opacity:0;transform:scale(.4);}70%{transform:scale(1.1);}100%{opacity:1;transform:scale(1);}}
+@keyframes jp-quiz-shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+@keyframes jp-quiz-podium-rise{from{opacity:0;transform:translateY(48px) scale(.88);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes jp-quiz-medal-bounce{0%{opacity:0;transform:scale(0) rotate(-20deg);}70%{transform:scale(1.15) rotate(6deg);}100%{opacity:1;transform:scale(1) rotate(0);}}
+@keyframes jp-quiz-rank-in{from{opacity:0;transform:translateX(-12px);}to{opacity:1;transform:translateX(0);}}
+@keyframes jp-quiz-timer-blink{
+0%,100%{opacity:1;}
+50%{opacity:.25;}
+}
+@keyframes jp-quiz-confetti-fall{
+0%{transform:translateY(0) rotate(0deg) translateX(0);opacity:1;}
+100%{transform:translateY(110vh) rotate(720deg) translateX(30px);opacity:0;}
+}
+.jp-quiz-app--host .jp-quiz-screen--lobby .jp-quiz-card{max-width:none;width:auto;}
+@media(min-width:900px){
+.jp-quiz-app--host .jp-quiz-screen--lobby,
+.jp-quiz-app--host .jp-quiz-screen--question,
+.jp-quiz-app--host .jp-quiz-screen--results,
+.jp-quiz-app--host .jp-quiz-screen--finished{
+display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:start;
+}
+.jp-quiz-app--host .jp-quiz-screen--lobby{align-items:start;}
+.jp-quiz-app--host .jp-quiz-screen--lobby .jp-quiz-card{grid-column:1;}
+.jp-quiz-host{grid-column:2;grid-row:1;}
+.jp-quiz-app--host .jp-quiz-screen--question .jp-quiz-extra-banner,
+.jp-quiz-app--host .jp-quiz-screen--results .jp-quiz-extra-banner,
+.jp-quiz-app--host .jp-quiz-screen--question .jp-quiz-question-head,
+.jp-quiz-app--host .jp-quiz-screen--question .jp-quiz-question,
+.jp-quiz-app--host .jp-quiz-screen--question .jp-quiz-options,
+.jp-quiz-app--host .jp-quiz-screen--question .jp-quiz-note{grid-column:1;}
+.jp-quiz-app--host .jp-quiz-screen--question .jp-quiz-host{grid-column:2;grid-row:1/span 4;}
+}
 </style>
 
 
@@ -1126,7 +1319,7 @@ background:#fff;
 </style>
 
 </head>
-<body class="jp-shop-page page-template page-template-full-width page-template-full-width-php page page-id-cart theme-theaisle theaisle-core-2.2.1 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.5.7 theaisle-ver-2.5 eltdf-smooth-page-transitions eltdf-grid-1300 eltdf-wide-dropdown-menu-content-in-grid eltdf-no-behavior eltdf-dropdown-animate-height eltdf-header-divided eltdf-menu-area-shadow-disable eltdf-menu-area-in-grid-shadow-disable eltdf-menu-area-border-disable eltdf-menu-area-in-grid-border-disable eltdf-logo-area-border-disable eltdf-logo-area-in-grid-border-disable eltdf-side-menu-slide-from-right eltdf-woocommerce-columns-3 eltdf-woo-normal-space eltdf-woo-pl-info-below-image eltdf-woo-single-thumb-on-left-side eltdf-woo-single-has-pretty-photo eltdf-default-mobile-header eltdf-sticky-up-mobile-header eltdf-fullscreen-search eltdf-search-fade elementor-default elementor-kit-5320 elementor-page elementor-page-shop" itemscope itemtype="http://schema.org/WebPage">
+<body class="jp-shop-page page-template page-template-full-width page-template-full-width-php page page-id-quiz theme-theaisle theaisle-core-2.2.1 woocommerce-no-js qodef-qi--no-touch qi-addons-for-elementor-1.5.7 theaisle-ver-2.5 eltdf-smooth-page-transitions eltdf-grid-1300 eltdf-wide-dropdown-menu-content-in-grid eltdf-no-behavior eltdf-dropdown-animate-height eltdf-header-divided eltdf-menu-area-shadow-disable eltdf-menu-area-in-grid-shadow-disable eltdf-menu-area-border-disable eltdf-menu-area-in-grid-border-disable eltdf-logo-area-border-disable eltdf-logo-area-in-grid-border-disable eltdf-side-menu-slide-from-right eltdf-woocommerce-columns-3 eltdf-woo-normal-space eltdf-woo-pl-info-below-image eltdf-woo-single-thumb-on-left-side eltdf-woo-single-has-pretty-photo eltdf-default-mobile-header eltdf-sticky-up-mobile-header eltdf-fullscreen-search eltdf-search-fade elementor-default elementor-kit-5320 elementor-page elementor-page-shop" itemscope itemtype="http://schema.org/WebPage">
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><section class="eltdf-side-menu">
 	<a class="eltdf-close-side-menu eltdf-close-side-menu-predefined" href="index.html">
 		<span class="eltdf-hm-lines"><span class="eltdf-hm-line eltdf-line-1"></span><span class="eltdf-hm-line eltdf-line-2"></span></span>	</a>
@@ -1239,7 +1432,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
              --><div class="eltdf-position-right-inner">
                     
 <nav class="eltdf-main-menu eltdf-drop-down eltdf-divided-right-part eltdf-default-nav">
-    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="index.html#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="carrinho.html" class=" current "><span class="item_outer"><span class="item_text">Carrinho</span></span></a></li></ul></nav>
+    <ul id="menu-divided-menu-right" class="clearfix"><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="index.html#historia" class=""><span class="item_outer"><span class="item_text">Blog</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="loja.html" class=""><span class="item_outer"><span class="item_text">Lista de presentes</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow current-menu-item eltdf-active-item"><a href="quiz.html" class=" current "><span class="item_outer"><span class="item_text">Quiz</span></span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom narrow"><a href="carrinho.html" class=""><span class="item_outer"><span class="item_text">Carrinho</span></span></a></li></ul></nav>
 
 
                 </div>
@@ -1295,7 +1488,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
     <nav class="eltdf-mobile-nav" role="navigation" aria-label="Mobile Menu">
         <div class="eltdf-grid">
 
-            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#inicio" class=""><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener" class=""><span>Localização</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="loja.html" class=""><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="carrinho.html" class=" current "><span>Carrinho</span></a></li></ul>        </div>
+            <ul id="menu-main-menu" class=""><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#inicio" class=""><span>Início</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#noivos" class=""><span>Páginas</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://maps.app.goo.gl/nzfci87JLv6oA1Sb6?g_st=iw" target="_blank" rel="noopener" class=""><span>Localização</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="index.html#historia" class=""><span>Blog</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="loja.html" class=""><span>Lista de presentes</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item eltdf-active-item"><a href="quiz.html" class=" current "><span>Quiz</span></a></li><li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="carrinho.html" class=""><span>Carrinho</span></a></li></ul>        </div>
     </nav>
 
 	</div>
@@ -1319,7 +1512,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 		<div class="eltdf-title-wrapper" style="height: 110px">
 		<div class="eltdf-title-inner">
 			<div class="eltdf-grid">
-				<div itemprop="breadcrumb" class="eltdf-breadcrumbs "><a itemprop="url" href="index.html">Início</a><span class="eltdf-delimiter">&nbsp; &#x2022; &nbsp;</span><a itemprop="url" href="loja.html">Lista de presentes</a><span class="eltdf-delimiter">&nbsp; &#x2022; &nbsp;</span><span class="eltdf-current">Carrinho</span></div>			</div>
+				<div itemprop="breadcrumb" class="eltdf-breadcrumbs "><a itemprop="url" href="index.html">Início</a><span class="eltdf-delimiter">&nbsp; &#x2022; &nbsp;</span><span class="eltdf-current">Quiz</span></div>			</div>
 	    </div>
 	</div>
 </div>
@@ -1328,97 +1521,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 	<div class="eltdf-container-inner clearfix">
 		<div class="eltdf-grid-row">
 			<div class="eltdf-page-content-holder eltdf-grid-col-12">
-				<div class="jp-cart-page">
-					<div class="jp-cart-layout">
-						<section class="jp-cart-panel">
-							<h2 class="jp-cart-panel__title">Presentes selecionados</h2>
-							<div class="jp-cart-list" id="jp-cart-list"></div>
-							<p class="jp-cart-empty" id="jp-cart-empty" hidden>Seu carrinho está vazio. <a href="loja.html">Escolher presentes</a></p>
-						</section>
-						<aside class="jp-cart-panel jp-cart-summary">
-							<h2 class="jp-cart-panel__title">Resumo</h2>
-							<p class="jp-cart-summary__count" id="jp-cart-count-label">0 presentes</p>
-							<p class="jp-cart-summary__total-label">Total</p>
-							<p class="jp-cart-summary__total" id="jp-cart-total">R$ 0,00</p>
-							<button type="button" class="jp-cart-summary__btn jp-cart-summary__btn--primary" id="jp-cart-checkout-btn" disabled>Finalizar presente</button>
-							<a href="loja.html" class="jp-cart-summary__btn jp-cart-summary__btn--ghost">Continuar escolhendo</a>
-						</aside>
-					</div>
-					<section class="jp-cart-checkout" id="pagamentos" hidden>
-						<div class="jp-cart-checkout__inner">
-							<section class="jp-virtual-card" id="jp-virtual-card">
-								<h2 class="jp-cart-panel__title">Cartão virtual para os noivos</h2>
-								<p class="jp-virtual-card__lead">Escolha um cartão e escreva uma mensagem especial para Thaís &amp; João.</p>
-								<div class="jp-virtual-card__layout">
-									<div class="jp-virtual-card__picker">
-										<div class="jp-virtual-card__grid" id="jp-card-grid" role="listbox" aria-label="Escolha um cartão virtual"></div>
-									</div>
-									<div class="jp-virtual-card__preview-wrap">
-										<div class="jp-virtual-card__preview" id="jp-card-preview">
-											<img id="jp-card-preview-img" src="media/jp/cartoes/cartao-1.png" alt="Cartão virtual selecionado" width="360" height="480" decoding="async" />
-											<div class="jp-virtual-card__overlay">
-												<span class="jp-virtual-card__value jp-virtual-card__value--de" id="jp-card-preview-de"></span>
-												<span class="jp-virtual-card__value jp-virtual-card__value--presente" id="jp-card-preview-presente"></span>
-												<span class="jp-virtual-card__value jp-virtual-card__value--mensagem" id="jp-card-preview-mensagem"></span>
-											</div>
-										</div>
-										<div class="jp-virtual-card__form">
-											<div class="jp-cart-field">
-												<label for="jp-card-de">De</label>
-												<input id="jp-card-de" name="cardDe" type="text" autocomplete="name" placeholder="Seu nome" />
-											</div>
-											<div class="jp-cart-field">
-												<label for="jp-card-presente">Presente</label>
-												<input id="jp-card-presente" name="cardPresente" type="text" placeholder="Nome do presente" />
-											</div>
-											<div class="jp-cart-field">
-												<label for="jp-card-mensagem">Mensagem</label>
-												<textarea id="jp-card-mensagem" name="cardMensagem" placeholder="Escreva sua mensagem para os noivos"></textarea>
-											</div>
-										</div>
-										<p class="jp-virtual-card__feedback" id="jp-virtual-card-feedback" hidden></p>
-									</div>
-								</div>
-							</section>
-							<h2 class="jp-cart-panel__title">Pagamento</h2>
-							<form class="jp-cart-form" id="jp-checkout-form">
-								<div class="jp-cart-field">
-									<label for="jp-guest-name">Seu nome</label>
-									<input id="jp-guest-name" name="guestName" type="text" required autocomplete="name" />
-								</div>
-								<div class="jp-cart-field">
-									<label for="jp-guest-email">Seu e-mail</label>
-									<input id="jp-guest-email" name="guestEmail" type="email" required autocomplete="email" />
-								</div>
-							</form>
-							<div class="jp-cart-tabs" role="tablist">
-								<button type="button" class="jp-cart-tab is-active" data-tab="pix" role="tab">PIX</button>
-								<button type="button" class="jp-cart-tab" data-tab="card" role="tab">Cartão de crédito</button>
-							</div>
-							<div class="jp-cart-pay-panel" id="jp-pay-pix" role="tabpanel">
-								<div class="jp-cart-pix">
-									<div class="jp-cart-pix__qr" id="jp-pix-qr"></div>
-									<div>
-										<p class="jp-cart-note" id="jp-pix-instructions">Preencha seus dados e finalize para gerar o PIX com o valor total.</p>
-										<p class="jp-cart-note"><strong id="jp-pix-amount"></strong></p>
-										<div class="jp-cart-pix__key">
-											<input id="jp-pix-copy" type="text" readonly />
-											<button type="button" class="jp-cart-pix__copy" id="jp-pix-copy-btn">Copiar PIX</button>
-										</div>
-										<p class="jp-cart-feedback" id="jp-pix-feedback" hidden></p>
-									</div>
-								</div>
-							</div>
-							<div class="jp-cart-pay-panel" id="jp-pay-card" role="tabpanel" hidden>
-								<p class="jp-cart-card__amount" id="jp-card-amount"></p>
-								<p class="jp-cart-note">Você será direcionado para o pagamento seguro no InfinitePay.</p>
-								<button type="button" class="jp-cart-card__btn" id="jp-card-pay-btn">Pagar com cartão</button>
-								<p class="jp-cart-feedback" id="jp-card-feedback" hidden></p>
-								<p class="jp-cart-note" id="jp-card-fallback" hidden>Configure o handle do InfinitePay em payment-config.json ou use o PDF da lista de presentes.</p>
-							</div>
-						</div>
-					</section>
-				</div>
+				<div id="jp-quiz-app" data-supabase-url="https://mghmldhsdtbsawcmwuet.supabase.co" data-supabase-key="sb_publishable_x4ncGwsOMqCjOZAB3QthrA_ry91d6S6"></div>
 			</div>
 		</div>
 	</div>
@@ -1447,527 +1550,15 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 <link href="fonts.googleapis.com/css-roboto-400.css" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
 
 
-	<script type="text/javascript" src="media/jp/jp-gift-cart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<script type="text/javascript" src="media/jp/jp-quiz.js"></script>
 	<script type="text/javascript">
 		(function () {
-			var cart = window.JpGiftCart;
-			if (!cart) {
-				return;
+			var quiz = window.JpQuiz;
+			var appNode = document.getElementById('jp-quiz-app');
+			if (quiz && appNode) {
+				quiz.init(appNode);
 			}
-			var listNode = document.getElementById('jp-cart-list');
-			var emptyNode = document.getElementById('jp-cart-empty');
-			var totalNode = document.getElementById('jp-cart-total');
-			var countLabelNode = document.getElementById('jp-cart-count-label');
-			var checkoutBtn = document.getElementById('jp-cart-checkout-btn');
-			var checkoutSection = document.getElementById('pagamentos');
-			var checkoutForm = document.getElementById('jp-checkout-form');
-			var pixQrNode = document.getElementById('jp-pix-qr');
-			var pixCopyNode = document.getElementById('jp-pix-copy');
-			var pixCopyBtn = document.getElementById('jp-pix-copy-btn');
-			var pixFeedbackNode = document.getElementById('jp-pix-feedback');
-			var pixAmountNode = document.getElementById('jp-pix-amount');
-			var pixInstructionsNode = document.getElementById('jp-pix-instructions');
-			var cardAmountNode = document.getElementById('jp-card-amount');
-			var cardPayBtn = document.getElementById('jp-card-pay-btn');
-			var cardFallbackNode = document.getElementById('jp-card-fallback');
-			var cardFeedbackNode = document.getElementById('jp-card-feedback');
-			var virtualCardFeedbackNode = document.getElementById('jp-virtual-card-feedback');
-			var paymentConfig = null;
-			var activeTab = 'pix';
-			var cardCheckoutLoading = false;
-			var giftMessageSubmitted = false;
-			var giftMessageSubmitting = false;
-			var cardGridNode = document.getElementById('jp-card-grid');
-			var cardPreviewImg = document.getElementById('jp-card-preview-img');
-			var cardPreviewDe = document.getElementById('jp-card-preview-de');
-			var cardPreviewPresente = document.getElementById('jp-card-preview-presente');
-			var cardPreviewMensagem = document.getElementById('jp-card-preview-mensagem');
-			var cardDeInput = document.getElementById('jp-card-de');
-			var cardPresenteInput = document.getElementById('jp-card-presente');
-			var cardMensagemInput = document.getElementById('jp-card-mensagem');
-			var cardPayDefaultLabel = cardPayBtn ? cardPayBtn.textContent : '';
-			var syncGuestToCard = true;
-			var giftMessageState = cart.getDefaultGiftMessage(cart.readCart());
-
-			function getGiftMessageState() {
-				return {
-					cardId: giftMessageState.cardId,
-					de: cardDeInput instanceof HTMLInputElement ? cardDeInput.value.trim() : giftMessageState.de,
-					presente: cardPresenteInput instanceof HTMLInputElement ? cardPresenteInput.value.trim() : giftMessageState.presente,
-					mensagem: cardMensagemInput instanceof HTMLTextAreaElement ? cardMensagemInput.value.trim() : giftMessageState.mensagem,
-				};
-			}
-
-			function persistGiftMessageState() {
-				giftMessageState = getGiftMessageState();
-				cart.writeGiftMessage(giftMessageState);
-			}
-
-			function applyCardLayout(card) {
-				var previewNode = document.getElementById('jp-card-preview');
-				if (!previewNode || !card || !card.layout) {
-					return;
-				}
-				if (card.align) {
-					previewNode.dataset.cardAlign = card.align;
-				} else {
-					delete previewNode.dataset.cardAlign;
-				}
-				if (card.lineShift) {
-					previewNode.style.setProperty('--jp-card-line-shift', card.lineShift + 'em');
-				} else {
-					previewNode.style.removeProperty('--jp-card-line-shift');
-				}
-				Object.keys(card.layout).forEach(function (key) {
-					var pos = card.layout[key];
-					previewNode.style.setProperty('--jp-card-' + key + '-top', pos.top + '%');
-					previewNode.style.setProperty('--jp-card-' + key + '-left', pos.left + '%');
-					previewNode.style.setProperty('--jp-card-' + key + '-width', pos.width + '%');
-					previewNode.style.setProperty('--jp-card-' + key + '-size', (pos.size || 2.8) + 'cqi');
-					if (pos.height) {
-						previewNode.style.setProperty('--jp-card-' + key + '-height', pos.height + '%');
-					} else {
-						previewNode.style.removeProperty('--jp-card-' + key + '-height');
-					}
-				});
-			}
-
-			function updateGiftPreview() {
-				var message = getGiftMessageState();
-				var card = cart.getVirtualCardById(message.cardId);
-				if (cardPreviewImg instanceof HTMLImageElement) {
-					cardPreviewImg.src = card.image;
-					cardPreviewImg.alt = 'Cartão virtual ' + card.id;
-				}
-				applyCardLayout(card);
-				if (cardPreviewDe) {
-					cardPreviewDe.textContent = message.de;
-				}
-				if (cardPreviewPresente) {
-					cardPreviewPresente.textContent = message.presente;
-				}
-				if (cardPreviewMensagem) {
-					cardPreviewMensagem.textContent = message.mensagem;
-				}
-				document.querySelectorAll('.jp-virtual-card__option').forEach(function (button) {
-					button.classList.toggle('is-selected', button.getAttribute('data-card-id') === message.cardId);
-					button.setAttribute('aria-selected', button.getAttribute('data-card-id') === message.cardId ? 'true' : 'false');
-				});
-				persistGiftMessageState();
-			}
-
-			function syncPresenteFromCart(items) {
-				var presente = cart.getDefaultGiftMessage(items).presente;
-				if (cardPresenteInput instanceof HTMLInputElement && !cardPresenteInput.value.trim()) {
-					cardPresenteInput.value = presente;
-				}
-				giftMessageState.presente = cardPresenteInput instanceof HTMLInputElement ? cardPresenteInput.value.trim() : presente;
-				updateGiftPreview();
-			}
-
-			function renderCardGrid() {
-				if (!cardGridNode) {
-					return;
-				}
-				cardGridNode.innerHTML = '';
-				cart.getVirtualCards().forEach(function (card, index) {
-					var button = document.createElement('button');
-					button.type = 'button';
-					button.className = 'jp-virtual-card__option';
-					button.setAttribute('data-card-id', card.id);
-					button.setAttribute('role', 'option');
-					button.setAttribute('aria-label', 'Cartão virtual ' + (index + 1));
-					button.innerHTML = '<img src="' + cart.escapeHtml(card.image) + '" alt="Cartão virtual ' + cart.escapeHtml(card.id) + '" loading="lazy" decoding="async" />';
-					button.addEventListener('click', function () {
-						giftMessageState.cardId = card.id;
-						updateGiftPreview();
-					});
-					cardGridNode.appendChild(button);
-				});
-				updateGiftPreview();
-			}
-
-			function hydrateGiftMessageForm(items) {
-				var stored = cart.readGiftMessage();
-				var defaults = cart.getDefaultGiftMessage(items);
-				giftMessageState = stored || defaults;
-				giftMessageState.presente = defaults.presente;
-				if (!String(giftMessageState.de || '').trim()) {
-					giftMessageState.de = defaults.de;
-				}
-				if (!String(giftMessageState.mensagem || '').trim()) {
-					giftMessageState.mensagem = defaults.mensagem;
-				}
-				if (cardDeInput instanceof HTMLInputElement) {
-					cardDeInput.value = giftMessageState.de;
-				}
-				if (cardPresenteInput instanceof HTMLInputElement) {
-					cardPresenteInput.value = giftMessageState.presente;
-				}
-				if (cardMensagemInput instanceof HTMLTextAreaElement) {
-					cardMensagemInput.value = giftMessageState.mensagem;
-				}
-				updateGiftPreview();
-			}
-
-			function syncGuestNameToCard() {
-				if (!checkoutForm || !(cardDeInput instanceof HTMLInputElement) || !syncGuestToCard) {
-					return;
-				}
-				var nameInput = checkoutForm.querySelector('#jp-guest-name');
-				if (!(nameInput instanceof HTMLInputElement)) {
-					return;
-				}
-				cardDeInput.value = nameInput.value;
-				updateGiftPreview();
-			}
-
-			function showCardFeedback(text, isError) {
-				if (!virtualCardFeedbackNode) {
-					return;
-				}
-				virtualCardFeedbackNode.hidden = false;
-				virtualCardFeedbackNode.textContent = text;
-				virtualCardFeedbackNode.style.color = isError ? '#b04a4a' : '#4a6785';
-			}
-
-			function submitGiftMessageIfNeeded(force) {
-				if (!paymentConfig || giftMessageSubmitted || giftMessageSubmitting) {
-					return Promise.resolve();
-				}
-				var items = cart.readCart();
-				if (!items.length) {
-					return Promise.resolve();
-				}
-				var message = getGiftMessageState();
-				if (!message.de) {
-					if (force && cardFeedbackNode) {
-						showCardFeedback('Preencha seu nome no cartão antes de continuar.', true);
-					}
-					return Promise.reject(new Error('card-name'));
-				}
-				var giftConfig = paymentConfig.gift_message || {};
-				var hasDelivery = Boolean(String(giftConfig.webhook_url || '').trim() || String(giftConfig.recipient_email || '').trim());
-				if (!hasDelivery && !force) {
-					return Promise.resolve();
-				}
-				giftMessageSubmitting = true;
-				return cart.submitGiftMessage(paymentConfig, message, items, {
-					customer: getCheckoutCustomer() || { name: message.de, email: '' },
-				}).then(function () {
-					giftMessageSubmitted = true;
-					giftMessageSubmitting = false;
-					if (hasDelivery) {
-						showCardFeedback('Mensagem enviada aos noivos com sucesso.', false);
-					}
-				}).catch(function () {
-					giftMessageSubmitting = false;
-					if (hasDelivery) {
-						showCardFeedback('Não foi possível enviar a mensagem. Tente novamente.', true);
-						return Promise.reject(new Error('submit'));
-					}
-					return Promise.resolve();
-				});
-			}
-
-			function renderList() {
-				var items = cart.readCart();
-				var total = cart.getTotal();
-				if (!listNode) {
-					return;
-				}
-				listNode.innerHTML = '';
-				items.forEach(function (item) {
-					var row = document.createElement('article');
-					row.className = 'jp-cart-item';
-					row.innerHTML =
-						'<div class="jp-cart-item__media"><img src="' +
-						cart.escapeHtml(item.imagem) +
-						'" alt="' +
-						cart.escapeHtml(item.produto) +
-						'" loading="lazy" decoding="async" /></div>' +
-						'<div><p class="jp-cart-item__name">' +
-						cart.escapeHtml(item.produto) +
-						'</p><p class="jp-cart-item__price">' +
-						cart.escapeHtml(item.preco) +
-						'</p></div>' +
-						'<button type="button" class="jp-cart-item__remove" data-id="' +
-						cart.escapeHtml(item.id) +
-						'">Remover</button>';
-					listNode.appendChild(row);
-				});
-				if (emptyNode) {
-					emptyNode.hidden = items.length > 0;
-				}
-				if (totalNode) {
-					totalNode.textContent = cart.formatCurrency(total);
-				}
-				if (countLabelNode) {
-					countLabelNode.textContent = items.length + (items.length === 1 ? ' presente' : ' presentes');
-				}
-				if (checkoutBtn) {
-					checkoutBtn.disabled = items.length === 0;
-				}
-				if (checkoutSection && items.length === 0) {
-					checkoutSection.hidden = true;
-				}
-				cart.updateBadges();
-				updatePaymentPanels(total);
-				syncPresenteFromCart(items);
-			}
-
-			function updatePaymentPanels(total) {
-				var amountText = cart.formatCurrency(total);
-				if (pixAmountNode) {
-					pixAmountNode.textContent = 'Valor: ' + amountText;
-				}
-				if (cardAmountNode) {
-					cardAmountNode.textContent = amountText;
-				}
-				if (activeTab === 'pix') {
-					generatePix(total);
-				}
-				updateCardLink(total);
-			}
-
-			function generatePix(total) {
-				if (!paymentConfig || !pixCopyNode || !pixQrNode) {
-					return;
-				}
-				if (checkoutForm && !checkoutForm.reportValidity()) {
-					return;
-				}
-				var customer = getCheckoutCustomer();
-				if (!customer) {
-					return;
-				}
-				submitGiftMessageIfNeeded(true).then(function () {
-					var payload = cart.buildPixPayload(paymentConfig, total, 'PRESENTE' + Date.now());
-					if (!payload) {
-						pixCopyNode.value = '';
-						pixQrNode.innerHTML = '';
-						if (pixInstructionsNode) {
-							pixInstructionsNode.textContent = 'Configure a chave PIX em payment-config.json para gerar o QR Code.';
-						}
-						return;
-					}
-					pixCopyNode.value = payload;
-					pixQrNode.innerHTML = '<img src="' + cart.getPixQrUrl(payload) + '" alt="QR Code PIX" width="220" height="220" />';
-					if (pixInstructionsNode) {
-						pixInstructionsNode.textContent = 'Escaneie o QR Code ou copie o código PIX abaixo.';
-					}
-				}).catch(function (error) {
-					if (error && error.message === 'card-name') {
-						if (pixInstructionsNode) {
-							pixInstructionsNode.textContent = 'Preencha seu nome no cartão virtual antes de gerar o PIX.';
-						}
-					}
-				});
-			}
-
-			function getCheckoutCustomer() {
-				if (!checkoutForm) {
-					return null;
-				}
-				var nameInput = checkoutForm.querySelector('#jp-guest-name');
-				var emailInput = checkoutForm.querySelector('#jp-guest-email');
-				var name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : '';
-				var email = emailInput instanceof HTMLInputElement ? emailInput.value.trim() : '';
-				if (!name || !email) {
-					return null;
-				}
-				return { name: name, email: email };
-			}
-
-			function getDefaultRedirectUrl() {
-				var origin = window.location.origin || '';
-				var path = window.location.pathname || '/carrinho.html';
-				return origin + path + '?pagamento=ok';
-			}
-
-			function updateCardLink(total) {
-				if (!paymentConfig || !cardPayBtn) {
-					return;
-				}
-				var handle = String((paymentConfig.credit_card || {}).handle || '').trim();
-				if (handle) {
-					cardPayBtn.hidden = false;
-					cardPayBtn.disabled = cardCheckoutLoading;
-					if (cardFallbackNode) {
-						cardFallbackNode.hidden = true;
-					}
-					return;
-				}
-				cardPayBtn.hidden = true;
-				if (cardFallbackNode) {
-					cardFallbackNode.hidden = false;
-					cardFallbackNode.innerHTML = 'Pagamento no cartão disponível na <a href="media/jp/lista-de-presente.pdf" target="_blank" rel="noopener">lista de presentes em PDF</a>. Total: <strong>' + cart.escapeHtml(cart.formatCurrency(total)) + '</strong>';
-				}
-			}
-
-			function startCardCheckout() {
-				if (!paymentConfig || !cardPayBtn || cardCheckoutLoading) {
-					return;
-				}
-				var items = cart.readCart();
-				if (!items.length) {
-					return;
-				}
-				if (checkoutForm && !checkoutForm.reportValidity()) {
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = false;
-						cardFeedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
-					}
-					return;
-				}
-				var customer = getCheckoutCustomer();
-				if (!customer) {
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = false;
-						cardFeedbackNode.textContent = 'Preencha seu nome e e-mail antes de pagar.';
-					}
-					return;
-				}
-				syncGuestNameToCard();
-				submitGiftMessageIfNeeded(true).then(function () {
-					cardCheckoutLoading = true;
-					cardPayBtn.disabled = true;
-					cardPayBtn.textContent = 'Gerando pagamento...';
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = true;
-					}
-					return cart.createInfinityPayCheckout(paymentConfig, items, {
-						orderNsu: 'PRESENTE-' + Date.now(),
-						redirectUrl: getDefaultRedirectUrl(),
-						customer: customer,
-					});
-				}).then(function (checkoutUrl) {
-					window.location.href = checkoutUrl;
-				}).catch(function (error) {
-					cardCheckoutLoading = false;
-					cardPayBtn.disabled = false;
-					cardPayBtn.textContent = cardPayDefaultLabel;
-					if (error && error.message === 'card-name') {
-						showCardFeedback('Preencha seu nome no cartão virtual antes de pagar.', true);
-						return;
-					}
-					if (error && error.message === 'submit') {
-						return;
-					}
-					if (cardFeedbackNode) {
-						cardFeedbackNode.hidden = false;
-						cardFeedbackNode.textContent = 'Não foi possível iniciar o pagamento. Tente novamente.';
-					}
-				});
-			}
-
-			function setTab(tab) {
-				activeTab = tab;
-				document.querySelectorAll('.jp-cart-tab').forEach(function (button) {
-					button.classList.toggle('is-active', button.getAttribute('data-tab') === tab);
-				});
-				var pixPanel = document.getElementById('jp-pay-pix');
-				var cardPanel = document.getElementById('jp-pay-card');
-				if (pixPanel) {
-					pixPanel.hidden = tab !== 'pix';
-				}
-				if (cardPanel) {
-					cardPanel.hidden = tab !== 'card';
-				}
-				if (tab === 'pix') {
-					generatePix(cart.getTotal());
-				}
-			}
-
-			if (listNode) {
-				listNode.addEventListener('click', function (event) {
-					var target = event.target;
-					if (!(target instanceof HTMLElement)) {
-						return;
-					}
-					var id = target.getAttribute('data-id');
-					if (!id) {
-						return;
-					}
-					cart.removeItem(id);
-					renderList();
-				});
-			}
-
-			if (checkoutBtn && checkoutSection) {
-				checkoutBtn.addEventListener('click', function () {
-					if (cart.readCart().length === 0) {
-						return;
-					}
-					hydrateGiftMessageForm(cart.readCart());
-					checkoutSection.hidden = false;
-					checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-					generatePix(cart.getTotal());
-				});
-			}
-
-			if (checkoutForm) {
-				checkoutForm.addEventListener('input', function () {
-					syncGuestNameToCard();
-					generatePix(cart.getTotal());
-				});
-			}
-
-			if (cardDeInput) {
-				cardDeInput.addEventListener('input', function () {
-					syncGuestToCard = false;
-					updateGiftPreview();
-				});
-			}
-
-			if (cardPresenteInput) {
-				cardPresenteInput.addEventListener('input', updateGiftPreview);
-			}
-
-			if (cardMensagemInput) {
-				cardMensagemInput.addEventListener('input', updateGiftPreview);
-			}
-
-			renderCardGrid();
-			hydrateGiftMessageForm(cart.readCart());
-
-			document.querySelectorAll('.jp-cart-tab').forEach(function (button) {
-				button.addEventListener('click', function () {
-					setTab(button.getAttribute('data-tab') || 'pix');
-				});
-			});
-
-			if (cardPayBtn) {
-				cardPayBtn.addEventListener('click', startCardCheckout);
-			}
-
-			if (pixCopyBtn && pixCopyNode && pixFeedbackNode) {
-				pixCopyBtn.addEventListener('click', function () {
-					if (!pixCopyNode.value) {
-						return;
-					}
-					navigator.clipboard.writeText(pixCopyNode.value).then(function () {
-						pixFeedbackNode.hidden = false;
-						pixFeedbackNode.textContent = 'Código PIX copiado.';
-					});
-				});
-			}
-
-			fetch('payment-config.json')
-				.then(function (response) {
-					if (!response.ok) {
-						throw new Error('config');
-					}
-					return response.json();
-				})
-				.then(function (config) {
-					paymentConfig = config;
-					renderList();
-				})
-				.catch(function () {
-					paymentConfig = { pix: {}, credit_card: {} };
-					renderList();
-				});
 		})();
 	</script>
 	<script>

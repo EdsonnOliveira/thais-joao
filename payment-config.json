@@ -10,5 +10,9 @@
     "handle": "joao-pedro-ponte",
     "redirect_url": "",
     "provider_label": "InfinitePay"
+  },
+  "gift_message": {
+    "recipient_email": "",
+    "webhook_url": ""
   }
 }

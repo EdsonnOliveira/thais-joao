@@ -1,5 +1,98 @@
 (function (window) {
   var STORAGE_KEY = 'jp_gift_cart_v1';
+  var GIFT_MESSAGE_KEY = 'jp_gift_message_v1';
+  var VIRTUAL_CARDS = [
+    {
+      id: '1',
+      image: 'media/jp/cartoes/cartao-1.png',
+      layout: {
+        de: { top: 64, left: 31, width: 47, size: 2.8 },
+        presente: { top: 75, left: 39, width: 39, size: 2.8 },
+        mensagem: { top: 80.6, left: 41, width: 40, height: 11.5, size: 2.5 },
+      },
+    },
+    {
+      id: '2',
+      image: 'media/jp/cartoes/cartao-2.png',
+      layout: {
+        de: { top: 51, left: 27, width: 50, size: 2.8 },
+        presente: { top: 64, left: 33.3, width: 42, size: 2.8 },
+        mensagem: { top: 70.5, left: 35.6, width: 40, height: 18, size: 2.5 },
+      },
+    },
+    {
+      id: '3',
+      align: 'box-line',
+      image: 'media/jp/cartoes/cartao-3.png',
+      layout: {
+        de: { top: 61.9, left: 26.5, width: 52, size: 2.8 },
+        presente: { top: 77.3, left: 33.4, width: 42, size: 2.8 },
+        mensagem: { top: 85, left: 36.1, width: 40, height: 12, size: 2.5 },
+      },
+    },
+    {
+      id: '4',
+      align: 'line',
+      lineShift: -0.85,
+      image: 'media/jp/cartoes/cartao-4.png',
+      layout: {
+        de: { top: 54.3, left: 16.3, width: 55, size: 2.8 },
+        presente: { top: 67.3, left: 24.2, width: 48, size: 2.8 },
+        mensagem: { top: 74.3, left: 26.9, width: 45, height: 12, size: 2.5 },
+      },
+    },
+    {
+      id: '5',
+      align: 'line',
+      image: 'media/jp/cartoes/cartao-5.png',
+      layout: {
+        de: { top: 56, left: 22.1, width: 55, size: 2.8 },
+        presente: { top: 68.3, left: 29.3, width: 42, size: 2.8 },
+        mensagem: { top: 74.7, left: 32.2, width: 40, height: 10, size: 2.5 },
+      },
+    },
+    {
+      id: '6',
+      align: 'line',
+      lineShift: -1.1,
+      image: 'media/jp/cartoes/cartao-6.png',
+      layout: {
+        de: { top: 65.7, left: 22.8, width: 58, size: 2.8 },
+        presente: { top: 76.5, left: 29.1, width: 40, size: 2.8 },
+        mensagem: { top: 82.3, left: 31.7, width: 40, height: 8, size: 2.5 },
+      },
+    },
+    {
+      id: '7',
+      align: 'line',
+      image: 'media/jp/cartoes/cartao-7.png',
+      layout: {
+        de: { top: 64.2, left: 18.7, width: 55, size: 2.8 },
+        presente: { top: 74.7, left: 26.4, width: 42, size: 2.8 },
+        mensagem: { top: 80.3, left: 29.2, width: 40, height: 10, size: 2.5 },
+      },
+    },
+    {
+      id: '8',
+      align: 'mixed',
+      image: 'media/jp/cartoes/cartao-8.png',
+      layout: {
+        de: { top: 53.4, left: 26.9, width: 52, size: 2.8 },
+        presente: { top: 66.4, left: 33.6, width: 40, size: 2.8 },
+        mensagem: { top: 74, left: 35.3, width: 48, height: 14, size: 2.5 },
+      },
+    },
+    {
+      id: '9',
+      align: 'line',
+      image: 'media/jp/cartoes/cartao-9.png',
+      layout: {
+        de: { top: 53.6, left: 17.7, width: 58, size: 2.8 },
+        presente: { top: 66.1, left: 24.8, width: 42, size: 2.8 },
+        mensagem: { top: 71.9, left: 27.6, width: 48, height: 18, size: 2.5 },
+      },
+    },
+  ];
 
   function escapeHtml(value) {
     return String(value)
@@ -205,6 +298,144 @@
     });
   }
 
+  function getVirtualCards() {
+    return VIRTUAL_CARDS.slice();
+  }
+
+  function getDefaultGiftMessage(cartItems) {
+    var presente = cartItems
+      .map(function (item) {
+        return String(item.produto || '').trim();
+      })
+      .filter(Boolean)
+      .join(', ');
+    return {
+      cardId: VIRTUAL_CARDS[0].id,
+      de: 'Nome de teste',
+      presente: presente,
+      mensagem: 'Mensagem de teste',
+    };
+  }
+
+  function readGiftMessage() {
+    try {
+      var raw = window.localStorage.getItem(GIFT_MESSAGE_KEY);
+      if (!raw) {
+        return null;
+      }
+      var parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object') {
+        return null;
+      }
+      return {
+        cardId: String(parsed.cardId || VIRTUAL_CARDS[0].id),
+        de: String(parsed.de || ''),
+        presente: String(parsed.presente || ''),
+        mensagem: String(parsed.mensagem || ''),
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeGiftMessage(message) {
+    window.localStorage.setItem(
+      GIFT_MESSAGE_KEY,
+      JSON.stringify({
+        cardId: String(message.cardId || VIRTUAL_CARDS[0].id),
+        de: String(message.de || ''),
+        presente: String(message.presente || ''),
+        mensagem: String(message.mensagem || ''),
+      }),
+    );
+  }
+
+  function getVirtualCardById(cardId) {
+    return (
+      VIRTUAL_CARDS.find(function (card) {
+        return card.id === String(cardId);
+      }) || VIRTUAL_CARDS[0]
+    );
+  }
+
+  function buildGiftMessagePayload(message, cartItems, options) {
+    var card = getVirtualCardById(message.cardId);
+    var customer = (options || {}).customer || {};
+    return {
+      card_id: card.id,
+      card_image: card.image,
+      de: String(message.de || '').trim(),
+      para: 'Thaís & João',
+      presente: String(message.presente || '').trim(),
+      mensagem: String(message.mensagem || '').trim(),
+      guest_name: String(customer.name || message.de || '').trim(),
+      guest_email: String(customer.email || '').trim(),
+      gifts: cartItems.map(function (item) {
+        return {
+          id: item.id,
+          produto: item.produto,
+          preco: item.preco,
+        };
+      }),
+      total: getTotal(),
+      submitted_at: new Date().toISOString(),
+    };
+  }
+
+  function submitGiftMessage(config, message, cartItems, options) {
+    var payload = buildGiftMessagePayload(message, cartItems, options);
+    var giftConfig = (config || {}).gift_message || {};
+    var webhookUrl = String(giftConfig.webhook_url || '').trim();
+    var recipientEmail = String(giftConfig.recipient_email || '').trim();
+
+    if (webhookUrl) {
+      return fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error('submit');
+        }
+        return payload;
+      });
+    }
+
+    if (recipientEmail) {
+      return fetch('https://formsubmit.co/ajax/' + encodeURIComponent(recipientEmail), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: 'Cartão virtual - ' + payload.de,
+          _template: 'table',
+          card_id: payload.card_id,
+          de: payload.de,
+          para: payload.para,
+          presente: payload.presente,
+          mensagem: payload.mensagem,
+          guest_email: payload.guest_email,
+          gifts: payload.gifts.map(function (gift) {
+            return gift.produto + ' (' + gift.preco + ')';
+          }).join(', '),
+          total: formatCurrency(payload.total),
+          card_image: payload.card_image,
+        }),
+      }).then(function (response) {
+        return response.json().then(function (data) {
+          if (!response.ok || data.success === false) {
+            throw new Error('submit');
+          }
+          return payload;
+        });
+      });
+    }
+
+    return Promise.resolve(payload);
+  }
+
   window.JpGiftCart = {
     escapeHtml: escapeHtml,
     formatCurrency: formatCurrency,
@@ -220,6 +451,13 @@
     buildInfinityPayItems: buildInfinityPayItems,
     createInfinityPayCheckout: createInfinityPayCheckout,
     updateBadges: updateBadges,
+    getVirtualCards: getVirtualCards,
+    getVirtualCardById: getVirtualCardById,
+    getDefaultGiftMessage: getDefaultGiftMessage,
+    readGiftMessage: readGiftMessage,
+    writeGiftMessage: writeGiftMessage,
+    buildGiftMessagePayload: buildGiftMessagePayload,
+    submitGiftMessage: submitGiftMessage,
   };
 
   window.addEventListener('storage', updateBadges);

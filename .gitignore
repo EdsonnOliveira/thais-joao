@@ -5,3 +5,4 @@ _mirror/
 .vercel/
 .DS_Store
 .vercel
+.env

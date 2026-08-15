@@ -1,0 +1,104 @@
+{
+  "title": "Quem conhece melhor Thaís & João Pedro?",
+  "questions": [
+    {
+      "text": "Onde Thaís e João Pedro se conheceram?",
+      "options": {
+        "A": "Em um evento de amigos em comum",
+        "B": "Na Igreja",
+        "C": "No trabalho"
+      },
+      "correct": "B"
+    },
+    {
+      "text": "Em que ano Thaís e João Pedro se conheceram?",
+      "options": {
+        "A": "2023",
+        "B": "2024",
+        "C": "2025"
+      },
+      "correct": "B"
+    },
+    {
+      "text": "Quem demorou mais para se apaixonar?",
+      "options": {
+        "A": "João Pedro",
+        "B": "Thaís",
+        "C": "Os dois se apaixonaram ao mesmo tempo"
+      },
+      "correct": "B"
+    },
+    {
+      "text": "Quem disse \"eu te amo\" primeiro?",
+      "options": {
+        "A": "Thaís",
+        "B": "João Pedro",
+        "C": "Nenhum dos dois lembra"
+      },
+      "correct": "B"
+    },
+    {
+      "text": "Em qual encontro João Pedro disse \"eu te amo\"?",
+      "options": {
+        "A": "Primeiro",
+        "B": "Segundo",
+        "C": "Terceiro"
+      },
+      "correct": "C"
+    },
+    {
+      "text": "Depois de quanto tempo de relacionamento eles começaram a falar sobre casamento?",
+      "options": {
+        "A": "2 meses",
+        "B": "6 meses",
+        "C": "1 ano"
+      },
+      "correct": "A"
+    },
+    {
+      "text": "O que aconteceu no segundo encontro que virou uma história do casal?",
+      "options": {
+        "A": "Eles perderam uma aposta entre amigos",
+        "B": "João Pedro esqueceu a carteira",
+        "C": "Pai da Thaís pressionou o João Pedro"
+      },
+      "correct": "A"
+    },
+    {
+      "text": "Em que data João Pedro pediu Thaís em casamento?",
+      "options": {
+        "A": "12/07/2025",
+        "B": "20/09/2025",
+        "C": "19/02/2026"
+      },
+      "correct": "A"
+    },
+    {
+      "text": "O pedido de casamento aconteceu em qual ocasião especial?",
+      "options": {
+        "A": "No aniversário dos dois que é no mesmo dia",
+        "B": "No aniversário de namoro de 1 ano",
+        "C": "No Natal"
+      },
+      "correct": "B"
+    },
+    {
+      "text": "Qual será a data do casamento de Thaís e João Pedro?",
+      "options": {
+        "A": "12 de fevereiro de 2027",
+        "B": "19 de fevereiro de 2027",
+        "C": "20 de setembro de 2027"
+      },
+      "correct": "B"
+    },
+    {
+      "text": "Qual banda os dois mais gostam?",
+      "options": {
+        "A": "Projeto Sola",
+        "B": "Morada",
+        "C": "Fhop"
+      },
+      "correct": "A"
+    }
+  ]
+}
