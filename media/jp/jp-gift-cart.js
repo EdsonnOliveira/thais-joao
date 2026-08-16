@@ -582,6 +582,92 @@
     return Promise.resolve(payload);
   }
 
+  var CHECKOUT_ORDER_NSU_KEY = 'jp_checkout_order_nsu';
+
+  function setCheckoutOrderNsu(orderNsu) {
+    try {
+      window.sessionStorage.setItem(CHECKOUT_ORDER_NSU_KEY, String(orderNsu));
+    } catch (error) {}
+  }
+
+  function readCheckoutOrderNsu() {
+    try {
+      return window.sessionStorage.getItem(CHECKOUT_ORDER_NSU_KEY) || '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function clearCheckoutOrderNsu() {
+    try {
+      window.sessionStorage.removeItem(CHECKOUT_ORDER_NSU_KEY);
+    } catch (error) {}
+  }
+
+  function saveGiftOrder(message, cartItems, options) {
+    var client = getSupabaseClient();
+    if (!client || !cartItems.length) {
+      return Promise.resolve(null);
+    }
+    var payload = buildGiftMessagePayload(message, cartItems, options || {});
+    var orderNsu = readCheckoutOrderNsu() || 'PRESENTE-' + Date.now();
+    return client
+      .from('gift_orders')
+      .upsert(
+        {
+          order_nsu: orderNsu,
+          guest_name: payload.guest_name || null,
+          guest_email: payload.guest_email || null,
+          card_id: payload.card_id,
+          card_image: payload.card_image,
+          de: payload.de || null,
+          presente: payload.presente || null,
+          mensagem: payload.mensagem || null,
+          items: payload.gifts,
+          total: payload.total,
+        },
+        { onConflict: 'order_nsu', ignoreDuplicates: true },
+      )
+      .then(function (result) {
+        if (result.error) {
+          return Promise.reject(result.error);
+        }
+        clearCheckoutOrderNsu();
+        return payload;
+      });
+  }
+
+  function fetchGiftOrders() {
+    var controller = new AbortController();
+    var timeoutId = window.setTimeout(function () {
+      controller.abort();
+    }, 15000);
+    return fetch(
+      SUPABASE_URL + '/rest/v1/gift_orders?select=*&order=purchased_at.desc',
+      {
+        method: 'GET',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: 'Bearer ' + SUPABASE_KEY,
+        },
+        signal: controller.signal,
+      },
+    )
+      .then(function (response) {
+        window.clearTimeout(timeoutId);
+        return response.json().then(function (data) {
+          if (!response.ok) {
+            return Promise.reject(data);
+          }
+          return Array.isArray(data) ? data : [];
+        });
+      })
+      .catch(function (error) {
+        window.clearTimeout(timeoutId);
+        return Promise.reject(error);
+      });
+  }
+
   window.JpGiftCart = {
     escapeHtml: escapeHtml,
     formatCurrency: formatCurrency,
@@ -611,6 +697,9 @@
     writeGiftMessage: writeGiftMessage,
     buildGiftMessagePayload: buildGiftMessagePayload,
     submitGiftMessage: submitGiftMessage,
+    setCheckoutOrderNsu: setCheckoutOrderNsu,
+    saveGiftOrder: saveGiftOrder,
+    fetchGiftOrders: fetchGiftOrders,
   };
 
   window.addEventListener('storage', updateBadges);

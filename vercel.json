@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "/admin/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/items.json",

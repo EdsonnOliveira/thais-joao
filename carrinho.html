@@ -1819,13 +1819,22 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				if (!items.length) {
 					return Promise.resolve();
 				}
-				return cart.markItemsPurchased(items, customer || {}).then(function () {
-					if (clearCartAfter) {
-						cart.clearCart();
-					}
-					cart.removePurchasedFromCart();
-					renderList();
-				});
+				var message = getGiftMessageState();
+				return cart
+					.saveGiftOrder(message, items, { customer: customer || {} })
+					.catch(function () {
+						return null;
+					})
+					.then(function () {
+						return cart.markItemsPurchased(items, customer || {});
+					})
+					.then(function () {
+						if (clearCartAfter) {
+							cart.clearCart();
+						}
+						cart.removePurchasedFromCart();
+						renderList();
+					});
 			}
 
 			function handlePaymentReturn() {
@@ -1885,9 +1894,11 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					if (feedbackNode) {
 						feedbackNode.hidden = true;
 					}
+					var orderNsu = 'PRESENTE-' + Date.now();
+					cart.setCheckoutOrderNsu(orderNsu);
 					return cart.createInfinityPayCheckout(paymentConfig, items, {
 						handleSource: source,
-						orderNsu: 'PRESENTE-' + Date.now(),
+						orderNsu: orderNsu,
 						redirectUrl: getDefaultRedirectUrl(),
 						customer: customer,
 					});

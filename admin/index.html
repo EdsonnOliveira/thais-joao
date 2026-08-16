@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Admin – Thaís & João</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;1,400&family=Muli:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{
+margin:0;min-height:100vh;background:#f7f9fb;color:#3c4860;
+font-family:Muli,sans-serif;
+}
+.jp-admin-shell{
+max-width:1180px;margin:0 auto;padding:32px 20px 56px;
+}
+.jp-admin-brand{
+display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;
+}
+.jp-admin-brand__title{
+margin:0;font-family:Cormorant,serif;font-size:34px;font-weight:600;color:#121f38;
+}
+.jp-admin-brand__actions{
+display:flex;gap:10px;flex-wrap:wrap;
+}
+.jp-admin-btn{
+display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 18px;
+border:1px solid #c78665;border-radius:2px;background:#c78665;color:#fff;
+font-family:Muli,sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;
+}
+.jp-admin-btn--ghost{background:#fff;color:#c78665;}
+.jp-admin-login{
+max-width:420px;margin:80px auto 0;padding:32px 28px;background:#fff;border:1px solid #e8e8e8;border-radius:4px;box-shadow:0 18px 42px rgba(60,72,96,.08);
+}
+.jp-admin-login__title{
+margin:0 0 8px;font-family:Cormorant,serif;font-size:32px;color:#121f38;
+}
+.jp-admin-login__lead{
+margin:0 0 24px;font-family:Cormorant,serif;font-size:18px;line-height:1.5;color:#5c6474;
+}
+.jp-admin-field{
+display:flex;flex-direction:column;gap:8px;margin-bottom:18px;
+}
+.jp-admin-field label{
+font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#818491;
+}
+.jp-admin-field input{
+height:46px;padding:0 14px;border:1px solid #d9dee7;border-radius:2px;font:inherit;color:#3c4860;
+}
+.jp-admin-field input:focus{
+outline:none;border-color:#c78665;box-shadow:0 0 0 2px rgba(199,134,101,.15);
+}
+.jp-admin-error{
+margin:0 0 12px;font-size:13px;font-weight:700;color:#b04a4a;
+}
+.jp-admin-status{
+margin:0 0 24px;font-size:14px;color:#5c6474;
+}
+.jp-admin-status.is-error{color:#b04a4a;font-weight:700;}
+.jp-admin-empty{
+margin:0;padding:28px;text-align:center;background:#fff;border:1px dashed #d9dee7;border-radius:4px;color:#5c6474;
+}
+.jp-admin-empty.is-error{border-color:#e8c3c3;color:#b04a4a;}
+.jp-admin-list{
+display:grid;gap:24px;
+}
+.jp-admin-order{
+background:#fff;border:1px solid #e8e8e8;border-radius:4px;overflow:hidden;box-shadow:0 12px 28px rgba(60,72,96,.06);
+}
+.jp-admin-order__head{
+display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid #eef2f6;
+}
+.jp-admin-order__meta{
+margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#818491;
+}
+.jp-admin-order__guest{
+margin:0;font-family:Cormorant,serif;font-size:28px;line-height:1.1;color:#121f38;
+}
+.jp-admin-order__email{
+margin:8px 0 0;font-size:14px;color:#5c6474;
+}
+.jp-admin-order__total{
+margin:0;font-family:Cormorant,serif;font-size:24px;font-style:italic;color:#c78665;white-space:nowrap;
+}
+.jp-admin-order__body{
+display:grid;grid-template-columns:minmax(220px,320px) minmax(0,1fr);gap:24px;padding:24px;
+}
+.jp-admin-order__card{
+display:flex;justify-content:center;align-items:flex-start;
+}
+.jp-admin-order__details{
+min-width:0;
+}
+.jp-admin-order__items{
+list-style:none;margin:0;padding:0;
+}
+.jp-admin-order__items li{
+display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #eef2f6;
+}
+.jp-admin-order__items li:last-child{border-bottom:0;}
+.jp-admin-order__items strong{
+display:block;max-width:72%;font-size:14px;line-height:1.45;color:#3c4860;
+}
+.jp-admin-order__items span{
+font-family:Cormorant,serif;font-size:18px;font-style:italic;color:#c78665;white-space:nowrap;
+}
+.jp-admin-order__message{
+margin:18px 0 0;font-size:14px;line-height:1.6;color:#5c6474;
+}
+.jp-admin-order__empty{
+margin:0;color:#818491;font-size:14px;
+}
+.jp-virtual-card__preview{
+position:relative;width:100%;max-width:320px;border:1px solid #eee;background:#fff;container-type:inline-size;
+}
+.jp-virtual-card__preview img{display:block;width:100%;height:auto;}
+.jp-virtual-card__overlay{position:absolute;inset:0;pointer-events:none;}
+.jp-virtual-card__value{
+position:absolute;margin:0;padding:0;font-family:Cormorant,serif;font-style:italic;line-height:1.2;color:#3c4860;overflow:hidden;word-break:break-word;
+}
+.jp-virtual-card__value--de{
+top:var(--jp-card-de-top,66%);left:var(--jp-card-de-left,20%);width:var(--jp-card-de-width,70%);font-size:var(--jp-card-de-size,2.8cqi);
+}
+.jp-virtual-card__value--presente{
+top:var(--jp-card-presente-top,74%);left:var(--jp-card-presente-left,24%);width:var(--jp-card-presente-width,66%);font-size:var(--jp-card-presente-size,2.8cqi);
+}
+.jp-virtual-card__value--mensagem{
+top:var(--jp-card-mensagem-top,82%);left:var(--jp-card-mensagem-left,24%);width:var(--jp-card-mensagem-width,66%);height:var(--jp-card-mensagem-height,auto);font-size:var(--jp-card-mensagem-size,2.5cqi);
+}
+.jp-virtual-card__preview[data-card-align="line"] .jp-virtual-card__value--de,
+.jp-virtual-card__preview[data-card-align="line"] .jp-virtual-card__value--presente,
+.jp-virtual-card__preview[data-card-align="line"] .jp-virtual-card__value--mensagem{
+transform:translateX(var(--jp-card-line-shift,0));
+}
+@media (max-width:860px){
+.jp-admin-order__body{grid-template-columns:1fr;}
+.jp-admin-order__items strong{max-width:100%;}
+.jp-admin-order__items li{flex-direction:column;gap:6px;}
+}
+</style>
+</head>
+<body>
+<div class="jp-admin-shell">
+<section id="jp-admin-login" class="jp-admin-login">
+<h1 class="jp-admin-login__title">Admin</h1>
+<p class="jp-admin-login__lead">Acesso restrito aos presentes vendidos e cartões virtuais.</p>
+<form id="jp-admin-login-form">
+<div class="jp-admin-field">
+<label for="jp-admin-password">Senha</label>
+<input id="jp-admin-password" type="password" autocomplete="current-password" required />
+</div>
+<p id="jp-admin-login-error" class="jp-admin-error" hidden>Senha incorreta.</p>
+<button type="submit" class="jp-admin-btn">Entrar</button>
+</form>
+</section>
+<section id="jp-admin-app" hidden>
+<div class="jp-admin-brand">
+<h1 class="jp-admin-brand__title">Presentes vendidos</h1>
+<div class="jp-admin-brand__actions">
+<button type="button" id="jp-admin-refresh" class="jp-admin-btn jp-admin-btn--ghost">Atualizar</button>
+<button type="button" id="jp-admin-logout" class="jp-admin-btn jp-admin-btn--ghost">Sair</button>
+</div>
+</div>
+<p id="jp-admin-status" class="jp-admin-status"></p>
+<div id="jp-admin-list" class="jp-admin-list"></div>
+</section>
+</div>
+<script type="text/javascript" src="/media/jp/jp-gift-cart.js?v=8"></script>
+<script type="text/javascript" src="/media/jp/jp-admin.js?v=2"></script>
+</body>
+</html>

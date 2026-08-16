@@ -1,0 +1,384 @@
+(function (window, document) {
+  var ADMIN_PASSWORD = 'admin-tj';
+  var SESSION_KEY = 'jp_admin_auth_v1';
+  var SUPABASE_URL = 'https://mghmldhsdtbsawcmwuet.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_x4ncGwsOMqCjOZAB3QthrA_ry91d6S6';
+  var loginNode = document.getElementById('jp-admin-login');
+  var appNode = document.getElementById('jp-admin-app');
+  var loginForm = document.getElementById('jp-admin-login-form');
+  var passwordInput = document.getElementById('jp-admin-password');
+  var loginErrorNode = document.getElementById('jp-admin-login-error');
+  var listNode = document.getElementById('jp-admin-list');
+  var statusNode = document.getElementById('jp-admin-status');
+  var logoutBtn = document.getElementById('jp-admin-logout');
+  var refreshBtn = document.getElementById('jp-admin-refresh');
+
+  function getCart() {
+    return window.JpGiftCart || null;
+  }
+
+  function escapeHtml(value) {
+    var cart = getCart();
+    if (cart && typeof cart.escapeHtml === 'function') {
+      return cart.escapeHtml(value);
+    }
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function formatCurrency(value) {
+    var cart = getCart();
+    if (cart && typeof cart.formatCurrency === 'function') {
+      return cart.formatCurrency(value);
+    }
+    var amount = Number(value);
+    if (Number.isNaN(amount)) {
+      return '';
+    }
+    return amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function truncatePresenteLabel(value) {
+    var cart = getCart();
+    if (cart && typeof cart.truncatePresenteLabel === 'function') {
+      return cart.truncatePresenteLabel(value);
+    }
+    return String(value || '');
+  }
+
+  function getVirtualCardById(cardId) {
+    var cart = getCart();
+    if (cart && typeof cart.getVirtualCardById === 'function') {
+      return cart.getVirtualCardById(cardId);
+    }
+    return {
+      image: 'media/jp/cartoes/cartao-1.png',
+      layout: {
+        de: { top: 64, left: 31, width: 47, size: 2.8 },
+        presente: { top: 75, left: 39, width: 39, size: 2.8 },
+        mensagem: { top: 80.6, left: 41, width: 40, height: 11.5, size: 2.5 },
+      },
+    };
+  }
+
+  function fetchGiftOrders() {
+    var controller = new AbortController();
+    var timeoutId = window.setTimeout(function () {
+      controller.abort();
+    }, 15000);
+    return fetch(SUPABASE_URL + '/rest/v1/gift_orders?select=*&order=purchased_at.desc', {
+      method: 'GET',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: 'Bearer ' + SUPABASE_KEY,
+      },
+      signal: controller.signal,
+    })
+      .then(function (response) {
+        window.clearTimeout(timeoutId);
+        return response.json().then(function (data) {
+          if (!response.ok) {
+            return Promise.reject(data);
+          }
+          return Array.isArray(data) ? data : [];
+        });
+      })
+      .catch(function (error) {
+        window.clearTimeout(timeoutId);
+        return Promise.reject(error);
+      });
+  }
+
+  function isAuthed() {
+    try {
+      return window.sessionStorage.getItem(SESSION_KEY) === '1';
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function setAuthed(value) {
+    try {
+      if (value) {
+        window.sessionStorage.setItem(SESSION_KEY, '1');
+      } else {
+        window.sessionStorage.removeItem(SESSION_KEY);
+      }
+    } catch (error) {}
+  }
+
+  function showLogin() {
+    if (loginNode) {
+      loginNode.hidden = false;
+    }
+    if (appNode) {
+      appNode.hidden = true;
+    }
+  }
+
+  function showApp() {
+    if (loginNode) {
+      loginNode.hidden = true;
+    }
+    if (appNode) {
+      appNode.hidden = false;
+    }
+  }
+
+  function assetUrl(path) {
+    var value = String(path || '').trim();
+    if (!value) {
+      return '';
+    }
+    if (/^https?:\/\//i.test(value) || value.charAt(0) === '/') {
+      return value;
+    }
+    return '/' + value.replace(/^\.\//, '');
+  }
+
+  function normalizeItems(items) {
+    if (Array.isArray(items)) {
+      return items;
+    }
+    if (typeof items === 'string') {
+      try {
+        var parsed = JSON.parse(items);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+    return [];
+  }
+
+  function formatDate(value) {
+    if (!value) {
+      return '';
+    }
+    var date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return '';
+    }
+    return date.toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  }
+
+  function applyCardLayout(previewNode, card) {
+    if (!previewNode || !card || !card.layout) {
+      return;
+    }
+    if (card.align) {
+      previewNode.dataset.cardAlign = card.align;
+    } else {
+      delete previewNode.dataset.cardAlign;
+    }
+    if (card.lineShift) {
+      previewNode.style.setProperty('--jp-card-line-shift', card.lineShift + 'em');
+    } else {
+      previewNode.style.removeProperty('--jp-card-line-shift');
+    }
+    Object.keys(card.layout).forEach(function (key) {
+      var pos = card.layout[key];
+      previewNode.style.setProperty('--jp-card-' + key + '-top', pos.top + '%');
+      previewNode.style.setProperty('--jp-card-' + key + '-left', pos.left + '%');
+      previewNode.style.setProperty('--jp-card-' + key + '-width', pos.width + '%');
+      previewNode.style.setProperty('--jp-card-' + key + '-size', (pos.size || 2.8) + 'cqi');
+      if (pos.height) {
+        previewNode.style.setProperty('--jp-card-' + key + '-height', pos.height + '%');
+      } else {
+        previewNode.style.removeProperty('--jp-card-' + key + '-height');
+      }
+    });
+  }
+
+  function renderItems(items) {
+    if (!Array.isArray(items) || !items.length) {
+      return '<p class="jp-admin-order__empty">Nenhum item registrado.</p>';
+    }
+    return (
+      '<ul class="jp-admin-order__items">' +
+      items
+        .map(function (item) {
+          return (
+            '<li><strong>' +
+            escapeHtml(String(item.produto || '')) +
+            '</strong><span>' +
+            escapeHtml(String(item.preco || '')) +
+            '</span></li>'
+          );
+        })
+        .join('') +
+      '</ul>'
+    );
+  }
+
+  function renderOrder(order) {
+    var card = getVirtualCardById(order.card_id);
+    var cardImage = assetUrl(order.card_image || card.image);
+    var items = normalizeItems(order.items);
+    var total =
+      order.total != null && order.total !== ''
+        ? formatCurrency(Number(order.total))
+        : '';
+    return (
+      '<article class="jp-admin-order">' +
+      '<header class="jp-admin-order__head">' +
+      '<div><p class="jp-admin-order__meta">' +
+      escapeHtml(formatDate(order.purchased_at)) +
+      '</p><h2 class="jp-admin-order__guest">' +
+      escapeHtml(String(order.guest_name || order.de || 'Convidado')) +
+      '</h2>' +
+      (order.guest_email
+        ? '<p class="jp-admin-order__email">' + escapeHtml(String(order.guest_email)) + '</p>'
+        : '') +
+      '</div>' +
+      (total ? '<p class="jp-admin-order__total">' + escapeHtml(total) + '</p>' : '') +
+      '</header>' +
+      '<div class="jp-admin-order__body">' +
+      '<div class="jp-admin-order__card">' +
+      '<div class="jp-virtual-card__preview" data-card-id="' +
+      escapeHtml(String(order.card_id || '1')) +
+      '">' +
+      '<img src="' +
+      escapeHtml(cardImage) +
+      '" alt="Cartão virtual" loading="lazy" decoding="async" />' +
+      '<div class="jp-virtual-card__overlay">' +
+      '<span class="jp-virtual-card__value jp-virtual-card__value--de">' +
+      escapeHtml(String(order.de || '')) +
+      '</span>' +
+      '<span class="jp-virtual-card__value jp-virtual-card__value--presente">' +
+      escapeHtml(truncatePresenteLabel(String(order.presente || ''))) +
+      '</span>' +
+      '<span class="jp-virtual-card__value jp-virtual-card__value--mensagem">' +
+      escapeHtml(String(order.mensagem || '')) +
+      '</span>' +
+      '</div>' +
+      '</div>' +
+      '</div>' +
+      '<div class="jp-admin-order__details">' +
+      renderItems(items) +
+      (order.mensagem
+        ? '<p class="jp-admin-order__message"><strong>Mensagem:</strong> ' +
+          escapeHtml(String(order.mensagem)) +
+          '</p>'
+        : '') +
+      '</div>' +
+      '</div>' +
+      '</article>'
+    );
+  }
+
+  function bindCardLayouts() {
+    document.querySelectorAll('.jp-virtual-card__preview[data-card-id]').forEach(function (node) {
+      var card = getVirtualCardById(node.getAttribute('data-card-id') || '1');
+      applyCardLayout(node, card);
+    });
+  }
+
+  function setStatus(text, isError) {
+    if (!statusNode) {
+      return;
+    }
+    statusNode.textContent = text;
+    statusNode.classList.toggle('is-error', !!isError);
+  }
+
+  function loadOrders() {
+    if (!listNode) {
+      return;
+    }
+    setStatus('Carregando vendas...', false);
+    listNode.innerHTML = '';
+    var ordersPromise;
+    try {
+      var cart = getCart();
+      ordersPromise =
+        cart && typeof cart.fetchGiftOrders === 'function'
+          ? cart.fetchGiftOrders()
+          : fetchGiftOrders();
+      if (!ordersPromise || typeof ordersPromise.then !== 'function') {
+        throw new Error('fetch unavailable');
+      }
+    } catch (error) {
+      listNode.innerHTML =
+        '<p class="jp-admin-empty is-error">Não foi possível carregar as vendas. Tente atualizar a página.</p>';
+      setStatus('Erro ao carregar vendas.', true);
+      return;
+    }
+    ordersPromise
+      .then(function (orders) {
+        try {
+          if (!orders.length) {
+            listNode.innerHTML =
+              '<p class="jp-admin-empty">Nenhuma venda registrada ainda.</p>';
+            setStatus('0 vendas encontradas.', false);
+            return;
+          }
+          listNode.innerHTML = orders.map(renderOrder).join('');
+          bindCardLayouts();
+          setStatus(orders.length + ' venda(s) encontrada(s).', false);
+        } catch (error) {
+          listNode.innerHTML =
+            '<p class="jp-admin-empty is-error">Erro ao exibir as vendas.</p>';
+          setStatus('Erro ao exibir vendas.', true);
+        }
+      })
+      .catch(function () {
+        listNode.innerHTML =
+          '<p class="jp-admin-empty is-error">Não foi possível carregar as vendas. Tente atualizar a página.</p>';
+        setStatus('Erro ao carregar vendas.', true);
+      });
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    var password = passwordInput instanceof HTMLInputElement ? passwordInput.value : '';
+    if (password !== ADMIN_PASSWORD) {
+      if (loginErrorNode) {
+        loginErrorNode.hidden = false;
+        loginErrorNode.textContent = 'Senha incorreta.';
+      }
+      return;
+    }
+    if (loginErrorNode) {
+      loginErrorNode.hidden = true;
+    }
+    setAuthed(true);
+    showApp();
+    loadOrders();
+  }
+
+  function handleLogout() {
+    setAuthed(false);
+    showLogin();
+    if (passwordInput instanceof HTMLInputElement) {
+      passwordInput.value = '';
+    }
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', handleLogin);
+  }
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', handleLogout);
+  }
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', loadOrders);
+  }
+
+  if (isAuthed()) {
+    showApp();
+    loadOrders();
+  } else {
+    showLogin();
+  }
+})(window, document);
