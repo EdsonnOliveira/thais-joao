@@ -12,6 +12,7 @@
   var statusNode = document.getElementById('jp-admin-status');
   var logoutBtn = document.getElementById('jp-admin-logout');
   var refreshBtn = document.getElementById('jp-admin-refresh');
+  var loadedOrders = [];
 
   function getCart() {
     return window.JpGiftCart || null;
@@ -65,12 +66,12 @@
     };
   }
 
-  function fetchGiftOrders() {
+  function fetchSupabaseJson(path) {
     var controller = new AbortController();
     var timeoutId = window.setTimeout(function () {
       controller.abort();
     }, 15000);
-    return fetch(SUPABASE_URL + '/rest/v1/gift_orders?select=*&order=purchased_at.desc', {
+    return fetch(SUPABASE_URL + path, {
       method: 'GET',
       headers: {
         apikey: SUPABASE_KEY,
@@ -91,6 +92,95 @@
         window.clearTimeout(timeoutId);
         return Promise.reject(error);
       });
+  }
+
+  function fetchGiftOrders() {
+    return fetchSupabaseJson('/rest/v1/gift_orders?select=*&order=purchased_at.desc');
+  }
+
+  function fetchGiftPurchases() {
+    return fetchSupabaseJson('/rest/v1/gift_purchases?select=*&order=purchased_at.desc');
+  }
+
+  function fetchCatalogItems() {
+    return fetch('/items.json?v=7')
+      .then(function (response) {
+        return response.json().then(function (data) {
+          if (!response.ok) {
+            return Promise.reject(data);
+          }
+          return Array.isArray(data) ? data : [];
+        });
+      })
+      .catch(function () {
+        return [];
+      });
+  }
+
+  function buildCatalogMap(items) {
+    var map = {};
+    items.forEach(function (item) {
+      map[String(item.id)] = item;
+    });
+    return map;
+  }
+
+  function collectCoveredItemIds(orders) {
+    var covered = {};
+    orders.forEach(function (order) {
+      normalizeItems(order.items).forEach(function (item) {
+        if (item.id != null && item.id !== '') {
+          covered[String(item.id)] = true;
+        }
+      });
+    });
+    return covered;
+  }
+
+  function mergeSales(orders, purchases, catalogItems) {
+    var catalogMap = buildCatalogMap(catalogItems);
+    var coveredItemIds = collectCoveredItemIds(orders);
+    var legacyOrders = purchases
+      .filter(function (purchase) {
+        return !coveredItemIds[String(purchase.item_id)];
+      })
+      .map(function (purchase) {
+        var catalogItem = catalogMap[String(purchase.item_id)] || {};
+        var productName = String(catalogItem.produto || 'Presente ' + purchase.item_id);
+        return {
+          id: 'purchase-' + purchase.id,
+          order_nsu: '',
+          guest_name: purchase.guest_name,
+          guest_email: purchase.guest_email,
+          card_id: null,
+          card_image: null,
+          de: purchase.guest_name || '',
+          presente: productName,
+          mensagem: '',
+          items: [
+            {
+              id: String(purchase.item_id),
+              produto: productName,
+              preco: String(catalogItem.preco || ''),
+            },
+          ],
+          total: catalogItem.preco_valor != null ? catalogItem.preco_valor : null,
+          purchased_at: purchase.purchased_at,
+        };
+      });
+    return orders
+      .concat(legacyOrders)
+      .sort(function (left, right) {
+        return new Date(right.purchased_at).getTime() - new Date(left.purchased_at).getTime();
+      });
+  }
+
+  function fetchAllSales() {
+    return Promise.all([fetchGiftOrders(), fetchGiftPurchases(), fetchCatalogItems()]).then(
+      function (results) {
+        return mergeSales(results[0], results[1], results[2]);
+      },
+    );
   }
 
   function isAuthed() {
@@ -200,6 +290,159 @@
     });
   }
 
+  function sanitizeFileName(value) {
+    return (
+      String(value || 'cartao')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-zA-Z0-9-_]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .toLowerCase()
+        .slice(0, 60) || 'cartao'
+    );
+  }
+
+  function waitCardFont() {
+    if (document.fonts && document.fonts.load) {
+      return document.fonts.load('italic 400 48px Cormorant').catch(function () {
+        return undefined;
+      });
+    }
+    return Promise.resolve();
+  }
+
+  function loadCardImage(src) {
+    return new Promise(function (resolve, reject) {
+      var image = new Image();
+      image.onload = function () {
+        resolve(image);
+      };
+      image.onerror = reject;
+      image.src = src;
+    });
+  }
+
+  function applyAlignOffset(card, x, y, fontSize) {
+    if (card.align === 'line' && card.lineShift) {
+      y += card.lineShift * fontSize;
+    } else if (card.align === 'box-line') {
+      y -= 0.4 * fontSize;
+    }
+    return { x: x, y: y };
+  }
+
+  function drawWrappedText(ctx, text, x, y, maxWidth, maxHeight, lineHeight) {
+    var paragraphs = String(text).split('\n');
+    var lines = [];
+    paragraphs.forEach(function (paragraph, paragraphIndex) {
+      var words = String(paragraph || '').trim().split(/\s+/).filter(Boolean);
+      if (!words.length) {
+        if (paragraphIndex < paragraphs.length - 1) {
+          lines.push('');
+        }
+        return;
+      }
+      var line = '';
+      words.forEach(function (word) {
+        var testLine = line ? line + ' ' + word : word;
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          lines.push(line);
+          line = word;
+        } else {
+          line = testLine;
+        }
+      });
+      if (line) {
+        lines.push(line);
+      }
+    });
+    lines.forEach(function (item, index) {
+      var lineY = y + index * lineHeight;
+      if (maxHeight && lineY + lineHeight > y + maxHeight) {
+        return;
+      }
+      if (item) {
+        ctx.fillText(item, x, lineY);
+      }
+    });
+  }
+
+  function drawCardField(ctx, card, key, text, width, height) {
+    if (!text || !card.layout || !card.layout[key]) {
+      return;
+    }
+    var pos = card.layout[key];
+    var fontSize = ((pos.size || 2.8) / 100) * width;
+    var maxWidth = (pos.width / 100) * width;
+    var maxHeight = pos.height ? (pos.height / 100) * height : null;
+    var coords = applyAlignOffset(card, (pos.left / 100) * width, (pos.top / 100) * height, fontSize);
+    ctx.font = 'italic ' + fontSize + 'px Cormorant, serif';
+    ctx.fillStyle = '#3c4860';
+    ctx.textBaseline = 'top';
+    drawWrappedText(ctx, text, coords.x, coords.y, maxWidth, maxHeight, fontSize * 1.2);
+  }
+
+  function renderCardCanvas(order) {
+    var card = getVirtualCardById(order.card_id);
+    var imageSrc = assetUrl(order.card_image || card.image);
+    return waitCardFont()
+      .then(function () {
+        return loadCardImage(imageSrc);
+      })
+      .then(function (image) {
+        var width = image.naturalWidth;
+        var height = image.naturalHeight;
+        var canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext('2d');
+        if (!ctx) {
+          return Promise.reject(new Error('canvas'));
+        }
+        ctx.drawImage(image, 0, 0, width, height);
+        drawCardField(ctx, card, 'de', String(order.de || ''), width, height);
+        drawCardField(
+          ctx,
+          card,
+          'presente',
+          truncatePresenteLabel(String(order.presente || '')),
+          width,
+          height,
+        );
+        drawCardField(ctx, card, 'mensagem', String(order.mensagem || ''), width, height);
+        return canvas;
+      });
+  }
+
+  function downloadOrderCard(order, button) {
+    if (button instanceof HTMLButtonElement) {
+      button.disabled = true;
+    }
+    return renderCardCanvas(order)
+      .then(function (canvas) {
+        var link = document.createElement('a');
+        var fileName =
+          sanitizeFileName(order.de || order.guest_name || 'cartao') + '-cartao.png';
+        link.download = fileName;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      })
+      .catch(function () {
+        setStatus('Erro ao baixar cartão.', true);
+      })
+      .then(function () {
+        if (button instanceof HTMLButtonElement) {
+          button.disabled = false;
+        }
+      });
+  }
+
+  function findOrderById(orderId) {
+    return loadedOrders.find(function (order) {
+      return String(order.id) === String(orderId);
+    });
+  }
+
   function renderItems(items) {
     if (!Array.isArray(items) || !items.length) {
       return '<p class="jp-admin-order__empty">Nenhum item registrado.</p>';
@@ -221,9 +464,46 @@
     );
   }
 
-  function renderOrder(order) {
+  function renderCardSection(order) {
+    if (!order.card_id && !order.card_image) {
+      return (
+        '<div class="jp-admin-order__card">' +
+        '<p class="jp-admin-order__empty">Cartão virtual não registrado.</p>' +
+        '</div>'
+      );
+    }
     var card = getVirtualCardById(order.card_id);
     var cardImage = assetUrl(order.card_image || card.image);
+    return (
+      '<div class="jp-admin-order__card">' +
+      '<div class="jp-admin-order__card-inner">' +
+      '<div class="jp-virtual-card__preview" data-card-id="' +
+      escapeHtml(String(order.card_id || '1')) +
+      '">' +
+      '<img src="' +
+      escapeHtml(cardImage) +
+      '" alt="Cartão virtual" loading="lazy" decoding="async" />' +
+      '<div class="jp-virtual-card__overlay">' +
+      '<span class="jp-virtual-card__value jp-virtual-card__value--de">' +
+      escapeHtml(String(order.de || '')) +
+      '</span>' +
+      '<span class="jp-virtual-card__value jp-virtual-card__value--presente">' +
+      escapeHtml(truncatePresenteLabel(String(order.presente || ''))) +
+      '</span>' +
+      '<span class="jp-virtual-card__value jp-virtual-card__value--mensagem">' +
+      escapeHtml(String(order.mensagem || '')) +
+      '</span>' +
+      '</div>' +
+      '</div>' +
+      '</div>' +
+      '<button type="button" class="jp-admin-btn jp-admin-btn--ghost jp-admin-order__download" data-download-card data-order-id="' +
+      escapeHtml(String(order.id || '')) +
+      '">Baixar cartão</button>' +
+      '</div>'
+    );
+  }
+
+  function renderOrder(order) {
     var items = normalizeItems(order.items);
     var total =
       order.total != null && order.total !== ''
@@ -244,26 +524,7 @@
       (total ? '<p class="jp-admin-order__total">' + escapeHtml(total) + '</p>' : '') +
       '</header>' +
       '<div class="jp-admin-order__body">' +
-      '<div class="jp-admin-order__card">' +
-      '<div class="jp-virtual-card__preview" data-card-id="' +
-      escapeHtml(String(order.card_id || '1')) +
-      '">' +
-      '<img src="' +
-      escapeHtml(cardImage) +
-      '" alt="Cartão virtual" loading="lazy" decoding="async" />' +
-      '<div class="jp-virtual-card__overlay">' +
-      '<span class="jp-virtual-card__value jp-virtual-card__value--de">' +
-      escapeHtml(String(order.de || '')) +
-      '</span>' +
-      '<span class="jp-virtual-card__value jp-virtual-card__value--presente">' +
-      escapeHtml(truncatePresenteLabel(String(order.presente || ''))) +
-      '</span>' +
-      '<span class="jp-virtual-card__value jp-virtual-card__value--mensagem">' +
-      escapeHtml(String(order.mensagem || '')) +
-      '</span>' +
-      '</div>' +
-      '</div>' +
-      '</div>' +
+      renderCardSection(order) +
       '<div class="jp-admin-order__details">' +
       renderItems(items) +
       (order.mensagem
@@ -300,11 +561,7 @@
     listNode.innerHTML = '';
     var ordersPromise;
     try {
-      var cart = getCart();
-      ordersPromise =
-        cart && typeof cart.fetchGiftOrders === 'function'
-          ? cart.fetchGiftOrders()
-          : fetchGiftOrders();
+      ordersPromise = fetchAllSales();
       if (!ordersPromise || typeof ordersPromise.then !== 'function') {
         throw new Error('fetch unavailable');
       }
@@ -323,6 +580,7 @@
             setStatus('0 vendas encontradas.', false);
             return;
           }
+          loadedOrders = orders;
           listNode.innerHTML = orders.map(renderOrder).join('');
           bindCardLayouts();
           setStatus(orders.length + ' venda(s) encontrada(s).', false);
@@ -373,6 +631,23 @@
   }
   if (refreshBtn) {
     refreshBtn.addEventListener('click', loadOrders);
+  }
+  if (listNode) {
+    listNode.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+      var button = target.closest('[data-download-card]');
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+      var order = findOrderById(button.getAttribute('data-order-id') || '');
+      if (!order || !order.card_id) {
+        return;
+      }
+      downloadOrderCard(order, button);
+    });
   }
 
   if (isAuthed()) {
