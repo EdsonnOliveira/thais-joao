@@ -103,7 +103,7 @@
   }
 
   function fetchCatalogItems() {
-    return fetch('/items.json?v=10')
+    return fetch('/items.json?v=11')
       .then(function (response) {
         return response.json().then(function (data) {
           if (!response.ok) {
