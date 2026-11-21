@@ -3,6 +3,10 @@
   var GIFT_MESSAGE_KEY = 'jp_gift_message_v1';
   var SUPABASE_URL = 'https://mghmldhsdtbsawcmwuet.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_x4ncGwsOMqCjOZAB3QthrA_ry91d6S6';
+  var EXTERNAL_ITEM_ID = 'external-other-site';
+  var EXTERNAL_ITEM_NAME =
+    'Comprar em outro site e combinar a entrega com os noivos';
+  var EXTERNAL_ITEM_IMAGE = 'media/jp/logo-black.png';
   var purchasedIds = [];
   var supabaseClient = null;
   var purchasesChannel = null;
@@ -158,7 +162,7 @@
     }
     var rows = items
       .filter(function (item) {
-        return !isPurchased(item.id);
+        return !isExternalItem(item) && !isPurchased(item.id);
       })
       .map(function (item) {
         return {
@@ -238,15 +242,89 @@
     window.dispatchEvent(new CustomEvent('jp-cart-updated', { detail: { count: items.length } }));
   }
 
-  function normalizeItem(item) {
+  function isExternalItem(item) {
+    return Boolean(item && String(item.id) === EXTERNAL_ITEM_ID);
+  }
+
+  function normalizeAmount(value) {
+    var amount = Number(value);
+    if (!isFinite(amount) || amount < 0) {
+      return 0;
+    }
+    return Math.round(amount * 100) / 100;
+  }
+
+  function buildExternalItem(amount) {
+    var value = normalizeAmount(amount);
+    if (value <= 0) {
+      value = 100;
+    }
     return {
+      id: EXTERNAL_ITEM_ID,
+      produto: EXTERNAL_ITEM_NAME,
+      preco: formatCurrency(value),
+      preco_valor: value,
+      imagem: EXTERNAL_ITEM_IMAGE,
+      pagina_pdf: 0,
+      kind: 'external',
+      custom_amount: true,
+    };
+  }
+
+  function normalizeItem(item) {
+    var normalized = {
       id: String(item.id),
       produto: String(item.produto),
       preco: String(item.preco),
       preco_valor: Number(item.preco_valor),
       imagem: String(item.imagem),
-      pagina_pdf: Number(item.pagina_pdf),
+      pagina_pdf: Number(item.pagina_pdf) || 0,
     };
+    if (isExternalItem(normalized) || item.kind === 'external') {
+      normalized.kind = 'external';
+      normalized.custom_amount = true;
+      normalized.produto = EXTERNAL_ITEM_NAME;
+      normalized.imagem = EXTERNAL_ITEM_IMAGE;
+      normalized.preco_valor = normalizeAmount(normalized.preco_valor);
+      if (normalized.preco_valor <= 0) {
+        normalized.preco_valor = 100;
+      }
+      normalized.preco = formatCurrency(normalized.preco_valor);
+    }
+    return normalized;
+  }
+
+  function addOrUpdateExternalItem(amount) {
+    var external = buildExternalItem(amount);
+    var items = readCart().filter(function (entry) {
+      return !isExternalItem(entry);
+    });
+    items.push(external);
+    writeCart(items);
+    return external;
+  }
+
+  function updateItemAmount(id, amount) {
+    var value = normalizeAmount(amount);
+    if (value <= 0) {
+      return false;
+    }
+    var updated = false;
+    var items = readCart().map(function (item) {
+      if (String(item.id) !== String(id)) {
+        return item;
+      }
+      updated = true;
+      var next = normalizeItem(item);
+      next.preco_valor = value;
+      next.preco = formatCurrency(value);
+      next.custom_amount = true;
+      return next;
+    });
+    if (updated) {
+      writeCart(items);
+    }
+    return updated;
   }
 
   function getCount() {
@@ -267,6 +345,10 @@
 
   function addItem(item) {
     var normalized = normalizeItem(item);
+    if (isExternalItem(normalized)) {
+      addOrUpdateExternalItem(normalized.preco_valor);
+      return true;
+    }
     if (isPurchased(normalized.id)) {
       return false;
     }
@@ -451,6 +533,9 @@
   function getDefaultGiftMessage(cartItems) {
     var presente = cartItems
       .map(function (item) {
+        if (isExternalItem(item)) {
+          return 'Presente comprado em outro site';
+        }
         return truncatePresenteLabel(String(item.produto || '').trim());
       })
       .filter(Boolean)
@@ -669,6 +754,8 @@
   }
 
   window.JpGiftCart = {
+    EXTERNAL_ITEM_ID: EXTERNAL_ITEM_ID,
+    EXTERNAL_ITEM_NAME: EXTERNAL_ITEM_NAME,
     escapeHtml: escapeHtml,
     formatCurrency: formatCurrency,
     readCart: readCart,
@@ -678,6 +765,10 @@
     addItem: addItem,
     removeItem: removeItem,
     clearCart: clearCart,
+    isExternalItem: isExternalItem,
+    buildExternalItem: buildExternalItem,
+    addOrUpdateExternalItem: addOrUpdateExternalItem,
+    updateItemAmount: updateItemAmount,
     fetchPurchasedIds: fetchPurchasedIds,
     isPurchased: isPurchased,
     markItemsPurchased: markItemsPurchased,

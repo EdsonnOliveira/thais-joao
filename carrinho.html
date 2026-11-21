@@ -755,6 +755,54 @@ font-size:20px;
 font-style:italic;
 color:#c78665;
 }
+.jp-cart-item__amount-label{
+display:block;
+margin:0 0 6px;
+font-family:Muli,sans-serif;
+font-size:11px;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+color:#4a6785;
+}
+.jp-cart-item__amount{
+width:100%;
+max-width:180px;
+height:40px;
+padding:0 12px;
+border:1px solid #d9d9d9;
+font-family:Cormorant,serif;
+font-size:20px;
+font-style:italic;
+color:#c78665;
+background:#fff;
+}
+.jp-cart-item__amount:focus{
+outline:none;
+border-color:#c78665;
+}
+.jp-cart-item.is-external{
+align-items:start;
+}
+.jp-cart-external-note{
+margin:0 0 24px;
+padding:16px 18px;
+background:#faf7f4;
+border:1px solid #eadfd6;
+font-family:Muli,sans-serif;
+font-size:13px;
+line-height:1.55;
+color:#4a6785;
+}
+.jp-cart-external-note[hidden]{display:none!important;}
+.jp-cart-external-note strong{
+display:block;
+margin-bottom:6px;
+font-size:11px;
+letter-spacing:.12em;
+text-transform:uppercase;
+color:#bf7b5d;
+}
 .jp-cart-item__remove{
 border:none;
 background:transparent;
@@ -1383,6 +1431,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					<div class="jp-cart-layout">
 						<section class="jp-cart-panel">
 							<h2 class="jp-cart-panel__title">Presentes selecionados</h2>
+							<p class="jp-cart-external-note" id="jp-cart-external-note" hidden>
+								<strong>Compra em outro site</strong>
+								Você pode comprar o presente em outro lugar. Preferimos que a entrega seja feita pessoalmente aos noivos — combine com a gente. Depois, escolha PIX ou cartão e informe o valor que quiser contribuir.
+							</p>
 							<div class="jp-cart-list" id="jp-cart-list"></div>
 							<p class="jp-cart-empty" id="jp-cart-empty" hidden>Seu carrinho está vazio. <a href="loja.html">Escolher presentes</a></p>
 						</section>
@@ -1504,10 +1556,17 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			}
 			var listNode = document.getElementById('jp-cart-list');
 			var emptyNode = document.getElementById('jp-cart-empty');
+			var externalNoteNode = document.getElementById('jp-cart-external-note');
 			var totalNode = document.getElementById('jp-cart-total');
 			var countLabelNode = document.getElementById('jp-cart-count-label');
 			var checkoutBtn = document.getElementById('jp-cart-checkout-btn');
 			var checkoutSection = document.getElementById('pagamentos');
+			var wantsExternalCheckout = false;
+			try {
+				wantsExternalCheckout = new URLSearchParams(window.location.search).get('external') === '1';
+			} catch (error) {
+				wantsExternalCheckout = false;
+			}
 			var checkoutForm = document.getElementById('jp-checkout-form');
 			var checkoutAlertNode = document.getElementById('jp-checkout-alert');
 			var guestNameField = document.getElementById('jp-guest-name-field');
@@ -1729,34 +1788,79 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				});
 			}
 
+			function hasExternalItem(items) {
+				return items.some(function (item) {
+					return cart.isExternalItem(item);
+				});
+			}
+
+			function parseAmountInput(value) {
+				var normalized = String(value || '')
+					.trim()
+					.replace(/\s/g, '')
+					.replace(/R\$ ?/i, '')
+					.replace(/\./g, '')
+					.replace(',', '.');
+				var amount = Number(normalized);
+				if (!isFinite(amount) || amount <= 0) {
+					return 0;
+				}
+				return Math.round(amount * 100) / 100;
+			}
+
 			function renderList() {
 				var items = cart.readCart();
 				var total = cart.getTotal();
+				var externalInCart = hasExternalItem(items);
 				if (!listNode) {
 					return;
 				}
 				listNode.innerHTML = '';
 				items.forEach(function (item) {
 					var row = document.createElement('article');
-					row.className = 'jp-cart-item';
-					row.innerHTML =
-						'<div class="jp-cart-item__media"><img src="' +
-						cart.escapeHtml(item.imagem) +
-						'" alt="' +
-						cart.escapeHtml(item.produto) +
-						'" loading="lazy" decoding="async" /></div>' +
-						'<div><p class="jp-cart-item__name">' +
-						cart.escapeHtml(item.produto) +
-						'</p><p class="jp-cart-item__price">' +
-						cart.escapeHtml(item.preco) +
-						'</p></div>' +
-						'<button type="button" class="jp-cart-item__remove" data-id="' +
-						cart.escapeHtml(item.id) +
-						'">Remover</button>';
+					var isExternal = cart.isExternalItem(item);
+					row.className = 'jp-cart-item' + (isExternal ? ' is-external' : '');
+					if (isExternal) {
+						row.innerHTML =
+							'<div class="jp-cart-item__media"><img src="' +
+							cart.escapeHtml(item.imagem) +
+							'" alt="' +
+							cart.escapeHtml(item.produto) +
+							'" loading="lazy" decoding="async" /></div>' +
+							'<div><p class="jp-cart-item__name">' +
+							cart.escapeHtml(item.produto) +
+							'</p><label class="jp-cart-item__amount-label" for="jp-external-amount">Valor que deseja contribuir</label>' +
+							'<input class="jp-cart-item__amount" id="jp-external-amount" type="text" inputmode="decimal" data-amount-id="' +
+							cart.escapeHtml(item.id) +
+							'" value="' +
+							cart.escapeHtml(String(item.preco_valor).replace('.', ',')) +
+							'" /></div>' +
+							'<button type="button" class="jp-cart-item__remove" data-id="' +
+							cart.escapeHtml(item.id) +
+							'">Remover</button>';
+					} else {
+						row.innerHTML =
+							'<div class="jp-cart-item__media"><img src="' +
+							cart.escapeHtml(item.imagem) +
+							'" alt="' +
+							cart.escapeHtml(item.produto) +
+							'" loading="lazy" decoding="async" /></div>' +
+							'<div><p class="jp-cart-item__name">' +
+							cart.escapeHtml(item.produto) +
+							'</p><p class="jp-cart-item__price">' +
+							cart.escapeHtml(item.preco) +
+							'</p></div>' +
+							'<button type="button" class="jp-cart-item__remove" data-id="' +
+							cart.escapeHtml(item.id) +
+							'">Remover</button>';
+					}
 					listNode.appendChild(row);
 				});
 				if (emptyNode) {
 					emptyNode.hidden = items.length > 0;
+				}
+				if (externalNoteNode) {
+					externalNoteNode.hidden = !externalInCart;
 				}
 				if (totalNode) {
 					totalNode.textContent = cart.formatCurrency(total);
@@ -1765,7 +1869,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					countLabelNode.textContent = items.length + (items.length === 1 ? ' presente' : ' presentes');
 				}
 				if (checkoutBtn) {
-					checkoutBtn.disabled = items.length === 0;
+					checkoutBtn.disabled = items.length === 0 || total <= 0;
 				}
 				if (checkoutSection && items.length === 0) {
 					checkoutSection.hidden = true;
@@ -2076,11 +2180,36 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					cart.removeItem(id);
 					renderList();
 				});
+				listNode.addEventListener('change', function (event) {
+					var target = event.target;
+					if (!(target instanceof HTMLInputElement)) {
+						return;
+					}
+					var id = target.getAttribute('data-amount-id');
+					if (!id) {
+						return;
+					}
+					var amount = parseAmountInput(target.value);
+					if (amount <= 0) {
+						target.value = String(cart.buildExternalItem().preco_valor).replace('.', ',');
+						return;
+					}
+					cart.updateItemAmount(id, amount);
+					renderList();
+				});
+				listNode.addEventListener('keydown', function (event) {
+					var target = event.target;
+					if (!(target instanceof HTMLInputElement) || event.key !== 'Enter') {
+						return;
+					}
+					event.preventDefault();
+					target.blur();
+				});
 			}
 
 			if (checkoutBtn && checkoutSection) {
 				checkoutBtn.addEventListener('click', function () {
-					if (cart.readCart().length === 0) {
+					if (cart.readCart().length === 0 || cart.getTotal() <= 0) {
 						return;
 					}
 					hydrateGiftMessageForm(cart.readCart());
@@ -2131,6 +2260,9 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 
 			cart.fetchPurchasedIds().then(function () {
 				cart.removePurchasedFromCart();
+				if (wantsExternalCheckout && !cart.hasItem(cart.EXTERNAL_ITEM_ID)) {
+					cart.addOrUpdateExternalItem(100);
+				}
 				return handlePaymentReturn();
 			}).then(function () {
 				return fetch('payment-config.json');
@@ -2142,6 +2274,19 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			}).then(function (config) {
 				paymentConfig = config;
 				renderList();
+				if (wantsExternalCheckout && cart.hasItem(cart.EXTERNAL_ITEM_ID) && checkoutBtn && checkoutSection) {
+					hydrateGiftMessageForm(cart.readCart());
+					checkoutSection.hidden = false;
+					updatePaymentPanels(cart.getTotal());
+					window.setTimeout(function () {
+						checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+						var amountInput = document.getElementById('jp-external-amount');
+						if (amountInput instanceof HTMLInputElement) {
+							amountInput.focus();
+							amountInput.select();
+						}
+					}, 120);
+				}
 			}).catch(function () {
 				paymentConfig = { pix: {}, credit_card: {} };
 				renderList();

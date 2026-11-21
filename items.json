@@ -492,31 +492,171 @@
   {
     "id": "49",
     "numero": 49,
-    "produto": "Colcha de casal 100% algodão",
-    "preco": "R$ 189,00",
-    "preco_valor": 189.0,
+    "produto": "Smart TV 55\" Polegadas UHD 4K",
+    "preco": "R$ 2.500,00",
+    "preco_valor": 2500.0,
     "imagem": "media/jp/shop/item-50.jpg",
-    "pagina_pdf": 9,
+    "pagina_pdf": 10,
     "shop_file": "item-50.jpg"
   },
   {
     "id": "50",
     "numero": 50,
-    "produto": "Jogo de Cama Alexandre Herchcovitch Casal - Percal 180 Fios 100% Algodão",
-    "preco": "R$ 272,89",
-    "preco_valor": 272.89,
+    "produto": "Cama Box Queen",
+    "preco": "R$ 3.399,00",
+    "preco_valor": 3399.0,
     "imagem": "media/jp/shop/item-51.jpg",
-    "pagina_pdf": 9,
+    "pagina_pdf": 10,
     "shop_file": "item-51.jpg"
   },
   {
     "id": "51",
     "numero": 51,
-    "produto": "Coberdrom Dupla Face Liso Casal",
-    "preco": "R$ 209,90",
-    "preco_valor": 209.9,
+    "produto": "Cobertor Montreal Casal Havan Casal - Cores: Azul Marinho, Vinho, Bege, Cinza, Preto, Branco",
+    "preco": "R$ 134,90",
+    "preco_valor": 134.9,
     "imagem": "media/jp/shop/item-52.jpg",
-    "pagina_pdf": 9,
+    "pagina_pdf": 11,
     "shop_file": "item-52.jpg"
+  },
+  {
+    "id": "52",
+    "numero": 52,
+    "produto": "Jogo de Assadeiras Tramontina Brasil Antiaderente Starflon Max Mocaccino 3 Peças",
+    "preco": "R$ 159,90",
+    "preco_valor": 159.9,
+    "imagem": "media/jp/shop/item-53.jpg",
+    "pagina_pdf": 11,
+    "shop_file": "item-53.jpg"
+  },
+  {
+    "id": "53",
+    "numero": 53,
+    "produto": "WOLFF - Prato para Bolo com Pé e Tampa Pearl 25cm x 23,5cm Cristal",
+    "preco": "R$ 149,90",
+    "preco_valor": 149.9,
+    "imagem": "media/jp/shop/item-54.jpg",
+    "pagina_pdf": 11,
+    "shop_file": "item-54.jpg"
+  },
+  {
+    "id": "54",
+    "numero": 54,
+    "produto": "Jogo de Churrasco Tradicional 3 Peças - Tramontina",
+    "preco": "R$ 129,90",
+    "preco_valor": 129.9,
+    "imagem": "media/jp/shop/item-55.jpg",
+    "pagina_pdf": 11,
+    "shop_file": "item-55.jpg"
+  },
+  {
+    "id": "55",
+    "numero": 55,
+    "produto": "Tábua de Corte para Carne, Churrasco e Legumes em Madeira Teca Moderna - 40x30cm",
+    "preco": "R$ 120,00",
+    "preco_valor": 120.0,
+    "imagem": "media/jp/shop/item-56.jpg",
+    "pagina_pdf": 11,
+    "shop_file": "item-56.jpg"
+  },
+  {
+    "id": "56",
+    "numero": 56,
+    "produto": "Ou Lixeira com Pedal 30L Branco Linha Trium",
+    "preco": "R$ 159,90",
+    "preco_valor": 159.9,
+    "imagem": "media/jp/shop/item-57.jpg",
+    "pagina_pdf": 11,
+    "shop_file": "item-57.jpg"
+  },
+  {
+    "id": "57",
+    "numero": 57,
+    "produto": "MONDIAL Batedeira Bella Massa Platinum, Grafite/Inox, 500W, 220V - B-42-P",
+    "preco": "R$ 249,90",
+    "preco_valor": 249.9,
+    "imagem": "media/jp/shop/item-58.jpg",
+    "pagina_pdf": 12,
+    "shop_file": "item-58.jpg"
+  },
+  {
+    "id": "58",
+    "numero": 58,
+    "produto": "BLACK+DECKER Vaporizador de Roupas e Higienizador 3x1 Dobrável BDV3100 Ferro a Vapor, Bivolt",
+    "preco": "R$ 249,90",
+    "preco_valor": 249.9,
+    "imagem": "media/jp/shop/item-59.jpg",
+    "pagina_pdf": 12,
+    "shop_file": "item-59.jpg"
+  },
+  {
+    "id": "59",
+    "numero": 59,
+    "produto": "Elgin Umidificador de ar 2,0L",
+    "preco": "R$ 139,90",
+    "preco_valor": 139.9,
+    "imagem": "media/jp/shop/item-60.jpg",
+    "pagina_pdf": 12,
+    "shop_file": "item-60.jpg"
+  },
+  {
+    "id": "60",
+    "numero": 60,
+    "produto": "Kit toalha de banho Casal + toalha de rosto",
+    "preco": "R$ 199,90",
+    "preco_valor": 199.9,
+    "imagem": "media/jp/shop/item-61.jpg",
+    "pagina_pdf": 12,
+    "shop_file": "item-61.jpg"
+  },
+  {
+    "id": "61",
+    "numero": 61,
+    "produto": "Coifa PCO60, Philco, Prata, 220V",
+    "preco": "R$ 699,00",
+    "preco_valor": 699.0,
+    "imagem": "media/jp/shop/item-62.jpg",
+    "pagina_pdf": 12,
+    "shop_file": "item-62.jpg"
+  },
+  {
+    "id": "62",
+    "numero": 62,
+    "produto": "Jogo de Cama - Cobre Leito Queen",
+    "preco": "R$ 259,90",
+    "preco_valor": 259.9,
+    "imagem": "media/jp/shop/item-63.jpg",
+    "pagina_pdf": 13,
+    "shop_file": "item-63.jpg"
+  },
+  {
+    "id": "63",
+    "numero": 63,
+    "produto": "Panela pressão elétrica Electrolux digital PCC20 Inox preto 220V por Rita Lobo",
+    "preco": "R$ 550,00",
+    "preco_valor": 550.0,
+    "imagem": "media/jp/shop/item-64.jpg",
+    "pagina_pdf": 13,
+    "shop_file": "item-64.jpg"
+  },
+  {
+    "id": "64",
+    "numero": 64,
+    "produto": "Cobertor - Edredom Casal dupla Face",
+    "preco": "R$ 210,00",
+    "preco_valor": 210.0,
+    "imagem": "media/jp/shop/item-65.jpg",
+    "pagina_pdf": 13,
+    "shop_file": "item-65.jpg"
+  },
+  {
+    "id": "65",
+    "numero": 65,
+    "produto": "Climatizador Britânia 4 em 1 Autonomia de 26h BCL05A 220V",
+    "preco": "R$ 269,90",
+    "preco_valor": 269.9,
+    "imagem": "media/jp/shop/item-66.jpg",
+    "pagina_pdf": 13,
+    "shop_file": "item-66.jpg"
   }
 ]
