@@ -550,6 +550,23 @@ text-decoration:none;
 .jp-external-gift__btn:hover{
 background:#b67555;
 }
+.jp-external-gift__link{
+display:block;
+margin:16px auto 0;
+padding:0;
+border:none;
+background:transparent;
+font-family:Muli,sans-serif;
+font-size:12px;
+font-weight:600;
+letter-spacing:.04em;
+color:#4a6785;
+text-decoration:underline;
+cursor:pointer;
+}
+.jp-external-gift__link:hover{
+color:#c78665;
+}
 .jp-palette{
 max-width:1140px;
 margin:0 auto 32px;
@@ -1204,16 +1221,17 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					<li class="jp-shop-info__item">Entrega direta aos noivos</li>
 					<li class="jp-shop-info__item">Dados não salvos</li>
 				</ul>
-				<p class="jp-shop-info__note">Também dá para comprar em outro site e combinar a entrega com os noivos. Preferimos entrega pessoal — use a opção abaixo e contribua com o valor que quiser.</p>
+				<p class="jp-shop-info__note">Também dá para comprar o presente em outro site: escolha o item na lista, vá ao carrinho e no pagamento selecione “Comprar em outro site”. O presente fica indisponível e a entrega é combinada com os noivos.</p>
 			</div>
 		</section>
 		<section class="jp-external-gift" aria-label="Comprar em outro site">
 			<div class="jp-external-gift__inner">
 				<p class="jp-external-gift__label">Outra opção</p>
 				<h2 class="jp-external-gift__title">Comprar em outro site e combinar a entrega com os noivos</h2>
-				<p class="jp-external-gift__text">Prefere escolher o presente em outra loja? Tudo bem — combine a entrega conosco e contribua com o valor que quiser por PIX ou cartão.</p>
-				<p class="jp-external-gift__note">Você pode comprar o presente em outro lugar. Preferimos que a entrega seja feita pessoalmente aos noivos — combine com a gente.</p>
-				<button type="button" class="jp-external-gift__btn" id="jp-external-gift-btn">Escolher essa opção</button>
+				<p class="jp-external-gift__text">Escolha o presente na lista abaixo, adicione ao carrinho e, no pagamento, selecione “Comprar em outro site”. Assim o item fica indisponível para outras pessoas — sem precisar pagar por aqui.</p>
+				<p class="jp-external-gift__note">Preferimos que a entrega seja feita pessoalmente aos noivos. Combine com a gente depois de escolher o presente.</p>
+				<button type="button" class="jp-external-gift__btn" id="jp-external-gift-btn">Ver presentes da lista</button>
+				<button type="button" class="jp-external-gift__link" id="jp-external-contribute-btn">Ou contribuir com um valor livre (PIX ou cartão)</button>
 			</div>
 		</section>
 		<section class="jp-palette" aria-label="Paleta de cores dos presentes">
@@ -1427,6 +1445,14 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var externalBtn = document.getElementById('jp-external-gift-btn');
 			if (externalBtn) {
 				externalBtn.addEventListener('click', function () {
+					if (grid) {
+						grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}
+				});
+			}
+			var contributeBtn = document.getElementById('jp-external-contribute-btn');
+			if (contributeBtn) {
+				contributeBtn.addEventListener('click', function () {
 					cart.addOrUpdateExternalItem(100);
 					cart.updateBadges();
 					window.location.href = 'carrinho.html?external=1';

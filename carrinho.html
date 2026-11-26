@@ -946,17 +946,21 @@ margin-bottom:24px;
 }
 .jp-cart-tab{
 flex:1;
-height:44px;
+min-height:44px;
+height:auto;
+padding:10px 8px;
 border:1px solid #c78665;
 background:#fff;
 color:#c78665;
 font-family:Muli,sans-serif;
-font-size:11px;
+font-size:10px;
 font-weight:700;
-letter-spacing:.12em;
+letter-spacing:.08em;
+line-height:1.25;
 text-transform:uppercase;
 cursor:pointer;
 }
+.jp-cart-tab[hidden]{display:none!important;}
 .jp-cart-tab.is-active{
 background:#c78665;
 color:#fff;
@@ -1432,8 +1436,8 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 						<section class="jp-cart-panel">
 							<h2 class="jp-cart-panel__title">Presentes selecionados</h2>
 							<p class="jp-cart-external-note" id="jp-cart-external-note" hidden>
-								<strong>Compra em outro site</strong>
-								Você pode comprar o presente em outro lugar. Preferimos que a entrega seja feita pessoalmente aos noivos — combine com a gente. Depois, escolha PIX ou cartão e informe o valor que quiser contribuir.
+								<strong>Contribuição livre</strong>
+								Informe o valor que quiser contribuir e pague com PIX ou cartão. Se a ideia é reservar um presente da lista comprado em outro lugar, adicione o item na loja e no pagamento escolha “Comprar em outro site”.
 							</p>
 							<div class="jp-cart-list" id="jp-cart-list"></div>
 							<p class="jp-cart-empty" id="jp-cart-empty" hidden>Seu carrinho está vazio. <a href="loja.html">Escolher presentes</a></p>
@@ -1500,6 +1504,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 							<div class="jp-cart-tabs" role="tablist">
 								<button type="button" class="jp-cart-tab is-active" data-tab="pix" role="tab">PIX</button>
 								<button type="button" class="jp-cart-tab" data-tab="card" role="tab">Cartão de crédito</button>
+								<button type="button" class="jp-cart-tab" data-tab="offsite" role="tab" id="jp-tab-offsite" hidden>Comprar em outro site</button>
 							</div>
 							<div class="jp-cart-pay-panel" id="jp-pay-pix" role="tabpanel">
 								<p class="jp-cart-card__amount" id="jp-pix-amount"></p>
@@ -1514,6 +1519,11 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 								<button type="button" class="jp-cart-card__btn" id="jp-card-pay-btn">Pagar com cartão</button>
 								<p class="jp-cart-feedback" id="jp-card-feedback" hidden></p>
 								<p class="jp-cart-note" id="jp-card-fallback" hidden>Configure o handle do InfinitePay em payment-config.json ou use o PDF da lista de presentes.</p>
+							</div>
+							<div class="jp-cart-pay-panel" id="jp-pay-offsite" role="tabpanel" hidden>
+								<p class="jp-cart-note">Vai comprar este presente em outra loja e combinar a entrega com os noivos? Confirme abaixo — o item fica indisponível na lista, sem pagamento por aqui.</p>
+								<button type="button" class="jp-cart-card__btn" id="jp-offsite-confirm-btn">Confirmar e deixar indisponível</button>
+								<p class="jp-cart-feedback" id="jp-offsite-feedback" hidden></p>
 							</div>
 						</div>
 					</section>
@@ -1581,11 +1591,15 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 			var cardPayBtn = document.getElementById('jp-card-pay-btn');
 			var cardFallbackNode = document.getElementById('jp-card-fallback');
 			var cardFeedbackNode = document.getElementById('jp-card-feedback');
+			var offsiteTabBtn = document.getElementById('jp-tab-offsite');
+			var offsiteConfirmBtn = document.getElementById('jp-offsite-confirm-btn');
+			var offsiteFeedbackNode = document.getElementById('jp-offsite-feedback');
 			var virtualCardFeedbackNode = document.getElementById('jp-virtual-card-feedback');
 			var paymentConfig = null;
 			var activeTab = 'pix';
 			var cardCheckoutLoading = false;
 			var pixCheckoutLoading = false;
+			var offsiteLoading = false;
 			var giftMessageSubmitted = false;
 			var giftMessageSubmitting = false;
 			var cardGridNode = document.getElementById('jp-card-grid');
@@ -1794,6 +1808,26 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				});
 			}
 
+			function getRealGiftItems(items) {
+				return items.filter(function (item) {
+					return !cart.isExternalItem(item);
+				});
+			}
+
+			function hasRealGiftItems(items) {
+				return getRealGiftItems(items).length > 0;
+			}
+
+			function updateOffsiteTabVisibility(items) {
+				var showOffsite = hasRealGiftItems(items);
+				if (offsiteTabBtn) {
+					offsiteTabBtn.hidden = !showOffsite;
+				}
+				if (!showOffsite && activeTab === 'offsite') {
+					setTab('pix');
+				}
+			}
+
 			function parseAmountInput(value) {
 				var normalized = String(value || '')
 					.trim()
@@ -1874,6 +1908,7 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				if (checkoutSection && items.length === 0) {
 					checkoutSection.hidden = true;
 				}
+				updateOffsiteTabVisibility(items);
 				cart.updateBadges();
 				updatePaymentPanels(total);
 				syncPresenteFromCart(items);
@@ -2076,6 +2111,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 					cardFeedbackNode.classList.remove('is-error');
 					cardFeedbackNode.hidden = true;
 				}
+				if (offsiteFeedbackNode) {
+					offsiteFeedbackNode.classList.remove('is-error');
+					offsiteFeedbackNode.hidden = true;
+				}
 			}
 
 			function validateCheckoutForm(showErrors) {
@@ -2159,12 +2198,108 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 				});
 				var pixPanel = document.getElementById('jp-pay-pix');
 				var cardPanel = document.getElementById('jp-pay-card');
+				var offsitePanel = document.getElementById('jp-pay-offsite');
 				if (pixPanel) {
 					pixPanel.hidden = tab !== 'pix';
 				}
 				if (cardPanel) {
 					cardPanel.hidden = tab !== 'card';
 				}
+				if (offsitePanel) {
+					offsitePanel.hidden = tab !== 'offsite';
+				}
+			}
+
+			function confirmOffsitePurchase() {
+				if (offsiteLoading || !offsiteConfirmBtn) {
+					return;
+				}
+				var realItems = getRealGiftItems(cart.readCart());
+				if (!realItems.length) {
+					if (offsiteFeedbackNode) {
+						offsiteFeedbackNode.hidden = false;
+						offsiteFeedbackNode.classList.add('is-error');
+						offsiteFeedbackNode.textContent =
+							'Adicione um presente da lista para deixar indisponível.';
+					}
+					return;
+				}
+				var customer = validateCheckoutForm(true);
+				if (!customer) {
+					if (offsiteFeedbackNode) {
+						offsiteFeedbackNode.hidden = false;
+						offsiteFeedbackNode.classList.add('is-error');
+						offsiteFeedbackNode.textContent = 'Complete os campos em vermelho acima.';
+					}
+					return;
+				}
+				if (offsiteFeedbackNode) {
+					offsiteFeedbackNode.classList.remove('is-error');
+					offsiteFeedbackNode.hidden = true;
+				}
+				syncGuestNameToCard();
+				if (
+					cardDeInput instanceof HTMLInputElement &&
+					!String(cardDeInput.value || '').trim()
+				) {
+					cardDeInput.value = customer.name;
+					updateGiftPreview();
+				}
+				if (
+					cardMensagemInput instanceof HTMLTextAreaElement &&
+					!String(cardMensagemInput.value || '').trim()
+				) {
+					cardMensagemInput.value =
+						'Presente comprado em outro site. Entrega a combinar com os noivos.';
+					updateGiftPreview();
+				}
+				offsiteLoading = true;
+				offsiteConfirmBtn.disabled = true;
+				offsiteConfirmBtn.textContent = 'Confirmando...';
+				cart.setCheckoutOrderNsu('OFFSITE-' + Date.now());
+				submitGiftMessageIfNeeded(true)
+					.then(function () {
+						var message = getGiftMessageState();
+						return cart
+							.saveGiftOrder(message, realItems, { customer: customer })
+							.catch(function () {
+								return null;
+							});
+					})
+					.then(function () {
+						return cart.markItemsPurchased(realItems, customer);
+					})
+					.then(function () {
+						cart.clearCart();
+						cart.removePurchasedFromCart();
+						renderList();
+						offsiteLoading = false;
+						offsiteConfirmBtn.disabled = true;
+						offsiteConfirmBtn.textContent = 'Presente reservado';
+						if (offsiteFeedbackNode) {
+							offsiteFeedbackNode.hidden = false;
+							offsiteFeedbackNode.classList.remove('is-error');
+							offsiteFeedbackNode.textContent =
+								'Pronto! O presente ficou indisponível. Combine a entrega com os noivos.';
+						}
+						if (checkoutBtn) {
+							checkoutBtn.disabled = true;
+						}
+					})
+					.catch(function (error) {
+						offsiteLoading = false;
+						offsiteConfirmBtn.disabled = false;
+						offsiteConfirmBtn.textContent = 'Confirmar e deixar indisponível';
+						if (error && error.message === 'card-name') {
+							return;
+						}
+						if (offsiteFeedbackNode) {
+							offsiteFeedbackNode.hidden = false;
+							offsiteFeedbackNode.classList.add('is-error');
+							offsiteFeedbackNode.textContent =
+								'Não foi possível reservar o presente. Tente novamente.';
+						}
+					});
 			}
 
 			if (listNode) {
@@ -2256,6 +2391,10 @@ QNL 06 Chácara 18 - Taguatinga, Brasília - DF</a></p>
 
 			if (cardPayBtn) {
 				cardPayBtn.addEventListener('click', startCardCheckout);
+			}
+
+			if (offsiteConfirmBtn) {
+				offsiteConfirmBtn.addEventListener('click', confirmOffsitePurchase);
 			}
 
 			cart.fetchPurchasedIds().then(function () {
